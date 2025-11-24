@@ -191,7 +191,7 @@ export const StoryPage = () => {
         {
           start: 10.9, end: 13.6,
           words: [
-            { text: "‘I’m", start: 11.0, end: 11.2 },
+            { text: "I’m", start: 11.0, end: 11.2 },
             { text: "sorry,", start: 11.2, end: 11.4 },
             { text: "I", start: 12.2, end: 12.6 },
             { text: "was", start: 12.6, end: 12.8 },
@@ -230,7 +230,7 @@ export const StoryPage = () => {
           words: [
             { text: "It", start: 22.5, end: 22.7 },
             { text: "was", start: 22.7, end: 22.9 },
-            { text: "wrong,’", start: 22.9, end: 23.1 }
+            { text: "wrong,", start: 22.9, end: 23.1 }
           ]
 
 
@@ -298,7 +298,7 @@ export const StoryPage = () => {
         {
           start: 0, end: 3.2,
           words: [
-            { text: "‘I’m", start: 0.2, end: 0.4 },
+            { text: "I’m", start: 0.2, end: 0.4 },
             { text: "happy", start: 0.4, end: 0.6 },
             { text: "you", start: 0.6, end: 0.8 },
             { text: "were", start: 0.8, end: 1.0 },

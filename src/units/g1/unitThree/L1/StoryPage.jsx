@@ -320,7 +320,6 @@ export const StoryPage = () => {
             { text: "Dad", start: 18.3, end: 18.6 },
             { text: "cook", start: 18.6, end: 18.9 },
             { text: "dinner.", start: 18.9, end: 19.2 },
-            { text: "Highlight", start: 19.2, end: 19.5 }
           ],
         },
       ],

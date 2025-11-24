@@ -495,7 +495,6 @@ export const StoryPage = () => {
   const cloudPositions = {
 
     0: [
-      // { bottom: '35rem', left: '50%', transform: 'translateX(-50%)', isFlipped: true }
     ],
 
     1: [
@@ -519,7 +518,7 @@ export const StoryPage = () => {
     ],
 
     3: [
-      { bottom: '85%', left: '60%', isFlipped: true },
+      { bottom: '60%', left: '60%', isFlipped: true },
       { top: '20%', left: '5%' },
       { top: '10%', left: '35%', isFlipped: true },
       { top: '15%', left: '45%', isFlipped: false },

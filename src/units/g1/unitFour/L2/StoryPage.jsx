@@ -310,7 +310,7 @@ export const StoryPage = () => {
             { "text": "and", "start": 3.7, "end": 4.0 },
             { "text": "telling", "start": 4.0, "end": 4.3 },
             { "text": "the", "start": 4.3, "end": 4.6 },
-            { "text": "teacher.’", "start": 4.6, "end": 4.9 }
+            { "text": "teacher.", "start": 4.6, "end": 4.9 }
           ]
         },
         {
@@ -511,7 +511,7 @@ export const StoryPage = () => {
       { top: '15%', right: '60%', isFlipped: false },
       { top: '10%', left: '15%' },
       { top: '10%', right: '15%' },
-      { bottom: '80%', left: '50%', isFlipped: true },
+      { bottom: '60%', left: '50%', isFlipped: true },
       { bottom: '30%', left: '20%' },
 
     ],
