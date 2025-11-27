@@ -1,5 +1,16 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, Subtitles, Maximize2, Minimize2 } from 'lucide-react';
+import {
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  Pause,
+  Volume2,
+  VolumeX,
+  Subtitles,
+  Maximize2,
+  Minimize2,
+  MessageSquareText,
+} from "lucide-react";
 import { useParams, useNavigate } from 'react-router-dom';
 import '../../shared/StoryPage.css';
 import ValidationAlert from '../../shared/ValidationAlert';
@@ -15,6 +26,8 @@ import img from "./assets/img.png";
 import questionGif from './assets/question.gif';
 
 export const StoryPage = () => {
+        const [showCaption, setShowCaption] = useState(true);
+        const [extraBubble, setExtraBubble] = useState(null);
   const [currentVideo, setCurrentVideo] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -53,85 +66,14 @@ export const StoryPage = () => {
       url: video2,
       title: "Section 2",
       subtitles: [
+      
+
         {
-          start: 0, end: 7.8,
-          words: [
-            { text: "Jasmine", start: 0.2, end: 0.5 },
-            { text: "and", start: 0.5, end: 0.8 },
-            { text: "Derrick", start: 0.8, end: 1.1 },
-            { text: "are", start: 1.1, end: 1.4 },
-            { text: "making", start: 1.4, end: 1.7 },
-            { text: "posters", start: 1.7, end: 2.0 },
-            { text: "and", start: 2.0, end: 2.3 },
-            { text: "getting", start: 2.3, end: 2.6 },
-            { text: "their", start: 2.6, end: 2.9 },
-            { text: "presentations", start: 2.9, end: 3.2 },
-            { text: "ready.", start: 3.2, end: 4.0 },
-            { text: "They", start: 5.0, end: 5.3 },
-            { text: "are", start: 5.3, end: 5.6 },
-            { text: "both", start: 5.6, end: 5.9 },
-            { text: "hoping", start: 5.9, end: 6.2 },
-            { text: "to", start: 6.2, end: 6.5 },
-            { text: "become", start: 6.5, end: 6.8 },
-            { text: "class", start: 6.8, end: 7.1 },
-            { text: "president.", start: 7.1, end: 7.4 },
-
-
-
-          ]
+        
         },
 
         {
-          start: 8.0, end: 11.8,
-          words: [
-            { text: "The", start: 8.0, end: 8.3 },
-            { text: "other", start: 8.3, end: 8.6 },
-            { text: "children", start: 8.6, end: 8.9 },
-            { text: "and", start: 8.9, end: 9.2 },
-            { text: "teachers", start: 9.2, end: 9.5 },
-            { text: "will", start: 9.5, end: 9.8 },
-            { text: "vote", start: 9.8, end: 10.1 },
-            { text: "for", start: 10.1, end: 10.4 },
-            { text: "the", start: 10.4, end: 10.7 },
-            { text: "person", start: 10.7, end: 11.0 },
-            { text: "they", start: 11.0, end: 11.3 },
-            { text: "want.", start: 11.3, end: 11.6 },
-
-
-
-
-
-          ]
-        },
-
-        {
-          start: 11.8, end: 20.0,
-          words: [
-
-            { text: "Derrick", start: 13.2, end: 13.5 },
-            { text: "and", start: 13.5, end: 13.8 },
-            { text: "Jasmine", start: 13.8, end: 14.1 },
-            { text: "are", start: 14.1, end: 14.4 },
-            { text: "both", start: 14.4, end: 14.7 },
-            { text: "working", start: 14.7, end: 15.0 },
-            { text: "very", start: 15.0, end: 15.3 },
-            { text: "hard", start: 15.3, end: 15.6 },
-            { text: "and", start: 15.6, end: 15.9 },
-            { text: "they", start: 15.9, end: 16.2 },
-            { text: "both", start: 16.2, end: 16.5 },
-            { text: "want", start: 16.5, end: 16.8 },
-            { text: "to", start: 16.8, end: 17.1 },
-            { text: "win,", start: 17.1, end: 17.4 },
-            { text: "but", start: 17.8, end: 18.2 },
-            { text: "only", start: 18.2, end: 18.5 },
-            { text: "one", start: 18.5, end: 18.8 },
-            { text: "can", start: 18.8, end: 19.1 },
-            { text: "win.", start: 19.1, end: 19.4 },
-
-
-
-
-          ]
+        
         },
       ]
     },
@@ -139,105 +81,7 @@ export const StoryPage = () => {
       url: video3,
       title: "Section 3",
       subtitles: [
-        {
-          start: 0, end: 4.5,
-          words: [
-            { text: "Derrick", start: 0.2, end: 0.5 },
-            { text: "is", start: 0.5, end: 0.8 },
-            { text: "looking", start: 0.8, end: 1.1 },
-            { text: "at", start: 1.1, end: 1.4 },
-            { text: "the", start: 1.4, end: 1.7 },
-            { text: "teacher", start: 1.7, end: 2.0 },
-            { text: "and", start: 2.0, end: 2.3 },
-            { text: "he", start: 2.3, end: 2.6 },
-            { text: "is", start: 2.6, end: 2.9 },
-            { text: "worried", start: 2.9, end: 3.2 },
-            { text: "he", start: 3.2, end: 3.5 },
-            { text: "won’t", start: 3.5, end: 3.8 },
-            { text: "win.", start: 3.8, end: 4.1 },
-
-
-
-          ]
-        },
-
-        {
-          start: 4.5, end: 14.0,
-          words: [
-            { text: "It", start: 4.7, end: 5.0 },
-            { text: "was", start: 5.0, end: 5.3 },
-            { text: "very", start: 5.3, end: 5.6 },
-            { text: "close,", start: 5.6, end: 5.9 },
-            { text: "but", start: 6.5, end: 6.8 },
-            { text: "the", start: 6.8, end: 7.1 },
-            { text: "person", start: 7.1, end: 7.4 },
-            { text: "with", start: 7.4, end: 7.7 },
-            { text: "the", start: 7.7, end: 8.0 },
-            { text: "most", start: 8.0, end: 8.3 },
-            { text: "votes", start: 8.3, end: 8.6 },
-            { text: "is…’", start: 8.6, end: 9.9 },
-
-
-            { text: "Derrick", start: 11.0, end: 11.3 },
-            { text: "holds", start: 11.3, end: 11.6 },
-            { text: "his", start: 11.6, end: 11.9 },
-            { text: "breath.", start: 11.9, end: 12.2 },
-            { text: "He", start: 12.2, end: 12.5 },
-            { text: "really", start: 12.5, end: 12.8 },
-            { text: "wants", start: 12.8, end: 13.1 },
-            { text: "to", start: 13.1, end: 13.4 },
-            { text: "win.", start: 13.4, end: 13.7 },
-
-
-
-          ]
-        },
-
-        {
-          start: 14.0, end: 18.0,
-          words: [
-
-            { text: "‘Jasmine!", start: 14.0, end: 16.3 },
-            { text: "Congratulations", start: 16.3, end: 16.6 },
-            { text: "Jasmine!’", start: 16.6, end: 17.5 },
-
-
-
-
-
-          ]
-        },
-
-        {
-          start: 18.0, end: 24.1,
-          words: [
-
-            { text: "Jasmine", start: 18.9, end: 19.2 },
-            { text: "walks", start: 19.2, end: 19.5 },
-            { text: "to", start: 19.5, end: 19.8 },
-            { text: "the", start: 19.8, end: 20.1 },
-            { text: "front", start: 20.1, end: 20.4 },
-            { text: "of", start: 20.4, end: 20.7 },
-            { text: "the", start: 20.7, end: 21.0 },
-            { text: "class", start: 21.0, end: 21.3 },
-            { text: "and", start: 21.3, end: 21.6 },
-            { text: "shakes", start: 21.6, end: 21.9 },
-            { text: "the", start: 21.9, end: 22.2 },
-            { text: "teacher’s", start: 22.2, end: 22.5 },
-            { text: "hand.", start: 22.5, end: 22.8 },
-            { text: "She", start: 22.8, end: 23.1 },
-            { text: "looks", start: 23.1, end: 23.4 },
-            { text: "very", start: 23.4, end: 23.7 },
-            { text: "happy.", start: 23.7, end: 24.0 },
-
-
-
-
-
-
-
-          ]
-        },
+    
       ]
     },
     {
@@ -245,77 +89,15 @@ export const StoryPage = () => {
       title: "Section 4",
       subtitles: [
         {
-          start: 0, end: 10.3,
-          words: [
-            { text: "Derrick", start: 0.2, end: 0.5 },
-            { text: "feels", start: 0.5, end: 0.8 },
-            { text: "very", start: 0.8, end: 1.1 },
-            { text: "upset.", start: 1.1, end: 1.4 },
-            { text: "He", start: 2.9, end: 3.2 },
-            { text: "feels", start: 3.2, end: 3.5 },
-            { text: "his", start: 3.5, end: 3.8 },
-            { text: "face", start: 3.8, end: 4.1 },
-            { text: "turns", start: 4.1, end: 4.4 },
-            { text: "red.", start: 4.4, end: 4.7 },
-            { text: "But", start: 4.7, end: 5.0 },
-            { text: "he", start: 5.0, end: 5.3 },
-            { text: "doesn’t", start: 5.3, end: 5.6 },
-            { text: "want", start: 5.6, end: 5.9 },
-            { text: "to", start: 5.9, end: 6.2 },
-            { text: "be", start: 6.2, end: 6.5 },
-            { text: "a", start: 6.5, end: 6.8 },
-            { text: "sore", start: 6.8, end: 7.1 },
-            { text: "loser", start: 7.1, end: 7.4 },
-            { text: "and", start: 7.4, end: 7.7 },
-            { text: "throw", start: 7.7, end: 8.0 },
-            { text: "a", start: 8.0, end: 8.3 },
-            { text: "tantrum.", start: 8.3, end: 8.6 },
-            { text: "Derrick", start: 8.6, end: 8.9 },
-            { text: "takes", start: 8.9, end: 9.2 },
-            { text: "a", start: 9.2, end: 9.5 },
-            { text: "deep", start: 9.5, end: 9.8 },
-            { text: "breath.", start: 9.8, end: 10.1 },
-
-
-
-          ]
+         
         },
 
         {
-          start: 12.0, end: 16.3,
-          words: [
-            { text: "He", start: 12.8, end: 13.1 },
-            { text: "knows", start: 13.1, end: 13.4 },
-            { text: "he", start: 13.4, end: 13.7 },
-            { text: "should", start: 13.7, end: 14.0 },
-            { text: "show", start: 14.0, end: 14.3 },
-            { text: "good", start: 14.3, end: 14.6 },
-            { text: "sportsmanship", start: 14.6, end: 14.9 },
-            { text: "and", start: 14.9, end: 15.2 },
-            { text: "congratulate", start: 15.2, end: 15.5 },
-            { text: "Jasmine.", start: 15.5, end: 15.8 },
 
-
-
-          ]
         },
 
         {
-          start: 16.3, end: 20.5,
-          words: [
-
-            { text: "At", start: 18.2, end: 18.5 },
-            { text: "playtime", start: 18.5, end: 18.8 },
-            { text: "he", start: 18.8, end: 19.1 },
-            { text: "found", start: 19.1, end: 19.4 },
-            { text: "her", start: 19.4, end: 19.7 },
-            { text: "on", start: 19.7, end: 20.0 },
-            { text: "the", start: 20.0, end: 20.3 },
-            { text: "playground,", start: 20.3, end: 20.6 },
-
-
-
-          ]
+ 
         },
 
         {
@@ -396,27 +178,7 @@ export const StoryPage = () => {
           ]
         },
 
-        {
-          start: 31.9, end: 35.0,
-          words: [
-            { text: "Derrick", start: 0.2, end: 0.5 },
-            { text: "feels", start: 0.5, end: 0.8 },
-            { text: "very", start: 0.8, end: 1.1 },
-            { text: "upset.", start: 1.1, end: 1.4 },
-            { text: "He", start: 2.9, end: 3.2 },
-            { text: "feels", start: 3.2, end: 3.5 },
-            { text: "his", start: 3.5, end: 3.8 },
-            { text: "face", start: 3.8, end: 4.1 },
-            { text: "turns", start: 4.1, end: 4.4 },
-            { text: "red.", start: 4.4, end: 4.7 },
-            { text: "But he doesn’t want to be a sore loser and throw a tantrum", start: 4.7, end: 5.0 },
-            { text: "Derrick", start: 8.6, end: 8.9 },
-            { text: "takes", start: 8.9, end: 9.2 },
-            { text: "a", start: 9.2, end: 9.5 },
-            { text: "deep", start: 9.5, end: 9.8 },
-            { text: "breath.", start: 9.8, end: 10.1 },
-          ]
-        },
+        
         // {
         //   start: 24.0, end: 25.0,
         //   words: [
@@ -438,21 +200,7 @@ export const StoryPage = () => {
       title: "Section 5",
       subtitles: [
         {
-          start: 0, end: 2.4,
-          words: [
-            { text: "At", start: 0.2, end: 0.5 },
-            { text: "the", start: 0.5, end: 0.8 },
-            { text: "end", start: 0.8, end: 1.1 },
-            { text: "of", start: 1.1, end: 1.4 },
-            { text: "school,", start: 1.4, end: 1.7 },
-            { text: "he", start: 1.7, end: 1.9 },
-            { text: "says", start: 1.9, end: 2.1 },
-            { text: "to", start: 2.1, end: 2.3 },
-            { text: "her,", start: 2.3, end: 2.4 },
-
-
-
-          ]
+   
         },
 
         {
@@ -504,26 +252,7 @@ export const StoryPage = () => {
         },
 
         {
-          start: 15.0, end: 21.0,
-          words: [
-            { text: "Derrick", start: 15.7, end: 16.0 },
-            { text: "feels", start: 16.0, end: 16.3 },
-            { text: "good,", start: 16.3, end: 16.6 },
-            { text: "and", start: 16.6, end: 16.9 },
-            { text: "he", start: 16.9, end: 17.2 },
-            { text: "enjoys", start: 17.2, end: 17.5 },
-            { text: "helping", start: 17.5, end: 17.8 },
-            { text: "Jasmine.", start: 17.8, end: 18.1 },
-            { text: "Derrick", start: 19.0, end: 19.3 },
-            { text: "is", start: 19.3, end: 19.6 },
-            { text: "happy", start: 19.6, end: 19.9 },
-            { text: "he", start: 19.9, end: 20.2 },
-            { text: "helped", start: 20.2, end: 20.5 },
-            { text: "Jasmine.", start: 20.5, end: 20.8 },
-
-
-
-          ]
+      
         },
       ]
     },
@@ -577,6 +306,323 @@ export const StoryPage = () => {
       { bottom: '60%', left: '20%' }
     ],
   };
+
+       const extraBubblesData = [
+          {
+            videoIndex: 1,
+               start: 0, end: 7.8,
+          words: [
+            { text: "Jasmine", start: 0.2, end: 0.5 },
+            { text: "and", start: 0.5, end: 0.8 },
+            { text: "Derrick", start: 0.8, end: 1.1 },
+            { text: "are", start: 1.1, end: 1.4 },
+            { text: "making", start: 1.4, end: 1.7 },
+            { text: "posters", start: 1.7, end: 2.0 },
+            { text: "and", start: 2.0, end: 2.3 },
+            { text: "getting", start: 2.3, end: 2.6 },
+            { text: "their", start: 2.6, end: 2.9 },
+            { text: "presentations", start: 2.9, end: 3.2 },
+            { text: "ready.", start: 3.2, end: 4.0 },
+            { text: "They", start: 5.0, end: 5.3 },
+            { text: "are", start: 5.3, end: 5.6 },
+            { text: "both", start: 5.6, end: 5.9 },
+            { text: "hoping", start: 5.9, end: 6.2 },
+            { text: "to", start: 6.2, end: 6.5 },
+            { text: "become", start: 6.5, end: 6.8 },
+            { text: "class", start: 6.8, end: 7.1 },
+            { text: "president.", start: 7.1, end: 7.4 },
+
+
+
+          ]
+          },
+          {
+            videoIndex: 1,
+              start: 8.0, end: 11.8,
+          words: [
+            { text: "The", start: 8.0, end: 8.3 },
+            { text: "other", start: 8.3, end: 8.6 },
+            { text: "children", start: 8.6, end: 8.9 },
+            { text: "and", start: 8.9, end: 9.2 },
+            { text: "teachers", start: 9.2, end: 9.5 },
+            { text: "will", start: 9.5, end: 9.8 },
+            { text: "vote", start: 9.8, end: 10.1 },
+            { text: "for", start: 10.1, end: 10.4 },
+            { text: "the", start: 10.4, end: 10.7 },
+            { text: "person", start: 10.7, end: 11.0 },
+            { text: "they", start: 11.0, end: 11.3 },
+            { text: "want.", start: 11.3, end: 11.6 },
+
+
+
+
+
+          ]
+          },
+              {
+            videoIndex: 1,
+             start: 11.8, end: 20.0,
+          words: [
+
+            { text: "Derrick", start: 13.2, end: 13.5 },
+            { text: "and", start: 13.5, end: 13.8 },
+            { text: "Jasmine", start: 13.8, end: 14.1 },
+            { text: "are", start: 14.1, end: 14.4 },
+            { text: "both", start: 14.4, end: 14.7 },
+            { text: "working", start: 14.7, end: 15.0 },
+            { text: "very", start: 15.0, end: 15.3 },
+            { text: "hard", start: 15.3, end: 15.6 },
+            { text: "and", start: 15.6, end: 15.9 },
+            { text: "they", start: 15.9, end: 16.2 },
+            { text: "both", start: 16.2, end: 16.5 },
+            { text: "want", start: 16.5, end: 16.8 },
+            { text: "to", start: 16.8, end: 17.1 },
+            { text: "win,", start: 17.1, end: 17.4 },
+            { text: "but", start: 17.8, end: 18.2 },
+            { text: "only", start: 18.2, end: 18.5 },
+            { text: "one", start: 18.5, end: 18.8 },
+            { text: "can", start: 18.8, end: 19.1 },
+            { text: "win.", start: 19.1, end: 19.4 },
+
+
+
+
+          ]
+          },
+      
+          {
+            videoIndex: 2,
+                start: 0, end: 4.5,
+          words: [
+            { text: "Derrick", start: 0.2, end: 0.5 },
+            { text: "is", start: 0.5, end: 0.8 },
+            { text: "looking", start: 0.8, end: 1.1 },
+            { text: "at", start: 1.1, end: 1.4 },
+            { text: "the", start: 1.4, end: 1.7 },
+            { text: "teacher", start: 1.7, end: 2.0 },
+            { text: "and", start: 2.0, end: 2.3 },
+            { text: "he", start: 2.3, end: 2.6 },
+            { text: "is", start: 2.6, end: 2.9 },
+            { text: "worried", start: 2.9, end: 3.2 },
+            { text: "he", start: 3.2, end: 3.5 },
+            { text: "won’t", start: 3.5, end: 3.8 },
+            { text: "win.", start: 3.8, end: 4.1 },
+
+
+
+          ]
+          },
+          {
+            videoIndex: 2,
+              start: 4.5, end: 14.0,
+          words: [
+            { text: "It", start: 4.7, end: 5.0 },
+            { text: "was", start: 5.0, end: 5.3 },
+            { text: "very", start: 5.3, end: 5.6 },
+            { text: "close,", start: 5.6, end: 5.9 },
+            { text: "but", start: 6.5, end: 6.8 },
+            { text: "the", start: 6.8, end: 7.1 },
+            { text: "person", start: 7.1, end: 7.4 },
+            { text: "with", start: 7.4, end: 7.7 },
+            { text: "the", start: 7.7, end: 8.0 },
+            { text: "most", start: 8.0, end: 8.3 },
+            { text: "votes", start: 8.3, end: 8.6 },
+            { text: "is…’", start: 8.6, end: 9.9 },
+
+
+            { text: "Derrick", start: 11.0, end: 11.3 },
+            { text: "holds", start: 11.3, end: 11.6 },
+            { text: "his", start: 11.6, end: 11.9 },
+            { text: "breath.", start: 11.9, end: 12.2 },
+            { text: "He", start: 12.2, end: 12.5 },
+            { text: "really", start: 12.5, end: 12.8 },
+            { text: "wants", start: 12.8, end: 13.1 },
+            { text: "to", start: 13.1, end: 13.4 },
+            { text: "win.", start: 13.4, end: 13.7 },
+
+
+
+          ]
+          },
+          {
+            videoIndex: 2,
+            start: 14.0, end: 18.0,
+          words: [
+
+            { text: "‘Jasmine!", start: 14.0, end: 16.3 },
+            { text: "Congratulations", start: 16.3, end: 16.6 },
+            { text: "Jasmine!’", start: 16.6, end: 17.5 },
+
+
+
+
+
+          ]
+          },
+          {
+            videoIndex: 2,
+               start: 18.0, end: 24.1,
+          words: [
+
+            { text: "Jasmine", start: 18.9, end: 19.2 },
+            { text: "walks", start: 19.2, end: 19.5 },
+            { text: "to", start: 19.5, end: 19.8 },
+            { text: "the", start: 19.8, end: 20.1 },
+            { text: "front", start: 20.1, end: 20.4 },
+            { text: "of", start: 20.4, end: 20.7 },
+            { text: "the", start: 20.7, end: 21.0 },
+            { text: "class", start: 21.0, end: 21.3 },
+            { text: "and", start: 21.3, end: 21.6 },
+            { text: "shakes", start: 21.6, end: 21.9 },
+            { text: "the", start: 21.9, end: 22.2 },
+            { text: "teacher’s", start: 22.2, end: 22.5 },
+            { text: "hand.", start: 22.5, end: 22.8 },
+            { text: "She", start: 22.8, end: 23.1 },
+            { text: "looks", start: 23.1, end: 23.4 },
+            { text: "very", start: 23.4, end: 23.7 },
+            { text: "happy.", start: 23.7, end: 24.0 },
+
+
+
+
+
+
+
+          ]
+          },
+      
+          {
+            videoIndex: 3,
+         start: 0, end: 10.3,
+          words: [
+            { text: "Derrick", start: 0.2, end: 0.5 },
+            { text: "feels", start: 0.5, end: 0.8 },
+            { text: "very", start: 0.8, end: 1.1 },
+            { text: "upset.", start: 1.1, end: 1.4 },
+            { text: "He", start: 2.9, end: 3.2 },
+            { text: "feels", start: 3.2, end: 3.5 },
+            { text: "his", start: 3.5, end: 3.8 },
+            { text: "face", start: 3.8, end: 4.1 },
+            { text: "turns", start: 4.1, end: 4.4 },
+            { text: "red.", start: 4.4, end: 4.7 },
+            { text: "But", start: 4.7, end: 5.0 },
+            { text: "he", start: 5.0, end: 5.3 },
+            { text: "doesn’t", start: 5.3, end: 5.6 },
+            { text: "want", start: 5.6, end: 5.9 },
+            { text: "to", start: 5.9, end: 6.2 },
+            { text: "be", start: 6.2, end: 6.5 },
+            { text: "a", start: 6.5, end: 6.8 },
+            { text: "sore", start: 6.8, end: 7.1 },
+            { text: "loser", start: 7.1, end: 7.4 },
+            { text: "and", start: 7.4, end: 7.7 },
+            { text: "throw", start: 7.7, end: 8.0 },
+            { text: "a", start: 8.0, end: 8.3 },
+            { text: "tantrum.", start: 8.3, end: 8.6 },
+            { text: "Derrick", start: 8.6, end: 8.9 },
+            { text: "takes", start: 8.9, end: 9.2 },
+            { text: "a", start: 9.2, end: 9.5 },
+            { text: "deep", start: 9.5, end: 9.8 },
+            { text: "breath.", start: 9.8, end: 10.1 },
+
+
+
+          ]
+          },
+          {
+            videoIndex: 3,
+                    start: 12.0, end: 16.3,
+          words: [
+            { text: "He", start: 12.8, end: 13.1 },
+            { text: "knows", start: 13.1, end: 13.4 },
+            { text: "he", start: 13.4, end: 13.7 },
+            { text: "should", start: 13.7, end: 14.0 },
+            { text: "show", start: 14.0, end: 14.3 },
+            { text: "good", start: 14.3, end: 14.6 },
+            { text: "sportsmanship", start: 14.6, end: 14.9 },
+            { text: "and", start: 14.9, end: 15.2 },
+            { text: "congratulate", start: 15.2, end: 15.5 },
+            { text: "Jasmine.", start: 15.5, end: 15.8 },
+
+
+
+          ]
+          },
+           {
+            videoIndex: 3,
+                 start: 16.3, end: 20.5,
+          words: [
+
+            { text: "At", start: 18.2, end: 18.5 },
+            { text: "playtime", start: 18.5, end: 18.8 },
+            { text: "he", start: 18.8, end: 19.1 },
+            { text: "found", start: 19.1, end: 19.4 },
+            { text: "her", start: 19.4, end: 19.7 },
+            { text: "on", start: 19.7, end: 20.0 },
+            { text: "the", start: 20.0, end: 20.3 },
+            { text: "playground,", start: 20.3, end: 20.6 },
+
+
+
+          ]
+          },
+          {
+            videoIndex: 4,
+                   start: 0, end: 2.4,
+          words: [
+            { text: "At", start: 0.2, end: 0.5 },
+            { text: "the", start: 0.5, end: 0.8 },
+            { text: "end", start: 0.8, end: 1.1 },
+            { text: "of", start: 1.1, end: 1.4 },
+            { text: "school,", start: 1.4, end: 1.7 },
+            { text: "he", start: 1.7, end: 1.9 },
+            { text: "says", start: 1.9, end: 2.1 },
+            { text: "to", start: 2.1, end: 2.3 },
+            { text: "her,", start: 2.3, end: 2.4 },
+
+
+
+          ]
+          
+          
+          },
+            {
+            videoIndex: 4,
+          
+             start: 15.0, end: 21.0,
+          words: [
+            { text: "Derrick", start: 15.7, end: 16.0 },
+            { text: "feels", start: 16.0, end: 16.3 },
+            { text: "good,", start: 16.3, end: 16.6 },
+            { text: "and", start: 16.6, end: 16.9 },
+            { text: "he", start: 16.9, end: 17.2 },
+            { text: "enjoys", start: 17.2, end: 17.5 },
+            { text: "helping", start: 17.5, end: 17.8 },
+            { text: "Jasmine.", start: 17.8, end: 18.1 },
+            { text: "Derrick", start: 19.0, end: 19.3 },
+            { text: "is", start: 19.3, end: 19.6 },
+            { text: "happy", start: 19.6, end: 19.9 },
+            { text: "he", start: 19.9, end: 20.2 },
+            { text: "helped", start: 20.2, end: 20.5 },
+            { text: "Jasmine.", start: 20.5, end: 20.8 },
+
+
+
+          ]
+          
+          
+          },
+          
+        ];
+           useEffect(() => {
+                const bubbleToShow = extraBubblesData.find(bubble =>
+                  bubble.videoIndex === currentVideo &&
+                  currentTime >= bubble.start &&
+                  currentTime < bubble.end
+                );
+            
+                setExtraBubble(bubbleToShow || null);
+            
+              }, [currentVideo, currentTime]);
 
   const currentVideoData = videos[currentVideo];
   const activeSubtitleIndex = currentVideoData.subtitles.findIndex(
@@ -879,6 +925,22 @@ export const StoryPage = () => {
             </div>
           )}
 
+           {showCaption && extraBubble && extraBubble.words && (
+            <div
+              className="subtitle-container"
+              style={{ bottom: '0%', left: '50%', transform: 'translateX(-50%)', zIndex: 101 }}
+            >
+              <div className="extra-cloud animate\_\_animated animate\_\_fadeIn">
+                <p>
+                  {extraBubble.words.map((word, index) => {
+                    const isHighlighted = currentTime >= word.start && currentTime < word.end;
+                    return <span key={index} className={`word-span ${isHighlighted ? 'active-word' : ''}`}>{word.text}{' '}</span>;
+                  })}
+                </p>
+              </div>
+            </div>
+          )}
+
           <div className="video-overlay" />
           <div className="controls-container">
             <div className="controlbbtn">
@@ -897,6 +959,11 @@ export const StoryPage = () => {
                     <Subtitles className="w-6 h-6" />
                     <span className="control-label">Subtitle</span>
                   </button>
+
+                    <button onClick={() => setShowCaption(!showCaption)} className="control-btn" title="Caption">
+                                                                                                              <MessageSquareText className="w-6 h-6" />
+                                                                                                              <span className="control-label">Caption</span>
+                                                                                                            </button>
                   <div
                     className="volume-control"
                     onMouseEnter={() => setShowVolumeSlider(true)}

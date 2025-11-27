@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, Subtitles, Maximize2, Minimize2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, Subtitles, Maximize2, Minimize2, MessageSquareText } from 'lucide-react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../../shared/StoryPage.css';
 import ValidationAlert from '../../shared/ValidationAlert';
@@ -14,6 +14,8 @@ import img from "./assets/img.png";
 
 
 export const StoryPage = () => {
+    const [showCaption, setShowCaption] = useState(true);
+    const [extraBubble, setExtraBubble] = useState(null);
   const [currentVideo, setCurrentVideo] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -57,62 +59,13 @@ export const StoryPage = () => {
       url: video2,
       title: "Section 2",
       subtitles: [
-        {
-          start: 0,
-          end: 4.2,
-          words: [
-            { text: "Liz", start: 0.2, end: 0.4 },
-            { text: "and", start: 0.4, end: 0.6 },
-            { text: "Ryan", start: 0.6, end: 0.8 },
-            { text: "are", start: 0.8, end: 1.0 },
-            { text: "watching", start: 1.0, end: 1.2 },
-            { text: "TV", start: 1.2, end: 1.4 },
-            { text: "in", start: 1.4, end: 1.6 },
-            { text: "the", start: 1.6, end: 1.8 },
-            { text: "living", start: 1.8, end: 2.0 },
-            { text: "room", start: 2.0, end: 2.2 },
-            { text: "at", start: 2.2, end: 2.4 },
-            { text: "home", start: 2.4, end: 2.6 },
-            { text: "while", start: 2.6, end: 2.8 },
-            { text: "their", start: 2.8, end: 3.0 },
-            { text: "mum", start: 3.0, end: 3.2 },
-            { text: "cooks", start: 3.2, end: 3.4 },
-            { text: "their", start: 3.4, end: 3.7 },
-            { text: "meal", start: 3.7, end: 4.0 },
-          ],
-        },
+
 
         {
-          start: 4.6,
-          end: 12.8,
-          words: [
-            { text: "Mum", start: 7.5, end: 7.8 },
-            { text: "is", start: 7.8, end: 8.1 },
-            { text: "tired,", start: 8.1, end: 8.4 },
-            { text: "she", start: 8.4, end: 8.7 },
-            { text: "yawns", start: 8.7, end: 9.0 },
-            { text: "as", start: 9.0, end: 9.3 },
-            { text: "she", start: 9.3, end: 9.6 },
-            { text: "chops", start: 9.6, end: 9.9 },
-            { text: "the", start: 9.9, end: 10.2 },
-            { text: "vegetables.", start: 10.2, end: 10.5 },
-            { text: "Soon,", start: 11.0, end: 11.3 },
-            { text: "Dad", start: 11.3, end: 11.5 },
-            { text: "comes", start: 11.5, end: 11.8 },
-            { text: "home", start: 11.8, end: 12.2 },
-            { text: "from", start: 12.2, end: 12.4 },
-            { text: "work.", start: 12.4, end: 12.6 },
-          ],
+      
         },
         {
-          start: 13.5,
-          end: 16.2,
-          words: [
-            { text: "He", start: 14.2, end: 14.5 },
-            { text: "seems", start: 14.8, end: 15.1 },
-            { text: "tired", start: 15.1, end: 15.4 },
-            { text: "too.", start: 15.7, end: 16.0 },
-          ],
+        
         },
         {
           start: 18.5,
@@ -123,24 +76,7 @@ export const StoryPage = () => {
           ],
         },
         {
-          start: 18.5,
-          end: 24.0,
-          words: [
-            { text: "He", start: 19.6, end: 19.9 },
-            { text: "hangs", start: 19.9, end: 20.2 },
-            { text: "up", start: 20.2, end: 20.5 },
-            { text: "his", start: 20.5, end: 20.8 },
-            { text: "coat", start: 20.8, end: 21.1 },
-            { text: "and", start: 21.1, end: 21.4 },
-            { text: "goes", start: 21.4, end: 21.7 },
-            { text: "in", start: 21.7, end: 22.0 },
-            { text: "to", start: 22.0, end: 22.3 },
-            { text: "help", start: 22.3, end: 22.6 },
-            { text: "Mum", start: 22.6, end: 22.9 },
-            { text: "in", start: 22.9, end: 23.2 },
-            { text: "the", start: 23.2, end: 23.5 },
-            { text: "kitchen.", start: 23.5, end: 23.8 },
-          ],
+       
         },
       ],
     },
@@ -150,21 +86,7 @@ export const StoryPage = () => {
       title: "Section 3",
       subtitles: [
         {
-          start: 0,
-          end: 2.8,
-          words: [
-            { text: "Liz", start: 0.2, end: 0.4 },
-            { text: "notices", start: 0.4, end: 0.6 },
-            { text: "that", start: 0.6, end: 0.8 },
-            { text: "this", start: 0.8, end: 1.0 },
-            { text: "is", start: 1.0, end: 1.2 },
-            { text: "not", start: 1.2, end: 1.4 },
-            { text: "fair", start: 1.4, end: 1.6 },
-            { text: "and", start: 1.6, end: 1.8 },
-            { text: "has", start: 1.8, end: 2.0 },
-            { text: "an", start: 2.0, end: 2.2 },
-            { text: "idea.", start: 2.2, end: 2.6 },
-          ],
+        
         },
 
         {
@@ -218,20 +140,7 @@ export const StoryPage = () => {
           ],
         },
         {
-          start: 13.0,
-          end: 17.6,
-          words: [
-            { text: "Liz", start: 13.4, end: 13.9 },
-            { text: "and", start: 13.9, end: 14.4 },
-            { text: "Ryan", start: 14.4, end: 14.9 },
-            { text: "talk", start: 14.9, end: 15.4 },
-            { text: "and", start: 15.4, end: 15.9 },
-            { text: "write", start: 15.9, end: 16.4 },
-            { text: "a", start: 16.4, end: 16.6 },
-            { text: "list", start: 16.6, end: 16.8 },
-            { text: "of", start: 16.8, end: 17.0 },
-            { text: "chores.", start: 17.0, end: 17.4 },
-          ],
+       
         },
       ],
     },
@@ -267,60 +176,13 @@ export const StoryPage = () => {
         },
 
         {
-          start: 4.8,
-          end: 10.0,
-          words: [
-            { text: "They", start: 4.8, end: 5.1 },
-            { text: "choose", start: 5.1, end: 5.4 },
-            { text: "the", start: 5.4, end: 5.7 },
-            { text: "chores", start: 5.7, end: 6.0 },
-            { text: "they", start: 6.0, end: 6.3 },
-            { text: "would", start: 6.3, end: 6.6 },
-            { text: "most", start: 6.6, end: 6.9 },
-            { text: "like", start: 6.9, end: 7.2 },
-            { text: "to", start: 7.2, end: 7.5 },
-            { text: "do", start: 7.5, end: 7.8 },
-            { text: "and", start: 7.8, end: 8.1 },
-            { text: "write", start: 8.1, end: 8.4 },
-            { text: "their", start: 8.4, end: 8.7 },
-            { text: "names", start: 8.7, end: 9.0 },
-            { text: "next", start: 9.0, end: 9.3 },
-            { text: "to", start: 9.3, end: 9.6 },
-            { text: "them.", start: 9.6, end: 9.9 }
-          ],
+     
         },
         {
-          start: 10.0,
-          end: 13.8,
-          words: [
-            { text: "They", start: 11.1, end: 11.4 },
-            { text: "then", start: 11.4, end: 11.7 },
-            { text: "plan", start: 11.7, end: 12.0 },
-            { text: "a", start: 12.0, end: 12.3 },
-            { text: "surprise", start: 12.3, end: 12.6 },
-            { text: "for", start: 12.6, end: 12.9 },
-            { text: "their", start: 12.9, end: 13.2 },
-            { text: "tired", start: 13.2, end: 13.5 },
-            { text: "parents.", start: 13.5, end: 13.8 }
-          ],
+        
         },
         {
-          start: 13.0,
-          end: 20.0,
-          words: [
-            { text: "They", start: 15.6, end: 15.9 },
-            { text: "start", start: 15.9, end: 16.2 },
-            { text: "to", start: 16.2, end: 16.5 },
-            { text: "do", start: 16.5, end: 16.8 },
-            { text: "their", start: 16.8, end: 17.1 },
-            { text: "chores", start: 17.1, end: 17.4 },
-            { text: "while", start: 17.4, end: 17.7 },
-            { text: "Mum", start: 17.7, end: 18.0 },
-            { text: "and", start: 18.0, end: 18.3 },
-            { text: "Dad", start: 18.3, end: 18.6 },
-            { text: "cook", start: 18.6, end: 18.9 },
-            { text: "dinner.", start: 18.9, end: 19.2 },
-          ],
+        
         },
       ],
     },
@@ -331,58 +193,15 @@ export const StoryPage = () => {
       title: "Section 5",
       subtitles: [
         {
-          start: 0,
-          end: 2.6,
-          words: [
-            { text: "Mum", start: 0.2, end: 0.4 },
-            { text: "and", start: 0.4, end: 0.6 },
-            { text: "Dad", start: 0.6, end: 0.8 },
-            { text: "come", start: 0.8, end: 1.0 },
-            { text: "out", start: 1.0, end: 1.2 },
-            { text: "of", start: 1.2, end: 1.4 },
-            { text: "the", start: 1.4, end: 1.6 },
-            { text: "kitchen", start: 1.6, end: 1.8 },
-            { text: "with", start: 1.8, end: 2.0 },
-            { text: "the", start: 2.0, end: 2.2 },
-            { text: "food", start: 2.2, end: 2.4 },
-          ],
+       
         },
 
         {
-          start: 2.6,
-          end: 4.3,
-          words: [
-            { text: "and", start: 2.6, end: 2.8 },
-            { text: "find", start: 2.8, end: 3.0 },
-            { text: "the", start: 3.0, end: 3.2 },
-            { text: "children", start: 3.2, end: 3.4 },
-            { text: "working", start: 3.4, end: 3.6 },
-            { text: "hard.", start: 3.6, end: 4.2 },
-          ],
+      
         },
 
-        {
-          start: 6.0,
-          end: 7.4,
-          words: [
-            { text: "They", start: 6.0, end: 6.2 },
-            { text: "are", start: 6.2, end: 6.4 },
-            { text: "very", start: 6.4, end: 6.6 },
-            { text: "happy", start: 6.6, end: 6.8 },
-            { text: "with", start: 6.8, end: 7.0 },
-            { text: "their", start: 7.0, end: 7.2 },
-            { text: "children.", start: 7.2, end: 7.4 },
-          ],
-        },
-        {
-          start: 9.0,
-          end: 10.6,
-          words: [
-            { text: "‘Wow!", start: 9.6, end: 10.0 },
-            { text: "Thank", start: 10.0, end: 10.2 },
-            { text: "you,’", start: 10.2, end: 10.6 },
-          ],
-        },
+      
+    
         {
           start: 9.0,
           end: 10.6,
@@ -393,42 +212,9 @@ export const StoryPage = () => {
           ],
         },
 
+      
         {
-          start: 10.6,
-          end: 15.5,
-          words: [
-            { text: "They", start: 10.8, end: 11.1 },
-            { text: "eat", start: 11.1, end: 11.4 },
-            { text: "dinner", start: 11.4, end: 11.7 },
-            { text: "together", start: 11.7, end: 12.0 },
-            { text: "and", start: 12.0, end: 12.3 },
-            { text: "Mum", start: 12.3, end: 12.6 },
-            { text: "and", start: 12.6, end: 12.9 },
-            { text: "Dad", start: 12.9, end: 13.2 },
-            { text: "relax", start: 13.2, end: 13.5 },
-            { text: "while", start: 13.5, end: 13.8 },
-            { text: "the", start: 13.8, end: 14.1 },
-            { text: "children", start: 14.1, end: 14.4 },
-            { text: "finish", start: 14.4, end: 14.7 },
-            { text: "their", start: 14.7, end: 15.0 },
-            { text: "chores", start: 15.0, end: 15.3 },
-          ],
-        },
-        {
-          start: 15.4,
-          end: 19.6,
-          words: [
-            { text: "Well", start: 15.4, end: 15.7 },
-            { text: "done", start: 15.7, end: 16.0 },
-            { text: "Liz", start: 16.0, end: 16.3 },
-            { text: "and", start: 16.3, end: 16.6 },
-            { text: "Ryan,", start: 16.6, end: 17.2 },
-            { text: "you", start: 17.9, end: 18.1 },
-            { text: "have", start: 18.1, end: 18.3 },
-            { text: "helped", start: 18.3, end: 18.8 },
-            { text: "your", start: 18.8, end: 19.0 },
-            { text: "parents!", start: 19.0, end: 19.2 },
-          ],
+        
         },
       ],
     },
@@ -496,6 +282,278 @@ export const StoryPage = () => {
       { top: "5%", left: "35%", isFlipped: true },
     ],
   };
+   const extraBubblesData = [
+    {
+      videoIndex: 1,
+     start: 0,
+          end: 4.2,
+          words: [
+            { text: "Liz", start: 0.2, end: 0.4 },
+            { text: "and", start: 0.4, end: 0.6 },
+            { text: "Ryan", start: 0.6, end: 0.8 },
+            { text: "are", start: 0.8, end: 1.0 },
+            { text: "watching", start: 1.0, end: 1.2 },
+            { text: "TV", start: 1.2, end: 1.4 },
+            { text: "in", start: 1.4, end: 1.6 },
+            { text: "the", start: 1.6, end: 1.8 },
+            { text: "living", start: 1.8, end: 2.0 },
+            { text: "room", start: 2.0, end: 2.2 },
+            { text: "at", start: 2.2, end: 2.4 },
+            { text: "home", start: 2.4, end: 2.6 },
+            { text: "while", start: 2.6, end: 2.8 },
+            { text: "their", start: 2.8, end: 3.0 },
+            { text: "mum", start: 3.0, end: 3.2 },
+            { text: "cooks", start: 3.2, end: 3.4 },
+            { text: "their", start: 3.4, end: 3.7 },
+            { text: "meal", start: 3.7, end: 4.0 },
+          ],
+    },
+    {
+      videoIndex: 1,
+        start: 4.6,
+          end: 12.8,
+          words: [
+            { text: "Mum", start: 7.5, end: 7.8 },
+            { text: "is", start: 7.8, end: 8.1 },
+            { text: "tired,", start: 8.1, end: 8.4 },
+            { text: "she", start: 8.4, end: 8.7 },
+            { text: "yawns", start: 8.7, end: 9.0 },
+            { text: "as", start: 9.0, end: 9.3 },
+            { text: "she", start: 9.3, end: 9.6 },
+            { text: "chops", start: 9.6, end: 9.9 },
+            { text: "the", start: 9.9, end: 10.2 },
+            { text: "vegetables.", start: 10.2, end: 10.5 },
+            { text: "Soon,", start: 11.0, end: 11.3 },
+            { text: "Dad", start: 11.3, end: 11.5 },
+            { text: "comes", start: 11.5, end: 11.8 },
+            { text: "home", start: 11.8, end: 12.2 },
+            { text: "from", start: 12.2, end: 12.4 },
+            { text: "work.", start: 12.4, end: 12.6 },
+          ],
+    },
+        {
+      videoIndex: 1,
+        start: 13.5,
+          end: 16.2,
+          words: [
+            { text: "He", start: 14.2, end: 14.5 },
+            { text: "seems", start: 14.8, end: 15.1 },
+            { text: "tired", start: 15.1, end: 15.4 },
+            { text: "too.", start: 15.7, end: 16.0 },
+          ],
+    },
+
+    {
+      videoIndex: 1,
+      start: 18.5,
+          end: 24.0,
+          words: [
+            { text: "He", start: 19.6, end: 19.9 },
+            { text: "hangs", start: 19.9, end: 20.2 },
+            { text: "up", start: 20.2, end: 20.5 },
+            { text: "his", start: 20.5, end: 20.8 },
+            { text: "coat", start: 20.8, end: 21.1 },
+            { text: "and", start: 21.1, end: 21.4 },
+            { text: "goes", start: 21.4, end: 21.7 },
+            { text: "in", start: 21.7, end: 22.0 },
+            { text: "to", start: 22.0, end: 22.3 },
+            { text: "help", start: 22.3, end: 22.6 },
+            { text: "Mum", start: 22.6, end: 22.9 },
+            { text: "in", start: 22.9, end: 23.2 },
+            { text: "the", start: 23.2, end: 23.5 },
+            { text: "kitchen.", start: 23.5, end: 23.8 },
+          ],
+    },
+    {
+      videoIndex: 2,
+     start: 0,
+          end: 2.8,
+          words: [
+            { text: "Liz", start: 0.2, end: 0.4 },
+            { text: "notices", start: 0.4, end: 0.6 },
+            { text: "that", start: 0.6, end: 0.8 },
+            { text: "this", start: 0.8, end: 1.0 },
+            { text: "is", start: 1.0, end: 1.2 },
+            { text: "not", start: 1.2, end: 1.4 },
+            { text: "fair", start: 1.4, end: 1.6 },
+            { text: "and", start: 1.6, end: 1.8 },
+            { text: "has", start: 1.8, end: 2.0 },
+            { text: "an", start: 2.0, end: 2.2 },
+            { text: "idea.", start: 2.2, end: 2.6 },
+          ],
+    },
+    {
+      videoIndex: 2,
+         start: 13.0,
+          end: 17.6,
+          words: [
+            { text: "Liz", start: 13.4, end: 13.9 },
+            { text: "and", start: 13.9, end: 14.4 },
+            { text: "Ryan", start: 14.4, end: 14.9 },
+            { text: "talk", start: 14.9, end: 15.4 },
+            { text: "and", start: 15.4, end: 15.9 },
+            { text: "write", start: 15.9, end: 16.4 },
+            { text: "a", start: 16.4, end: 16.6 },
+            { text: "list", start: 16.6, end: 16.8 },
+            { text: "of", start: 16.8, end: 17.0 },
+            { text: "chores.", start: 17.0, end: 17.4 },
+          ],
+    },
+
+    {
+      videoIndex: 3,
+         start: 4.8,
+          end: 10.0,
+          words: [
+            { text: "They", start: 4.8, end: 5.1 },
+            { text: "choose", start: 5.1, end: 5.4 },
+            { text: "the", start: 5.4, end: 5.7 },
+            { text: "chores", start: 5.7, end: 6.0 },
+            { text: "they", start: 6.0, end: 6.3 },
+            { text: "would", start: 6.3, end: 6.6 },
+            { text: "most", start: 6.6, end: 6.9 },
+            { text: "like", start: 6.9, end: 7.2 },
+            { text: "to", start: 7.2, end: 7.5 },
+            { text: "do", start: 7.5, end: 7.8 },
+            { text: "and", start: 7.8, end: 8.1 },
+            { text: "write", start: 8.1, end: 8.4 },
+            { text: "their", start: 8.4, end: 8.7 },
+            { text: "names", start: 8.7, end: 9.0 },
+            { text: "next", start: 9.0, end: 9.3 },
+            { text: "to", start: 9.3, end: 9.6 },
+            { text: "them.", start: 9.6, end: 9.9 }
+          ],
+    },
+    {
+      videoIndex: 3,
+        start: 10.0,
+          end: 13.8,
+          words: [
+            { text: "They", start: 11.1, end: 11.4 },
+            { text: "then", start: 11.4, end: 11.7 },
+            { text: "plan", start: 11.7, end: 12.0 },
+            { text: "a", start: 12.0, end: 12.3 },
+            { text: "surprise", start: 12.3, end: 12.6 },
+            { text: "for", start: 12.6, end: 12.9 },
+            { text: "their", start: 12.9, end: 13.2 },
+            { text: "tired", start: 13.2, end: 13.5 },
+            { text: "parents.", start: 13.5, end: 13.8 }
+          ],
+    },
+     {
+      videoIndex: 3,
+         start: 13.0,
+          end: 20.0,
+          words: [
+            { text: "They", start: 15.6, end: 15.9 },
+            { text: "start", start: 15.9, end: 16.2 },
+            { text: "to", start: 16.2, end: 16.5 },
+            { text: "do", start: 16.5, end: 16.8 },
+            { text: "their", start: 16.8, end: 17.1 },
+            { text: "chores", start: 17.1, end: 17.4 },
+            { text: "while", start: 17.4, end: 17.7 },
+            { text: "Mum", start: 17.7, end: 18.0 },
+            { text: "and", start: 18.0, end: 18.3 },
+            { text: "Dad", start: 18.3, end: 18.6 },
+            { text: "cook", start: 18.6, end: 18.9 },
+            { text: "dinner.", start: 18.9, end: 19.2 },
+          ],
+    },
+    {
+      videoIndex: 4,
+      start: 0,
+          end: 2.6,
+          words: [
+            { text: "Mum", start: 0.2, end: 0.4 },
+            { text: "and", start: 0.4, end: 0.6 },
+            { text: "Dad", start: 0.6, end: 0.8 },
+            { text: "come", start: 0.8, end: 1.0 },
+            { text: "out", start: 1.0, end: 1.2 },
+            { text: "of", start: 1.2, end: 1.4 },
+            { text: "the", start: 1.4, end: 1.6 },
+            { text: "kitchen", start: 1.6, end: 1.8 },
+            { text: "with", start: 1.8, end: 2.0 },
+            { text: "the", start: 2.0, end: 2.2 },
+            { text: "food", start: 2.2, end: 2.4 },
+          ],
+    },
+    {
+      videoIndex: 4,
+      start: 2.6,
+          end: 4.3,
+          words: [
+            { text: "and", start: 2.6, end: 2.8 },
+            { text: "find", start: 2.8, end: 3.0 },
+            { text: "the", start: 3.0, end: 3.2 },
+            { text: "children", start: 3.2, end: 3.4 },
+            { text: "working", start: 3.4, end: 3.6 },
+            { text: "hard.", start: 3.6, end: 4.2 },
+          ],
+    },
+    {
+      videoIndex: 4,
+           start: 6.0,
+          end: 7.4,
+          words: [
+            { text: "They", start: 6.0, end: 6.2 },
+            { text: "are", start: 6.2, end: 6.4 },
+            { text: "very", start: 6.4, end: 6.6 },
+            { text: "happy", start: 6.6, end: 6.8 },
+            { text: "with", start: 6.8, end: 7.0 },
+            { text: "their", start: 7.0, end: 7.2 },
+            { text: "children.", start: 7.2, end: 7.4 },
+          ],
+    }, {
+      videoIndex: 4,
+           start: 10.6,
+          end: 15.5,
+          words: [
+            { text: "They", start: 10.8, end: 11.1 },
+            { text: "eat", start: 11.1, end: 11.4 },
+            { text: "dinner", start: 11.4, end: 11.7 },
+            { text: "together", start: 11.7, end: 12.0 },
+            { text: "and", start: 12.0, end: 12.3 },
+            { text: "Mum", start: 12.3, end: 12.6 },
+            { text: "and", start: 12.6, end: 12.9 },
+            { text: "Dad", start: 12.9, end: 13.2 },
+            { text: "relax", start: 13.2, end: 13.5 },
+            { text: "while", start: 13.5, end: 13.8 },
+            { text: "the", start: 13.8, end: 14.1 },
+            { text: "children", start: 14.1, end: 14.4 },
+            { text: "finish", start: 14.4, end: 14.7 },
+            { text: "their", start: 14.7, end: 15.0 },
+            { text: "chores", start: 15.0, end: 15.3 },
+          ],
+    },
+    {
+      videoIndex: 4,
+         start: 15.4,
+          end: 19.6,
+          words: [
+            { text: "Well", start: 15.4, end: 15.7 },
+            { text: "done", start: 15.7, end: 16.0 },
+            { text: "Liz", start: 16.0, end: 16.3 },
+            { text: "and", start: 16.3, end: 16.6 },
+            { text: "Ryan,", start: 16.6, end: 17.2 },
+            { text: "you", start: 17.9, end: 18.1 },
+            { text: "have", start: 18.1, end: 18.3 },
+            { text: "helped", start: 18.3, end: 18.8 },
+            { text: "your", start: 18.8, end: 19.0 },
+            { text: "parents!", start: 19.0, end: 19.2 },
+          ],
+    },
+  ];
+
+    useEffect(() => {
+      const bubbleToShow = extraBubblesData.find(bubble =>
+        bubble.videoIndex === currentVideo &&
+        currentTime >= bubble.start &&
+        currentTime < bubble.end
+      );
+  
+      setExtraBubble(bubbleToShow || null);
+  
+    }, [currentVideo, currentTime]);
 
   const currentVideoData = videos[currentVideo];
   const activeSubtitleIndex = currentVideoData.subtitles.findIndex(
@@ -813,6 +871,21 @@ export const StoryPage = () => {
                 </div>
               </div>
             )}
+  {showCaption && extraBubble && extraBubble.words && (
+            <div
+              className="subtitle-container"
+              style={{ bottom: '0%', left: '50%', transform: 'translateX(-50%)', zIndex: 101 }}
+            >
+              <div className="extra-cloud animate\_\_animated animate\_\_fadeIn">
+                <p>
+                  {extraBubble.words.map((word, index) => {
+                    const isHighlighted = currentTime >= word.start && currentTime < word.end;
+                    return <span key={index} className={`word-span ${isHighlighted ? 'active-word' : ''}`}>{word.text}{' '}</span>;
+                  })}
+                </p>
+              </div>
+            </div>
+          )}
 
           <div className="video-overlay" />
           <div className="controls-container">
@@ -841,7 +914,12 @@ export const StoryPage = () => {
                   >
                     <Subtitles className="w-6 h-6" />
                     <span className="control-label">Subtitle</span>
-                  </button>
+                  </button>   
+                  
+                  <button onClick={() => setShowCaption(!showCaption)} className="control-btn" title="Caption">
+                    <MessageSquareText className="w-6 h-6" />
+                    <span className="control-label">Caption</span>
+                  </button>
                   <div
                     className="volume-control"
                     onMouseEnter={() => setShowVolumeSlider(true)}
