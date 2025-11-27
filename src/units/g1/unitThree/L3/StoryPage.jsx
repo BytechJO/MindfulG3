@@ -838,8 +838,8 @@ export const StoryPage = () => {
                     className="control-btn"
                     title="Caption"
                   >
-                      <MessageSquareText className="w-6 h-6" /> {" "}
-                    <span className="control-label">Caption</span> {" "}
+                      <MessageSquareText className="w-6 h-6" /> 
+                    <span className="control-label">Caption</span> 
                   </button>
                   <div
                     className="volume-control"

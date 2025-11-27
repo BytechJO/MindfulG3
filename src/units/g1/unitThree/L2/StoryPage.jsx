@@ -54,12 +54,6 @@ export const StoryPage = () => {
       title: "Section 1",
       subtitles: [
         {
-          // start: 0, end: 3.12,
-          // words: [
-          //   { text: "Kate's", start: 0.5, end: 1.2 },
-          //   { text: "Big", start: 1.2, end: 1.7 },
-          //   { text: "Feelings", start: 1.7, end: 2.5 },
-          // ]
         },
       ],
     },
@@ -315,17 +309,6 @@ export const StoryPage = () => {
       { top: "10%", left: "10%" },
       { top: "5%", left: "4%" },
     ],
-    // 5: [
-    //   { bottom: '80%', left: '48%', },
-    //   { top: '20%', left: '25%' },
-    //   { top: '10%', left: '50%', isFlipped: true },
-    //   { top: '70%', left: '50%', isFlipped: true }
-    // ],
-    // 6: [
-    //   { bottom: '80%', left: '48%', transform: 'translateX(-50%)' },
-    //   { top: '10%', left: '10%' },
-    //   { top: '10%', left: '50%', isFlipped: true },
-    // ],
   };
   const extraBubblesData = [
     {
@@ -884,8 +867,8 @@ export const StoryPage = () => {
                     className="control-btn"
                     title="Caption"
                   >
-                      <MessageSquareText className="w-6 h-6" /> {" "}
-                    <span className="control-label">Caption</span> {" "}
+                      <MessageSquareText className="w-6 h-6" /> 
+                    <span className="control-label">Caption</span> 
                   </button>
                   <div
                     className="volume-control"

@@ -493,7 +493,6 @@ export const StoryPage = () => {
             />
           )}
 
-          {/* --- عرض الفقاعات (Subtitles) --- */}
           {activeSubtitle && activeCloudPosition && showBubble && showSubtitles && (
             <div className="subtitle-container" style={activeCloudPosition}>
               <div className={`bubble-cloud animate__animated animate__fadeIn ${activeCloudPosition.isFlipped ? 'flipped' : ''}`}>
