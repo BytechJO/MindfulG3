@@ -1,5 +1,16 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, Subtitles, Maximize2, Minimize2 } from 'lucide-react';
+import {
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  Pause,
+  Volume2,
+  VolumeX,
+  Subtitles,
+  Maximize2,
+  Minimize2,
+  MessageSquareText,
+} from "lucide-react";
 import { useParams, useNavigate } from 'react-router-dom';
 import '../../shared/StoryPage.css';
 import ValidationAlert from '../../shared/ValidationAlert';
@@ -13,6 +24,8 @@ import video6 from "./assets/5-2.mp4";
 import img from "./assets/img.png";
 
 export const StoryPage = () => {
+    const [showCaption, setShowCaption] = useState(true);
+    const [extraBubble, setExtraBubble] = useState(null);
   const [currentVideo, setCurrentVideo] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -51,63 +64,20 @@ export const StoryPage = () => {
       title: "Section 2",
       subtitles: [
         {
-          start: 0, end: 3.0,
-          words: [
-            { text: "David", start: 0.2, end: 0.5 },
-            { text: "and", start: 0.5, end: 0.8 },
-            { text: "Milo", start: 0.8, end: 1.1 },
-            { text: "live", start: 1.1, end: 1.4 },
-            { text: "next", start: 1.4, end: 1.7 },
-            { text: "door", start: 1.7, end: 2.0 },
-            { text: "to", start: 2.0, end: 2.3 },
-            { text: "each", start: 2.3, end: 2.6 },
-            { text: "other.", start: 2.6, end: 2.9 }
-          ]
+         
 
         },
         {
-          start: 3.6, end: 8.5,
-          words: [
-            { text: "David", start: 4.0, end: 4.3 },
-            { text: "likes", start: 4.3, end: 4.6 },
-            { text: "watching", start: 4.6, end: 4.9 },
-            { text: "TV,", start: 4.9, end: 5.9 },
-            { text: "and", start: 6.1, end: 6.4 },
-            { text: "Milo", start: 6.4, end: 6.7 },
-            { text: "likes", start: 6.7, end: 7.0 },
-            { text: "playing", start: 7.0, end: 7.3 },
-            { text: "computer", start: 7.3, end: 7.6 },
-            { text: "games.", start: 7.6, end: 7.9 }
-
-          ]
+       
 
 
         },
         {
-          start: 8.5, end: 13.4,
-          words: [
-            { text: "David", start: 9.0, end: 9.3 },
-            { text: "likes", start: 9.3, end: 9.6 },
-            { text: "playing", start: 9.6, end: 9.9 },
-            { text: "cricket,", start: 9.9, end: 10.2 },
-            { text: "while", start: 11.7, end: 12.0 },
-            { text: "Milo", start: 12.0, end: 12.6 },
-            { text: "prefers", start: 12.6, end: 12.9 },
-            { text: "basketball.", start: 12.9, end: 13.2 },
-
-
-          ]
+      
 
         },
         {
-          start: 14.4, end: 16.8,
-          words: [
-            { text: "They", start: 15.0, end: 15.3 },
-            { text: "have", start: 15.3, end: 15.6 },
-            { text: "lots", start: 15.6, end: 15.9 },
-            { text: "of", start: 15.9, end: 16.2 },
-            { text: "differences.", start: 16.2, end: 16.6 }
-          ]
+     
 
         },
       ]
@@ -118,16 +88,7 @@ export const StoryPage = () => {
       title: "Section 3",
       subtitles: [
         {
-          start: 0, end: 2.5,
-          words: [
-            { text: "David", start: 0.2, end: 0.5 },
-            { text: "and", start: 0.5, end: 0.8 },
-            { text: "Milo", start: 0.8, end: 1.1 },
-            { text: "are", start: 1.1, end: 1.4 },
-            { text: "very", start: 1.4, end: 1.7 },
-            { text: "good", start: 1.7, end: 2.0 },
-            { text: "friends!", start: 2.0, end: 2.3 },
-          ]
+      
         },
         {
           start: 3.5, end: 5.3,
@@ -141,92 +102,22 @@ export const StoryPage = () => {
           ]
         },
         {
-          start: 5.5, end: 10.0,
-          words: [
-            { text: "David", start: 5.8, end: 6.1 },
-            { text: "and", start: 6.1, end: 6.4 },
-            { text: "Milo", start: 6.4, end: 6.7 },
-            { text: "know", start: 6.7, end: 7.0 },
-            { text: "they", start: 7.0, end: 7.3 },
-            { text: "have", start: 7.3, end: 7.6 },
-            { text: "more", start: 7.6, end: 7.9 },
-            { text: "fun", start: 7.9, end: 8.2 },
-            { text: "playing", start: 8.2, end: 8.5 },
-            { text: "together", start: 8.5, end: 8.8 },
-            { text: "than", start: 8.8, end: 9.1 },
-            { text: "on", start: 9.1, end: 9.4 },
-            { text: "their", start: 9.4, end: 9.7 },
-            { text: "own.", start: 9.7, end: 10.0 }
-          ]
+      
 
         },
         {
-          start: 10.0, end: 13.8,
-          words: [
-
-            { text: "Even", start: 10.5, end: 10.8 },
-            { text: "if", start: 10.8, end: 11.0 },
-            { text: "they", start: 11.0, end: 11.3 },
-            { text: "are", start: 11.3, end: 11.6 },
-            { text: "not", start: 11.6, end: 11.9 },
-            { text: "doing", start: 11.9, end: 12.2 },
-            { text: "their", start: 12.2, end: 12.5 },
-            { text: "favourite", start: 12.5, end: 12.9 },
-            { text: "activity.", start: 12.9, end: 13.6 }
-          ]
+   
 
         },
         {
-          start: 14.4, end: 18.7,
-          words: [
-            { text: "David", start: 15.0, end: 15.3 },
-            { text: "and", start: 15.3, end: 15.6 },
-            { text: "Milo", start: 15.6, end: 15.9 },
-            { text: "work", start: 15.9, end: 16.2 },
-            { text: "together", start: 16.2, end: 16.5 },
-            { text: "during", start: 16.5, end: 16.8 },
-            { text: "their", start: 16.8, end: 17.1 },
-            { text: "favourite", start: 17.1, end: 17.4 },
-            { text: "activities.", start: 17.4, end: 18.7 }
-          ]
+       
 
         },
         {
-          start: 18.7, end: 25.5,
-          words: [
-            { text: "Milo", start: 19.8, end: 20.1 },
-            { text: "watches", start: 20.1, end: 20.4 },
-            { text: "TV", start: 20.4, end: 20.7 },
-            { text: "with", start: 20.7, end: 21.0 },
-            { text: "David", start: 21.0, end: 21.3 },
-            { text: "and", start: 22.2, end: 22.5 },
-            { text: "waits", start: 22.5, end: 22.8 },
-            { text: "for", start: 22.8, end: 23.1 },
-            { text: "his", start: 23.1, end: 23.4 },
-            { text: "turn", start: 23.4, end: 23.7 },
-            { text: "to", start: 23.7, end: 24.0 },
-            { text: "play", start: 24.0, end: 24.3 },
-            { text: "computer", start: 24.3, end: 24.6 },
-            { text: "games.", start: 24.6, end: 24.9 }
-          ]
+   
         },
         {
-          start: 25.0, end: 29.5,
-          words: [
-            { text: "David", start: 25.2, end: 25.5 },
-            { text: "plays", start: 25.5, end: 25.8 },
-            { text: "basketball", start: 25.8, end: 26.1 },
-            { text: "with", start: 26.1, end: 26.4 },
-            { text: "Milo", start: 26.4, end: 26.7 },
-            { text: "and", start: 26.7, end: 27.0 },
-            { text: "waits", start: 27.0, end: 27.3 },
-            { text: "for", start: 27.3, end: 27.6 },
-            { text: "his", start: 27.6, end: 27.9 },
-            { text: "turn", start: 27.9, end: 28.2 },
-            { text: "to", start: 28.2, end: 28.5 },
-            { text: "play", start: 28.5, end: 28.8 },
-            { text: "cricket.", start: 28.8, end: 29.1 }
-          ]
+     
 
         },
       ]
@@ -237,50 +128,13 @@ export const StoryPage = () => {
       title: "Section 4",
       subtitles: [
         {
-          start: 0, end: 5.1,
-          words: [
-            { text: "One", start: 0.2, end: 0.6 },
-            { text: "day,", start: 0.6, end: 1.0 },
-            { text: "the", start: 1.0, end: 1.4 },
-            { text: "boys", start: 1.4, end: 1.8 },
-            { text: "cannot", start: 1.8, end: 2.2 },
-            { text: "decide", start: 2.2, end: 2.6 },
-            { text: "which", start: 2.6, end: 3.0 },
-            { text: "game", start: 3.0, end: 3.4 },
-            { text: "they", start: 3.4, end: 3.6 },
-            { text: "will", start: 3.6, end: 4.8 },
-            { text: "play", start: 3.8, end: 4.0 },
-            { text: "first,", start: 4.0, end: 4.8 }
-          ]
+    
         },
         {
-          start: 5.2, end: 9.1,
-          words: [
-            { text: "they", start: 5.4, end: 5.7 },
-            { text: "begin", start: 5.7, end: 6.0 },
-            { text: "to", start: 6.0, end: 6.3 },
-            { text: "disagree", start: 6.3, end: 6.6 },
-            { text: "about", start: 6.6, end: 6.9 },
-            { text: "which", start: 6.9, end: 7.2 },
-            { text: "game", start: 7.2, end: 7.5 },
-            { text: "to", start: 7.5, end: 7.8 },
-            { text: "play.", start: 7.8, end: 8.1 }
-          ]
+         
         },
         {
-          start: 9.0, end: 12.0,
-          words: [
-            { text: "Milo", start: 9.0, end: 9.3 },
-            { text: "wants", start: 9.3, end: 9.6 },
-            { text: "to", start: 9.6, end: 9.9 },
-            { text: "play", start: 9.9, end: 10.2 },
-            { text: "tag", start: 10.2, end: 10.5 },
-            { text: "and", start: 10.5, end: 10.8 },
-            { text: "David", start: 10.8, end: 11.1 },
-            { text: "wants", start: 11.1, end: 11.4 },
-            { text: "to", start: 11.4, end: 11.7 },
-            { text: "race.", start: 11.7, end: 12.0 }
-          ]
+       
 
         },
         {
@@ -355,14 +209,7 @@ export const StoryPage = () => {
       title: "Section 5",
       subtitles: [
         {
-          start: 0, end: 2.0,
-          words: [
-            { text: "Milo’s", start: 0.2, end: 0.5 },
-            { text: "mum", start: 0.5, end: 0.8 },
-            { text: "hears", start: 0.8, end: 1.1 },
-            { text: "the", start: 1.1, end: 1.4 },
-            { text: "boys.", start: 1.4, end: 1.7 }
-          ]
+      
         },
         {
           start: 2.0, end: 4.0,
@@ -411,18 +258,7 @@ export const StoryPage = () => {
       title: "Section 6",
       subtitles: [
         {
-          start: 0.2, end: 4.0,
-          words: [
-            { text: "They", start: 0.5, end: 0.8 },
-            { text: "play", start: 0.8, end: 1.1 },
-            { text: "rock,", start: 1.1, end: 1.4 },
-            { text: "paper,", start: 1.4, end: 1.7 },
-            { text: "scissors,", start: 1.7, end: 2.0 },
-            { text: "and", start: 2.5, end: 2.8 },
-            { text: "David’s", start: 2.8, end: 3.1 },
-            { text: "game", start: 3.1, end: 3.4 },
-            { text: "wins.", start: 3.4, end: 3.7 }
-          ]
+       
         },
 
         {
@@ -452,33 +288,11 @@ export const StoryPage = () => {
         },
 
         {
-          start: 10.8, end: 12.8,
-          words: [
-            { text: "The", start: 11.0, end: 11.3 },
-            { text: "boys", start: 11.3, end: 11.6 },
-            { text: "play", start: 11.6, end: 11.9 },
-            { text: "happily", start: 11.9, end: 12.2 },
-            { text: "together.", start: 12.2, end: 12.5 }
-          ]
+       
         },
 
         {
-          start: 12.9, end: 18.6,
-          words: [
-            { text: "David", start: 13.8, end: 14.1 },
-            { text: "and", start: 14.1, end: 14.4 },
-            { text: "Milo", start: 14.4, end: 14.7 },
-            { text: "are", start: 14.7, end: 15.0 },
-            { text: "happy", start: 15.0, end: 15.3 },
-            { text: "they", start: 15.3, end: 15.6 },
-            { text: "found", start: 15.6, end: 15.9 },
-            { text: "a", start: 15.9, end: 16.2 },
-            { text: "fair", start: 16.2, end: 16.5 },
-            { text: "way", start: 16.5, end: 16.8 },
-            { text: "to", start: 16.8, end: 17.1 },
-            { text: "play", start: 17.1, end: 17.4 },
-            { text: "together.", start: 17.4, end: 17.7 }
-          ]
+      
         }
       ]
     },
@@ -542,6 +356,303 @@ export const StoryPage = () => {
       { top: '15%', left: '25%', isFlipped: true },
     ],
   };
+
+   const extraBubblesData = [
+      {
+        videoIndex: 1,
+           start: 0, end: 3.0,
+          words: [
+            { text: "David", start: 0.2, end: 0.5 },
+            { text: "and", start: 0.5, end: 0.8 },
+            { text: "Milo", start: 0.8, end: 1.1 },
+            { text: "live", start: 1.1, end: 1.4 },
+            { text: "next", start: 1.4, end: 1.7 },
+            { text: "door", start: 1.7, end: 2.0 },
+            { text: "to", start: 2.0, end: 2.3 },
+            { text: "each", start: 2.3, end: 2.6 },
+            { text: "other.", start: 2.6, end: 2.9 }
+          ]
+      },
+      {
+        videoIndex: 1,
+            start: 3.6, end: 8.5,
+          words: [
+            { text: "David", start: 4.0, end: 4.3 },
+            { text: "likes", start: 4.3, end: 4.6 },
+            { text: "watching", start: 4.6, end: 4.9 },
+            { text: "TV,", start: 4.9, end: 5.9 },
+            { text: "and", start: 6.1, end: 6.4 },
+            { text: "Milo", start: 6.4, end: 6.7 },
+            { text: "likes", start: 6.7, end: 7.0 },
+            { text: "playing", start: 7.0, end: 7.3 },
+            { text: "computer", start: 7.3, end: 7.6 },
+            { text: "games.", start: 7.6, end: 7.9 }
+
+          ]
+      },
+          {
+        videoIndex: 1,
+           start: 8.5, end: 13.4,
+          words: [
+            { text: "David", start: 9.0, end: 9.3 },
+            { text: "likes", start: 9.3, end: 9.6 },
+            { text: "playing", start: 9.6, end: 9.9 },
+            { text: "cricket,", start: 9.9, end: 10.2 },
+            { text: "while", start: 11.7, end: 12.0 },
+            { text: "Milo", start: 12.0, end: 12.6 },
+            { text: "prefers", start: 12.6, end: 12.9 },
+            { text: "basketball.", start: 12.9, end: 13.2 },
+
+
+          ]
+      },
+  
+      {
+        videoIndex: 1,
+                start: 14.4, end: 16.8,
+          words: [
+            { text: "They", start: 15.0, end: 15.3 },
+            { text: "have", start: 15.3, end: 15.6 },
+            { text: "lots", start: 15.6, end: 15.9 },
+            { text: "of", start: 15.9, end: 16.2 },
+            { text: "differences.", start: 16.2, end: 16.6 }
+          ]
+      },
+      {
+        videoIndex: 2,
+        start: 0, end: 2.5,
+          words: [
+            { text: "David", start: 0.2, end: 0.5 },
+            { text: "and", start: 0.5, end: 0.8 },
+            { text: "Milo", start: 0.8, end: 1.1 },
+            { text: "are", start: 1.1, end: 1.4 },
+            { text: "very", start: 1.4, end: 1.7 },
+            { text: "good", start: 1.7, end: 2.0 },
+            { text: "friends!", start: 2.0, end: 2.3 },
+          ]
+      },
+      {
+        videoIndex: 2,
+          start: 5.5, end: 10.0,
+          words: [
+            { text: "David", start: 5.8, end: 6.1 },
+            { text: "and", start: 6.1, end: 6.4 },
+            { text: "Milo", start: 6.4, end: 6.7 },
+            { text: "know", start: 6.7, end: 7.0 },
+            { text: "they", start: 7.0, end: 7.3 },
+            { text: "have", start: 7.3, end: 7.6 },
+            { text: "more", start: 7.6, end: 7.9 },
+            { text: "fun", start: 7.9, end: 8.2 },
+            { text: "playing", start: 8.2, end: 8.5 },
+            { text: "together", start: 8.5, end: 8.8 },
+            { text: "than", start: 8.8, end: 9.1 },
+            { text: "on", start: 9.1, end: 9.4 },
+            { text: "their", start: 9.4, end: 9.7 },
+            { text: "own.", start: 9.7, end: 10.0 }
+          ]
+      },
+      {
+        videoIndex: 2,
+          start: 10.0, end: 13.8,
+          words: [
+
+            { text: "Even", start: 10.5, end: 10.8 },
+            { text: "if", start: 10.8, end: 11.0 },
+            { text: "they", start: 11.0, end: 11.3 },
+            { text: "are", start: 11.3, end: 11.6 },
+            { text: "not", start: 11.6, end: 11.9 },
+            { text: "doing", start: 11.9, end: 12.2 },
+            { text: "their", start: 12.2, end: 12.5 },
+            { text: "favourite", start: 12.5, end: 12.9 },
+            { text: "activity.", start: 12.9, end: 13.6 }
+          ]
+      },
+  
+      {
+        videoIndex: 2,
+   start: 14.4, end: 18.7,
+          words: [
+            { text: "David", start: 15.0, end: 15.3 },
+            { text: "and", start: 15.3, end: 15.6 },
+            { text: "Milo", start: 15.6, end: 15.9 },
+            { text: "work", start: 15.9, end: 16.2 },
+            { text: "together", start: 16.2, end: 16.5 },
+            { text: "during", start: 16.5, end: 16.8 },
+            { text: "their", start: 16.8, end: 17.1 },
+            { text: "favourite", start: 17.1, end: 17.4 },
+            { text: "activities.", start: 17.4, end: 18.7 }
+          ]
+      },
+      {
+        videoIndex: 2,
+             start: 18.7, end: 25.5,
+          words: [
+            { text: "Milo", start: 19.8, end: 20.1 },
+            { text: "watches", start: 20.1, end: 20.4 },
+            { text: "TV", start: 20.4, end: 20.7 },
+            { text: "with", start: 20.7, end: 21.0 },
+            { text: "David", start: 21.0, end: 21.3 },
+            { text: "and", start: 22.2, end: 22.5 },
+            { text: "waits", start: 22.5, end: 22.8 },
+            { text: "for", start: 22.8, end: 23.1 },
+            { text: "his", start: 23.1, end: 23.4 },
+            { text: "turn", start: 23.4, end: 23.7 },
+            { text: "to", start: 23.7, end: 24.0 },
+            { text: "play", start: 24.0, end: 24.3 },
+            { text: "computer", start: 24.3, end: 24.6 },
+            { text: "games.", start: 24.6, end: 24.9 }
+          ]
+      },
+       {
+        videoIndex: 2,
+               start: 25.0, end: 29.5,
+          words: [
+            { text: "David", start: 25.2, end: 25.5 },
+            { text: "plays", start: 25.5, end: 25.8 },
+            { text: "basketball", start: 25.8, end: 26.1 },
+            { text: "with", start: 26.1, end: 26.4 },
+            { text: "Milo", start: 26.4, end: 26.7 },
+            { text: "and", start: 26.7, end: 27.0 },
+            { text: "waits", start: 27.0, end: 27.3 },
+            { text: "for", start: 27.3, end: 27.6 },
+            { text: "his", start: 27.6, end: 27.9 },
+            { text: "turn", start: 27.9, end: 28.2 },
+            { text: "to", start: 28.2, end: 28.5 },
+            { text: "play", start: 28.5, end: 28.8 },
+            { text: "cricket.", start: 28.8, end: 29.1 }
+          ]
+      },
+      {
+        videoIndex: 3,
+          start: 0, end: 5.1,
+          words: [
+            { text: "One", start: 0.2, end: 0.6 },
+            { text: "day,", start: 0.6, end: 1.0 },
+            { text: "the", start: 1.0, end: 1.4 },
+            { text: "boys", start: 1.4, end: 1.8 },
+            { text: "cannot", start: 1.8, end: 2.2 },
+            { text: "decide", start: 2.2, end: 2.6 },
+            { text: "which", start: 2.6, end: 3.0 },
+            { text: "game", start: 3.0, end: 3.4 },
+            { text: "they", start: 3.4, end: 3.6 },
+            { text: "will", start: 3.6, end: 4.8 },
+            { text: "play", start: 3.8, end: 4.0 },
+            { text: "first,", start: 4.0, end: 4.8 }
+          ]
+      
+      
+      },
+        {
+        videoIndex: 3,
+      
+       start: 5.2, end: 9.1,
+          words: [
+            { text: "they", start: 5.4, end: 5.7 },
+            { text: "begin", start: 5.7, end: 6.0 },
+            { text: "to", start: 6.0, end: 6.3 },
+            { text: "disagree", start: 6.3, end: 6.6 },
+            { text: "about", start: 6.6, end: 6.9 },
+            { text: "which", start: 6.9, end: 7.2 },
+            { text: "game", start: 7.2, end: 7.5 },
+            { text: "to", start: 7.5, end: 7.8 },
+            { text: "play.", start: 7.8, end: 8.1 }
+          ]
+      
+      
+      },
+      {
+        videoIndex: 3,
+          start: 9.0, end: 12.0,
+          words: [
+            { text: "Milo", start: 9.0, end: 9.3 },
+            { text: "wants", start: 9.3, end: 9.6 },
+            { text: "to", start: 9.6, end: 9.9 },
+            { text: "play", start: 9.9, end: 10.2 },
+            { text: "tag", start: 10.2, end: 10.5 },
+            { text: "and", start: 10.5, end: 10.8 },
+            { text: "David", start: 10.8, end: 11.1 },
+            { text: "wants", start: 11.1, end: 11.4 },
+            { text: "to", start: 11.4, end: 11.7 },
+            { text: "race.", start: 11.7, end: 12.0 }
+          ]
+      
+      
+      },
+      {
+        videoIndex: 4,
+   
+           start: 0, end: 2.0,
+          words: [
+            { text: "Milo’s", start: 0.2, end: 0.5 },
+            { text: "mum", start: 0.5, end: 0.8 },
+            { text: "hears", start: 0.8, end: 1.1 },
+            { text: "the", start: 1.1, end: 1.4 },
+            { text: "boys.", start: 1.4, end: 1.7 }
+          ]
+      
+      
+      },
+      {
+        videoIndex: 5,
+         start: 0.2, end: 4.0,
+          words: [
+            { text: "They", start: 0.5, end: 0.8 },
+            { text: "play", start: 0.8, end: 1.1 },
+            { text: "rock,", start: 1.1, end: 1.4 },
+            { text: "paper,", start: 1.4, end: 1.7 },
+            { text: "scissors,", start: 1.7, end: 2.0 },
+            { text: "and", start: 2.5, end: 2.8 },
+            { text: "David’s", start: 2.8, end: 3.1 },
+            { text: "game", start: 3.1, end: 3.4 },
+            { text: "wins.", start: 3.4, end: 3.7 }
+          ]
+      
+      
+      },
+      {
+        videoIndex: 5,
+     start: 10.8, end: 12.8,
+          words: [
+            { text: "The", start: 11.0, end: 11.3 },
+            { text: "boys", start: 11.3, end: 11.6 },
+            { text: "play", start: 11.6, end: 11.9 },
+            { text: "happily", start: 11.9, end: 12.2 },
+            { text: "together.", start: 12.2, end: 12.5 }
+          ]
+      
+      },
+       {
+        videoIndex: 5,
+          start: 12.9, end: 18.6,
+          words: [
+            { text: "David", start: 13.8, end: 14.1 },
+            { text: "and", start: 14.1, end: 14.4 },
+            { text: "Milo", start: 14.4, end: 14.7 },
+            { text: "are", start: 14.7, end: 15.0 },
+            { text: "happy", start: 15.0, end: 15.3 },
+            { text: "they", start: 15.3, end: 15.6 },
+            { text: "found", start: 15.6, end: 15.9 },
+            { text: "a", start: 15.9, end: 16.2 },
+            { text: "fair", start: 16.2, end: 16.5 },
+            { text: "way", start: 16.5, end: 16.8 },
+            { text: "to", start: 16.8, end: 17.1 },
+            { text: "play", start: 17.1, end: 17.4 },
+            { text: "together.", start: 17.4, end: 17.7 }
+          ]
+      
+      
+      },
+    ];
+       useEffect(() => {
+            const bubbleToShow = extraBubblesData.find(bubble =>
+              bubble.videoIndex === currentVideo &&
+              currentTime >= bubble.start &&
+              currentTime < bubble.end
+            );
+        
+            setExtraBubble(bubbleToShow || null);
+        
+          }, [currentVideo, currentTime]);
 
   const currentVideoData = videos[currentVideo];
   const activeSubtitleIndex = currentVideoData.subtitles.findIndex(
@@ -861,7 +972,21 @@ export const StoryPage = () => {
               </div>
             </div>
           )}
-
+  {showCaption && extraBubble && extraBubble.words && (
+            <div
+              className="subtitle-container"
+              style={{ bottom: '0%', left: '50%', transform: 'translateX(-50%)', zIndex: 101 }}
+            >
+              <div className="extra-cloud animate\_\_animated animate\_\_fadeIn">
+                <p>
+                  {extraBubble.words.map((word, index) => {
+                    const isHighlighted = currentTime >= word.start && currentTime < word.end;
+                    return <span key={index} className={`word-span ${isHighlighted ? 'active-word' : ''}`}>{word.text}{' '}</span>;
+                  })}
+                </p>
+              </div>
+            </div>
+          )}
           <div className="video-overlay" />
           <div className="controls-container">
             <div className="controlbbtn">
@@ -880,6 +1005,10 @@ export const StoryPage = () => {
                     <Subtitles className="w-6 h-6" />
                     <span className="control-label">Subtitle</span>
                   </button>
+                     <button onClick={() => setShowCaption(!showCaption)} className="control-btn" title="Caption">
+                                                                          <MessageSquareText className="w-6 h-6" />
+                                                                          <span className="control-label">Caption</span>
+                                                                        </button>
                   <div
                     className="volume-control"
                     onMouseEnter={() => setShowVolumeSlider(true)}
