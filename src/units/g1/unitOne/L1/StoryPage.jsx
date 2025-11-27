@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, Subtitles, Maximize2, Minimize2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, Subtitles, Maximize2, Minimize2, MessageSquareText } from 'lucide-react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../../shared/StoryPage.css';
 import ValidationAlert from '../../shared/ValidationAlert';
@@ -12,6 +12,10 @@ import video5 from "./assets/5-1.mp4";
 import video6 from "./assets/5-2.mp4";
 
 export const StoryPage = () => {
+  // 1
+  const [showCaption, setShowCaption] = useState(true);
+  const [extraBubble, setExtraBubble] = useState(null);
+  // e
   const [currentVideo, setCurrentVideo] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -20,7 +24,7 @@ export const StoryPage = () => {
   const videoRef = useRef(null);
   const [selectedWords, setSelectedWords] = useState([]);
   const navigate = useNavigate();
-  const { unitId, lessonId } = useParams(); 
+  const { unitId, lessonId } = useParams();
   const [showFeedback, setShowFeedback] = useState(false);
   const [showBubble, setShowBubble] = useState(true);
   const [showBanner, setShowBanner] = useState(false);
@@ -555,6 +559,106 @@ export const StoryPage = () => {
     }
   ];
 
+  // 2
+  const extraBubblesData = [
+    {
+      videoIndex: 1,
+      start: 0,
+      end: 4.5,
+      words: [
+        { text: "Kate", start: 0, end: 0.5 },
+        { text: "has", start: 0.6, end: 0.69 },
+        { text: "a", start: 0.69, end: 0.9 },
+        { text: "little", start: 0.9, end: 1.3 },
+        { text: "sister", start: 1.3, end: 1.8 },
+        { text: "named", start: 1.8, end: 2.2 },
+        { text: "May", start: 2.2, end: 2.6 },
+        { text: "Mum", start: 2.8, end: 3.1 },
+        { text: "helps", start: 3.1, end: 3.5 },
+        { text: "May", start: 3.5, end: 3.8 },
+        { text: "with", start: 3.8, end: 4.0 },
+        { text: "everything.", start: 4.0, end: 4.5 }
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 4.6,
+      end: 8,
+      words: [
+        { text: "If", start: 5.0, end: 5.3 },
+        { text: "Kate", start: 5.3, end: 5.7 },
+        { text: "wants", start: 5.7, end: 6.1 },
+        { text: "help,", start: 6.1, end: 6.6 },
+        { text: "Mum", start: 6.6, end: 7.0 },
+        { text: "says.", start: 7.0, end: 7.9 }
+      ]
+    },
+
+    {
+      videoIndex: 3,
+      start: 0, end: 4,
+      words: [
+        { text: "Kate", start: 0.2, end: 0.5 },
+        { text: "looks", start: 0.5, end: 0.8 },
+        { text: "sad", start: 0.9, end: 1.3 },
+        { text: "Her", start: 1.3, end: 1.6 },
+        { text: "mum", start: 1.6, end: 2.4 },
+        { text: "asks", start: 2.4, end: 3 },
+        { text: "her", start: 3.1, end: 3.4 },
+        { text: "why", start: 3.5, end: 4 },
+      ]
+    },
+    {
+      videoIndex: 3,
+      start: 4.0, end: 7.0,
+      words: [
+        { text: "Kate", start: 4.1, end: 4.6 },
+        { text: "tells", start: 4.6, end: 5.0 },
+        { text: "her", start: 5.0, end: 5.4 },
+        { text: "mum", start: 5.4, end: 5.9 },
+        { text: "how", start: 5.9, end: 5.9 },
+        { text: "she", start: 5.9, end: 6.4 },
+        { text: "feels.", start: 6.4, end: 7.0 },
+      ]
+    },
+    {
+      videoIndex: 3,
+      start: 7.0, end: 8.0,
+      words: [
+        { text: "she", start: 7.1, end: 7.4 },
+        { text: "says", start: 7.4, end: 8.0 },
+      ]
+    },
+
+    {
+      videoIndex: 7,
+      start: 0, end: 2,
+      words: [
+        { text: "Kate", start: 0, end: 0.3 },
+        { text: "and", start: 0.3, end: 0.5 },
+        { text: "Mum", start: 0.5, end: 0.8 },
+        { text: "bake", start: 0.8, end: 1.2 },
+        { text: "a chocolate", start: 1.2, end: 1.6 },
+        { text: "cake.", start: 1.6, end: 1.9 },
+      ]
+    },
+    {
+      videoIndex: 7,
+      start: 9.0, end: 12.0,
+      words: [
+        { text: "Kate", start: 9.1, end: 9.4 },
+        { text: "understands", start: 9.4, end: 9.7 },
+        { text: "and", start: 9.7, end: 10.0 },
+        { text: "gives", start: 10.0, end: 10.3 },
+        { text: "her", start: 10.3, end: 10.6 },
+        { text: "mum", start: 10.6, end: 10.9 },
+        { text: "a", start: 10.9, end: 11.0 },
+        { text: "hug.", start: 11.1, end: 11.5 },
+      ]
+    },
+  ];
+
+
   const cloudPositions = {
     0: [],
     1: [
@@ -648,6 +752,18 @@ export const StoryPage = () => {
       };
     }
   }, [currentVideo, videos]);
+
+  useEffect(() => {
+    const bubbleToShow = extraBubblesData.find(bubble =>
+      bubble.videoIndex === currentVideo &&
+      currentTime >= bubble.start &&
+      currentTime < bubble.end
+    );
+
+    setExtraBubble(bubbleToShow || null);
+
+  }, [currentVideo, currentTime]);
+
 
   useEffect(() => {
     const video = videoRef.current;
@@ -748,7 +864,7 @@ export const StoryPage = () => {
       setShowBanner(false);
       setCurrentVideo(prev => prev + 1);
     }
-  }, [currentVideo, videos.length, navigate, unitId, lessonId]); 
+  }, [currentVideo, videos.length, navigate, unitId, lessonId]);
 
   const toggleWordSelection = (wordText) => {
     const correctWords = ["happy", "sad"];
@@ -884,6 +1000,24 @@ export const StoryPage = () => {
             </div>
           )}
 
+          {/* 3 */}
+          {showCaption && extraBubble && extraBubble.words && (
+            <div
+              className="subtitle-container"
+              style={{ bottom: '0%', left: '50%', transform: 'translateX(-50%)', zIndex: 101 }}
+            >
+              <div className="extra-cloud animate\_\_animated animate\_\_fadeIn">
+                <p>
+                  {extraBubble.words.map((word, index) => {
+                    const isHighlighted = currentTime >= word.start && currentTime < word.end;
+                    return <span key={index} className={`word-span ${isHighlighted ? 'active-word' : ''}`}>{word.text}{' '}</span>;
+                  })}
+                </p>
+              </div>
+            </div>
+          )}
+
+
           <div className="video-overlay" />
           <div className="controls-container">
             <div className="controlbbtn">
@@ -902,6 +1036,11 @@ export const StoryPage = () => {
                     <Subtitles className="w-6 h-6" />
                     <span className="control-label">Subtitle</span>
                   </button>
+                  {/* 4 */}
+                  <button onClick={() => setShowCaption(!showCaption)} className="control-btn" title="Caption">
+                    <MessageSquareText className="w-6 h-6" />
+                    <span className="control-label">Caption</span>
+                  </button>
                   <div
                     className="volume-control"
                     onMouseEnter={() => setShowVolumeSlider(true)}

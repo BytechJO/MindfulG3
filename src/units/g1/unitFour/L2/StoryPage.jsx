@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, Subtitles, Maximize2, Minimize2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, Subtitles, Maximize2, Minimize2, MessageSquareText } from 'lucide-react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../../shared/StoryPage.css';
 import ValidationAlert from '../../shared/ValidationAlert';
@@ -31,6 +31,8 @@ export const StoryPage = () => {
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
   const [showSubtitles, setShowSubtitles] = useState(true);
   const [showSpeedMenu, setShowSpeedMenu] = useState(false);
+  const [showCaption, setShowCaption] = useState(true);
+  const [extraBubble, setExtraBubble] = useState(null);
 
   const availableSpeeds = [0.5, 0.75, 1, 1.25, 1.5, 2];
 
@@ -42,8 +44,6 @@ export const StoryPage = () => {
       url: video1,
       title: "Section 1",
       subtitles: [
-        {
-        },
       ]
     },
 
@@ -438,7 +438,7 @@ export const StoryPage = () => {
             { "text": "We’re not going to laugh at other people now The teacher talked to us about bullying", "start": 22.0, "end": 23.0 },
             { "text": "and we’re going to stop it and be kind", "start": 23.0, "end": 25.0 },
           ]
-        }, 
+        },
       ]
     },
 
@@ -478,17 +478,12 @@ export const StoryPage = () => {
         }
       ]
     },
-
-
-
   ];
 
 
   const cloudPositions = {
-
     0: [
     ],
-
     1: [
       { top: '15%', left: '70%', isFlipped: true },
       { top: '15%', left: '15%' },
@@ -503,9 +498,7 @@ export const StoryPage = () => {
       { top: '10%', left: '40%' },
       { top: '10%', left: '40%' },
       { top: '10%', left: '40%' },
-
     ],
-
     2: [
       { top: '10%', right: '50%', isFlipped: false },
       { top: '15%', right: '60%', isFlipped: false },
@@ -513,9 +506,7 @@ export const StoryPage = () => {
       { top: '10%', right: '15%' },
       { bottom: '60%', left: '50%', isFlipped: true },
       { bottom: '30%', left: '20%' },
-
     ],
-
     3: [
       { top: '10%', right: '10%', isFlipped: true },
       { top: '10%', right: '50%', isFlipped: true },
@@ -527,7 +518,6 @@ export const StoryPage = () => {
       { top: '10%', left: '15%' },
       { top: '10%', left: '15%' },
     ],
-
     4: [
       { top: '15%', left: '75%', isFlipped: true },
       { top: '15%', left: '25%', isFlipped: true },
@@ -700,8 +690,8 @@ export const StoryPage = () => {
     if (currentVideo === videos.length - 1 && !currentVideoData.url.endsWith(".mp4")) {
       const timer = setTimeout(() => {
         ValidationAlert.storyEnd(() => {
-        navigate(`/unit/${unitId}/lesson/${lessonId}/quiz`);
-      });
+          navigate(`/unit/${unitId}/lesson/${lessonId}/quiz`);
+        });
       }, 500); // نصف ثانية لتأكد من ظهور الصورة
 
       return () => clearTimeout(timer);
