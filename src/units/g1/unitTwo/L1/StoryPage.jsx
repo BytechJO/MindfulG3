@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, Subtitles, Maximize2, Minimize2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, Subtitles, Maximize2, Minimize2, MessageSquareText } from 'lucide-react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../../shared/StoryPage.css';
 import ValidationAlert from '../../shared/ValidationAlert';
@@ -12,6 +12,10 @@ import video5 from "./assets/4.mp4";
 
 
 export const StoryPage = () => {
+
+  const [showCaption, setShowCaption] = useState(true);
+  const [extraBubble, setExtraBubble] = useState(null);
+
   const [currentVideo, setCurrentVideo] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -40,18 +44,6 @@ export const StoryPage = () => {
       url: video1,
       title: "Section 1",
       subtitles: [
-        {
-          // start: 0, end: 3.5, 
-          // words: [
-          //   { text: "A", start: 0.2, end: 0.7 },
-          //   { text: "Clean", start: 0.7, end: 1.3 },
-          //   { text: "Place", start: 1.3, end: 2.0 },
-          //   { text: "is", start: 2.1, end: 2.3 },
-          //   { text: "a", start: 2.3, end: 2.5 },
-          //   { text: "Safe", start: 2.5, end: 2.9 }, // تعديل طفيف
-          //   { text: "Place.", start: 2.9, end: 3.3 }, // تعديل طفيف
-          // ]
-        },
       ]
     },
 
@@ -60,89 +52,9 @@ export const StoryPage = () => {
       title: "Section 2",
       subtitles: [
         {
-          start: 0, end: 2.5,
-          words: [
-            { text: "Molly", start: 0.1, end: 0.4 },
-            { text: "is", start: 0.4, end: 0.6 },
-            { text: "excited", start: 0.6, end: 1.0 },
-            { text: "to", start: 1.0, end: 1.2 },
-            { text: "see", start: 1.2, end: 1.4 },
-            { text: "her", start: 1.4, end: 1.6 },
-            { text: "friend", start: 1.6, end: 2.0 },
-            { text: "Emma.", start: 2.0, end: 2.3 }
-          ]
-        },
-
-        {
-          start: 2.8, end: 7.5,
-          words: [
-            { text: "She", start: 3.0, end: 3.2 },
-            { text: "wants", start: 3.2, end: 3.5 },
-            { text: "to", start: 3.5, end: 3.7 },
-            { text: "talk", start: 3.7, end: 4.0 },
-            { text: "to", start: 4.0, end: 4.2 },
-            { text: "her", start: 4.2, end: 4.4 },
-            { text: "about", start: 4.4, end: 4.7 },
-            { text: "the", start: 4.7, end: 4.9 },
-            { text: "circus", start: 4.9, end: 5.3 },
-            { text: "that", start: 5.3, end: 5.5 },
-            { text: "is", start: 5.5, end: 5.7 },
-            { text: "coming", start: 5.7, end: 6.1 },
-            { text: "to", start: 6.1, end: 6.3 },
-            { text: "town", start: 6.3, end: 6.6 },
-            { text: "tomorrow.", start: 6.6, end: 7.0 }
-          ]
-        },
-
-        {
           start: 7.8, end: 8.7,
           words: [
             { text: "Hey!", start: 8.0, end: 8.5 },
-          ]
-        },
-
-        {
-          start: 8.9, end: 13.5,
-          words: [
-            { text: "Molly", start: 9.0, end: 9.3 },
-            { text: "shouts,", start: 9.3, end: 9.6 },
-            { text: "jumping", start: 10.0, end: 10.3 },
-            { text: "up", start: 10.3, end: 10.6 },
-            { text: "and", start: 10.6, end: 10.9 },
-            { text: "hugging", start: 10.9, end: 11.3 },
-            { text: "her", start: 11.3, end: 11.5 },
-            { text: "friend", start: 11.5, end: 11.8 },
-            { text: "tight.", start: 11.8, end: 12.3 }
-          ]
-        },
-
-        {
-          start: 14.0, end: 15.0,
-          words: [
-            { text: "Molly", start: 14.0, end: 14.3 },
-            { text: "loves", start: 14.3, end: 14.6 },
-            { text: "hugs!", start: 14.6, end: 14.9 }
-          ]
-        },
-
-        {
-          start: 16.0, end: 21.5,
-          words: [
-            { text: "Emma", start: 16.5, end: 16.8 },
-            { text: "likes", start: 16.8, end: 17.1 },
-            { text: "hugs", start: 17.1, end: 17.4 },
-            { text: "sometimes,", start: 17.4, end: 17.7 },
-            { text: "but", start: 18.2, end: 18.5 },
-            { text: "this", start: 18.5, end: 18.8 },
-            { text: "hug", start: 18.8, end: 19.1 },
-            { text: "is", start: 19.1, end: 19.4 },
-            { text: "too", start: 19.4, end: 19.7 },
-            { text: "tight", start: 19.7, end: 20.0 },
-            { text: "and", start: 20.0, end: 20.2 },
-            { text: "feels", start: 20.2, end: 20.5 },
-            { text: "uncomfortable.", start: 20.5, end: 21.5 }
-
-
           ]
         },
       ]
@@ -152,46 +64,6 @@ export const StoryPage = () => {
       url: video3,
       title: "Section 3",
       subtitles: [
-        {
-          start: 0, end: 1.8,
-          words: [
-            { text: "Something", start: 0.1, end: 0.5 },
-            { text: "doesn’t", start: 0.5, end: 0.9 },
-            { text: "feel", start: 0.9, end: 1.2 },
-            { text: "right.", start: 1.2, end: 1.5 }
-          ]
-        },
-
-        {
-          start: 2.2, end: 5.4,
-          words: [
-            { text: "Molly", start: 2.5, end: 2.8 },
-            { text: "knows", start: 2.8, end: 3.1 },
-            { text: "Emma", start: 3.1, end: 3.4 },
-            { text: "loves", start: 3.4, end: 3.7 },
-            { text: "the", start: 3.7, end: 3.9 },
-            { text: "circus", start: 3.9, end: 4.3 },
-            { text: "as", start: 4.3, end: 4.5 },
-            { text: "much", start: 4.5, end: 4.8 },
-            { text: "as", start: 4.8, end: 5.0 },
-            { text: "she", start: 5.0, end: 5.2 },
-            { text: "does", start: 5.2, end: 5.5 }
-          ]
-        },
-
-        {
-          start: 5.5, end: 9.0,
-          words: [
-            { text: "but", start: 6.5, end: 6.8 },
-            { text: "Emma", start: 6.8, end: 7.1 },
-            { text: "isn’t", start: 7.1, end: 7.4 },
-            { text: "smiling", start: 7.4, end: 7.8 },
-            { text: "or", start: 7.8, end: 8.0 },
-            { text: "talking", start: 8.0, end: 8.4 },
-            { text: "to", start: 8.4, end: 8.6 },
-            { text: "her.", start: 8.6, end: 8.8 }
-          ]
-        },
 
         {
           start: 10.0, end: 12.5,
@@ -203,23 +75,6 @@ export const StoryPage = () => {
             { text: "the", start: 11.6, end: 11.8 },
             { text: "circus?", start: 11.8, end: 12.2 }
 
-          ]
-        },
-
-        {
-          start: 14.0, end: 18.0,
-          words: [
-            { text: "Molly", start: 14.5, end: 14.8 },
-            { text: "can’t", start: 14.8, end: 15.1 },
-            { text: "understand", start: 15.1, end: 15.6 },
-            { text: "why", start: 15.6, end: 15.9 },
-            { text: "Emma", start: 15.9, end: 16.2 },
-            { text: "isn’t", start: 16.2, end: 16.5 },
-            { text: "as", start: 16.5, end: 16.7 },
-            { text: "excited", start: 16.7, end: 17.1 },
-            { text: "as", start: 17.1, end: 17.3 },
-            { text: "she", start: 17.3, end: 17.5 },
-            { text: "is.", start: 17.5, end: 17.8 }
           ]
         },
 
@@ -242,17 +97,6 @@ export const StoryPage = () => {
         },
 
         {
-          start: 2.0, end: 4.0,
-          words: [
-            { text: "Emma", start: 2.5, end: 2.8 },
-            { text: "takes", start: 2.8, end: 3.1 },
-            { text: "a", start: 3.1, end: 3.2 },
-            { text: "deep", start: 3.2, end: 3.5 },
-            { text: "breath", start: 3.5, end: 3.8 }
-          ]
-        },
-
-        {
           start: 4.5, end: 9.5,
           words: [
             { text: "It’s", start: 5.0, end: 5.3 },
@@ -269,17 +113,6 @@ export const StoryPage = () => {
             { text: "next", start: 8.3, end: 8.5 },
             { text: "to", start: 8.5, end: 8.6 },
             { text: "me.", start: 8.6, end: 9.0 }
-          ]
-        },
-
-        {
-          start: 9.8, end: 11.5,
-          words: [
-            { text: "Molly", start: 10.0, end: 10.3 },
-            { text: "smiles", start: 10.3, end: 10.6 },
-            { text: "and", start: 10.6, end: 10.8 },
-            { text: "moves", start: 10.8, end: 11.1 },
-            { text: "back.", start: 11.1, end: 11.4 }
           ]
         },
 
@@ -329,19 +162,6 @@ export const StoryPage = () => {
             { text: "about", start: 22.6, end: 22.9 },
             { text: "the", start: 22.9, end: 23.1 },
             { text: "circus.", start: 23.1, end: 23.5 }
-          ]
-        },
-
-        {
-          start: 26.0, end: 28.5,
-          words: [
-            { text: "Emma", start: 26.0, end: 26.3 },
-            { text: "smiles", start: 26.3, end: 26.6 },
-            { text: "and", start: 26.6, end: 26.8 },
-            { text: "laughs", start: 26.8, end: 27.4 },
-            { text: "with", start: 27.4, end: 27.7 },
-            { text: "her", start: 27.7, end: 28.0 },
-            { text: "friend.", start: 28.0, end: 28.4 }
           ]
         },
 
@@ -413,285 +233,227 @@ export const StoryPage = () => {
       url: video5,
       title: "Section 5",
       subtitles: [
-        {
-          start: 0, end: 4.2,
-          words: [
-            { text: "Molly", start: 0.1, end: 0.4 },
-            { text: "is", start: 0.4, end: 0.6 },
-            { text: "glad", start: 0.6, end: 0.9 },
-            { text: "that", start: 0.9, end: 1.1 },
-            { text: "Emma", start: 1.1, end: 1.4 },
-            { text: "told", start: 1.4, end: 1.7 },
-            { text: "her", start: 1.7, end: 1.9 },
-            { text: "how", start: 1.9, end: 2.2 },
-            { text: "she", start: 2.2, end: 2.4 },
-            { text: "feels", start: 2.4, end: 2.7 },
-            { text: "about", start: 2.7, end: 3.0 },
-            { text: "her", start: 3.0, end: 3.2 },
-            { text: "personal", start: 3.2, end: 3.6 },
-            { text: "space.", start: 3.6, end: 4.0 }
-          ]
-        },
+      ]
+    },
+  ];
 
-        {
-          start: 4.4, end: 7.5,
-          words: [
-            { text: "Emma", start: 4.5, end: 4.8 },
-            { text: "is", start: 4.8, end: 5.0 },
-            { text: "happy", start: 5.0, end: 5.3 },
-            { text: "that", start: 5.3, end: 5.5 },
-            { text: "Molly", start: 5.5, end: 5.8 },
-            { text: "listened", start: 5.8, end: 6.2 },
-            { text: "to", start: 6.2, end: 6.4 },
-            { text: "how", start: 6.4, end: 6.6 },
-            { text: "she", start: 6.6, end: 6.8 },
-            { text: "felt.", start: 6.8, end: 7.1 }
-          ]
-        },
-
-
+  const extraBubblesData = [
+    {
+      videoIndex: 1,
+      start: 0, end: 2.5,
+      words: [
+        { text: "Molly", start: 0.1, end: 0.4 },
+        { text: "is", start: 0.4, end: 0.6 },
+        { text: "excited", start: 0.6, end: 1.0 },
+        { text: "to", start: 1.0, end: 1.2 },
+        { text: "see", start: 1.2, end: 1.4 },
+        { text: "her", start: 1.4, end: 1.6 },
+        { text: "friend", start: 1.6, end: 2.0 },
+        { text: "Emma.", start: 2.0, end: 2.3 }
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 2.8, end: 7.5,
+      words: [
+        { text: "She", start: 3.0, end: 3.2 },
+        { text: "wants", start: 3.2, end: 3.5 },
+        { text: "to", start: 3.5, end: 3.7 },
+        { text: "talk", start: 3.7, end: 4.0 },
+        { text: "to", start: 4.0, end: 4.2 },
+        { text: "her", start: 4.2, end: 4.4 },
+        { text: "about", start: 4.4, end: 4.7 },
+        { text: "the", start: 4.7, end: 4.9 },
+        { text: "circus", start: 4.9, end: 5.3 },
+        { text: "that", start: 5.3, end: 5.5 },
+        { text: "is", start: 5.5, end: 5.7 },
+        { text: "coming", start: 5.7, end: 6.1 },
+        { text: "to", start: 6.1, end: 6.3 },
+        { text: "town", start: 6.3, end: 6.6 },
+        { text: "tomorrow.", start: 6.6, end: 7.0 }
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 8.9, end: 13.5,
+      words: [
+        { text: "Molly", start: 9.0, end: 9.3 },
+        { text: "shouts,", start: 9.3, end: 9.6 },
+        { text: "jumping", start: 10.0, end: 10.3 },
+        { text: "up", start: 10.3, end: 10.6 },
+        { text: "and", start: 10.6, end: 10.9 },
+        { text: "hugging", start: 10.9, end: 11.3 },
+        { text: "her", start: 11.3, end: 11.5 },
+        { text: "friend", start: 11.5, end: 11.8 },
+        { text: "tight.", start: 11.8, end: 12.3 }
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 14.0, end: 15.0,
+      words: [
+        { text: "Molly", start: 14.0, end: 14.3 },
+        { text: "loves", start: 14.3, end: 14.6 },
+        { text: "hugs!", start: 14.6, end: 14.9 }
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 16.0, end: 21.5,
+      words: [
+        { text: "Emma", start: 16.5, end: 16.8 },
+        { text: "likes", start: 16.8, end: 17.1 },
+        { text: "hugs", start: 17.1, end: 17.4 },
+        { text: "sometimes,", start: 17.4, end: 17.7 },
+        { text: "but", start: 18.2, end: 18.5 },
+        { text: "this", start: 18.5, end: 18.8 },
+        { text: "hug", start: 18.8, end: 19.1 },
+        { text: "is", start: 19.1, end: 19.4 },
+        { text: "too", start: 19.4, end: 19.7 },
+        { text: "tight", start: 19.7, end: 20.0 },
+        { text: "and", start: 20.0, end: 20.2 },
+        { text: "feels", start: 20.2, end: 20.5 },
+        { text: "uncomfortable.", start: 20.5, end: 21.5 }
       ]
     },
 
-    // {
-    //   url: video4,
-    //   title: "Section 4",
-    //   subtitles: [
-    //     {
-    //       start: 0, end: 3.0,
-    //       words: [
-    //         { text: "Sofia,", start: 0, end: 0.8 },
-    //         { text: "Beth’s", start: 0.8, end: 1.2 },
-    //         { text: "sister", start: 1.2, end: 1.5 },
-    //         { text: "walks", start: 1.5, end: 1.8 },
-    //         { text: "into", start: 1.8, end: 2.1 },
-    //         { text: "the", start: 2.1, end: 2.4 },
-    //         { text: "room.", start: 2.4, end: 2.8 },
-    //       ]
-    //     },
+    {
+      videoIndex: 2,
+      start: 0, end: 1.8,
+      words: [
+        { text: "Something", start: 0.1, end: 0.5 },
+        { text: "doesn’t", start: 0.5, end: 0.9 },
+        { text: "feel", start: 0.9, end: 1.2 },
+        { text: "right.", start: 1.2, end: 1.5 }
+      ]
+    },
+    {
+      videoIndex: 2,
+      start: 2.2, end: 5.4,
+      words: [
+        { text: "Molly", start: 2.5, end: 2.8 },
+        { text: "knows", start: 2.8, end: 3.1 },
+        { text: "Emma", start: 3.1, end: 3.4 },
+        { text: "loves", start: 3.4, end: 3.7 },
+        { text: "the", start: 3.7, end: 3.9 },
+        { text: "circus", start: 3.9, end: 4.3 },
+        { text: "as", start: 4.3, end: 4.5 },
+        { text: "much", start: 4.5, end: 4.8 },
+        { text: "as", start: 4.8, end: 5.0 },
+        { text: "she", start: 5.0, end: 5.2 },
+        { text: "does", start: 5.2, end: 5.5 }
+      ]
+    },
+    {
+      videoIndex: 2,
+      start: 5.5, end: 9.0,
+      words: [
+        { text: "but", start: 6.5, end: 6.8 },
+        { text: "Emma", start: 6.8, end: 7.1 },
+        { text: "isn’t", start: 7.1, end: 7.4 },
+        { text: "smiling", start: 7.4, end: 7.8 },
+        { text: "or", start: 7.8, end: 8.0 },
+        { text: "talking", start: 8.0, end: 8.4 },
+        { text: "to", start: 8.4, end: 8.6 },
+        { text: "her.", start: 8.6, end: 8.8 }
+      ]
+    },
+    {
+      videoIndex: 2,
+      start: 14.0, end: 18.0,
+      words: [
+        { text: "Molly", start: 14.5, end: 14.8 },
+        { text: "can’t", start: 14.8, end: 15.1 },
+        { text: "understand", start: 15.1, end: 15.6 },
+        { text: "why", start: 15.6, end: 15.9 },
+        { text: "Emma", start: 15.9, end: 16.2 },
+        { text: "isn’t", start: 16.2, end: 16.5 },
+        { text: "as", start: 16.5, end: 16.7 },
+        { text: "excited", start: 16.7, end: 17.1 },
+        { text: "as", start: 17.1, end: 17.3 },
+        { text: "she", start: 17.3, end: 17.5 },
+        { text: "is.", start: 17.5, end: 17.8 }
+      ]
+    },
 
-    //     {
-    //       start: 3.0, end: 5.0,
-    //       words: [
-    //         { text: "Sofia", start: 3.1, end: 3.5 },
-    //         { text: "is", start: 3.5, end: 3.7 },
-    //         { text: "holding", start: 3.7, end: 4.0 },
-    //         { text: "a black", start: 4.0, end: 4.3 },
-    //         { text: "crayon.", start: 4.3, end: 4.9 },
-    //       ]
-    //     },
+    {
+      videoIndex: 3,
+      start: 2.0, end: 4.0,
+      words: [
+        { text: "Emma", start: 2.5, end: 2.8 },
+        { text: "takes", start: 2.8, end: 3.1 },
+        { text: "a", start: 3.1, end: 3.2 },
+        { text: "deep", start: 3.2, end: 3.5 },
+        { text: "breath", start: 3.5, end: 3.8 }
+      ]
+    },
+    {
+      videoIndex: 3,
+      start: 9.8, end: 11.5,
+      words: [
+        { text: "Molly", start: 10.0, end: 10.3 },
+        { text: "smiles", start: 10.3, end: 10.6 },
+        { text: "and", start: 10.6, end: 10.8 },
+        { text: "moves", start: 10.8, end: 11.1 },
+        { text: "back.", start: 11.1, end: 11.4 }
+      ]
+    },
+    {
+      videoIndex: 3,
+      start: 26.0, end: 28.5,
+      words: [
+        { text: "Emma", start: 26.0, end: 26.3 },
+        { text: "smiles", start: 26.3, end: 26.6 },
+        { text: "and", start: 26.6, end: 26.8 },
+        { text: "laughs", start: 26.8, end: 27.4 },
+        { text: "with", start: 27.4, end: 27.7 },
+        { text: "her", start: 27.7, end: 28.0 },
+        { text: "friend.", start: 28.0, end: 28.4 }
+      ]
+    },
 
-    //     {
-    //       start: 5.0, end: 7.6,
-    //       words: [
-    //         { text: "Sofia", start: 5.8, end: 6.1 },
-    //         { text: "do", start: 6.1, end: 6.4 },
-    //         { text: "work", start: 6.4, end: 6.9 },
-    //         { text: "too.", start: 7.1, end: 7.5 },
-    //       ]
-    //     },
-
-    //     {
-    //       start: 7.7, end: 10.9,
-    //       words: [
-    //         { text: "Beth", start: 7.7, end: 8.0 },
-    //         { text: "knows", start: 8.0, end: 8.4 },
-    //         { text: "that", start: 8.4, end: 8.6 },
-    //         { text: "she", start: 8.6, end: 8.9 },
-    //         { text: "needs", start: 8.9, end: 9.2 },
-    //         { text: "to", start: 9.2, end: 9.5 },
-    //         { text: "calm", start: 9.5, end: 9.8 },
-    //         { text: "down", start: 9.8, end: 10.1 },
-    //         { text: "before", start: 10.1, end: 10.4 },
-    //         { text: "speaking,", start: 10.4, end: 10.7 },
-    //       ]
-    //     },
-
-    //     {
-    //       start: 12.0, end: 14.5,
-    //       words: [
-    //         { text: "so", start: 12.0, end: 12.3 },
-    //         { text: "she", start: 12.3, end: 12.6 },
-    //         { text: "walks", start: 12.6, end: 12.9 },
-    //         { text: "up", start: 12.9, end: 13.2 },
-    //         { text: "to", start: 13.2, end: 13.5 },
-    //         { text: "her", start: 13.5, end: 13.8 },
-    //         { text: "bedroom.", start: 13.8, end: 14.1 },
-    //       ]
-    //     },
-
-    //     {
-    //       start: 14.6, end: 22.0,
-    //       words: [
-    //         { text: "She", start: 15.2, end: 15.7 },
-    //         { text: "closes", start: 15.7, end: 16.1 },
-    //         { text: "her", start: 16.1, end: 16.4 },
-    //         { text: "eyes", start: 16.4, end: 16.9 },
-    //         { text: "and", start: 17.5, end: 17.8 },
-    //         { text: "takes", start: 17.8, end: 18.1 },
-    //         { text: "some", start: 18.1, end: 18.4 },
-    //         { text: "deep", start: 18.4, end: 18.7 },
-    //         { text: "breaths", start: 18.7, end: 19.0 },
-    //         { text: "and", start: 19.5, end: 19.8 },
-    //         { text: "counts", start: 19.8, end: 20.1 },
-    //         { text: "to", start: 20.1, end: 20.4 },
-    //         { text: "ten", start: 20.4, end: 20.7 },
-    //         { text: "to", start: 20.7, end: 21.0 },
-    //         { text: "calm", start: 21.0, end: 21.3 },
-    //         { text: "down.", start: 21.3, end: 21.6 },
-    //       ]
-    //     },
-
-    //     {
-    //       start: 23.0, end: 24.2,
-    //       words: [
-    //         { text: "That", start: 23.0, end: 23.3 },
-    //         { text: "feels", start: 23.3, end: 23.7 },
-    //         { text: "better,", start: 23.7, end: 24.0 },
-    //       ]
-    //     },
-
-    //     {
-    //       start: 24.3, end: 28.5,
-    //       words: [
-    //         { text: "She", start: 24.4, end: 24.7 },
-    //         { text: "wants", start: 24.7, end: 25.0 },
-    //         { text: "to", start: 25.0, end: 25.3 },
-    //         { text: "speak", start: 25.3, end: 25.6 },
-    //         { text: "to", start: 25.6, end: 25.9 },
-    //         { text: "her", start: 25.9, end: 26.2 },
-    //         { text: "sister", start: 26.2, end: 26.5 },
-    //         { text: "now", start: 26.5, end: 26.8 },
-    //         { text: "that", start: 26.8, end: 27.1 },
-    //         { text: "she", start: 27.1, end: 27.4 },
-    //         { text: "is", start: 27.4, end: 27.7 },
-    //         { text: "calm.", start: 27.7, end: 28.0 },
-    //       ]
-    //     },
-    //   ]
-    // },
-
-    // {
-    //   url: video5,
-    //   title: "Section 5",
-    //   subtitles: [
-    //     {
-    //       start: 0.0, end: 5.0,
-    //       words: [
-    //         { text: "Beth", start: 0.1, end: 0.4 },
-    //         { text: "knows", start: 0.4, end: 0.7 },
-    //         { text: "that,", start: 0.7, end: 1.0 },
-    //         { text: "Sofia", start: 1.0, end: 1.3 },
-    //         { text: "just", start: 1.3, end: 1.6 },
-    //         { text: "wanted", start: 1.6, end: 1.9 },
-    //         { text: "to", start: 1.9, end: 2.2 },
-    //         { text: "make", start: 2.2, end: 2.5 },
-    //         { text: "marks", start: 2.5, end: 2.8 },
-    //         { text: "on", start: 2.8, end: 3.1 },
-    //         { text: "paper,", start: 3.1, end: 3.4 },
-    //         { text: "like", start: 3.4, end: 3.7 },
-    //         { text: "her", start: 3.7, end: 4.0 },
-    //         { text: "big", start: 4.0, end: 4.3 },
-    //         { text: "sister.", start: 4.3, end: 4.6 },
-    //       ]
-    //     },
-
-    //     {
-    //       start: 6.3, end: 10.0,
-    //       words: [
-    //         { text: "Beth", start: 6.3, end: 6.6 },
-    //         { text: "walks", start: 6.6, end: 6.9 },
-    //         { text: "down", start: 6.9, end: 7.2 },
-    //         { text: "stairs", start: 7.2, end: 7.5 },
-    //         { text: "and", start: 7.5, end: 7.8 },
-    //         { text: "tells", start: 7.8, end: 8.1 },
-    //         { text: "her", start: 8.1, end: 8.4 },
-    //         { text: "mum", start: 8.4, end: 8.7 },
-    //         { text: "about", start: 8.7, end: 9.0 },
-    //         { text: "her", start: 9.0, end: 9.3 },
-    //         { text: "homework.", start: 9.3, end: 10.0 },
-    //       ]
-    //     },
-
-    //     {
-    //       start: 10.3, end: 14.0,
-    //       words: [
-    //         { text: "Mum", start: 10.8, end: 11.1 },
-    //         { text: "is", start: 11.1, end: 11.4 },
-    //         { text: "very", start: 11.4, end: 11.7 },
-    //         { text: "proud", start: 11.7, end: 12.0 },
-    //         { text: "that", start: 12.0, end: 12.3 },
-    //         { text: "Beth", start: 12.3, end: 12.6 },
-    //         { text: "is", start: 12.6, end: 12.9 },
-    //         { text: "controlling", start: 12.9, end: 13.2 },
-    //         { text: "her", start: 13.2, end: 13.5 },
-    //         { text: "anger.", start: 13.5, end: 13.8 },
-    //       ]
-    //     },
-
-    //     {
-    //       start: 15.1, end: 18.9,
-    //       words: [
-    //         { text: "Mum", start: 15.5, end: 15.8 },
-    //         { text: "tells", start: 15.8, end: 16.1 },
-    //         { text: "Sofia", start: 16.1, end: 16.4 },
-    //         { text: "to", start: 16.4, end: 16.7 },
-    //         { text: "always", start: 16.7, end: 17.0 },
-    //         { text: "ask", start: 17.0, end: 17.3 },
-    //         { text: "before", start: 17.3, end: 17.6 },
-    //         { text: "she", start: 17.6, end: 17.9 },
-    //         { text: "colours.", start: 17.9, end: 18.5 },
-    //       ]
-    //     },
-
-    //     {
-    //       start: 19.0, end: 22.9,
-    //       words: [
-    //         { text: "Mum", start: 19.1, end: 19.4 },
-    //         { text: "finds", start: 19.4, end: 19.7 },
-    //         { text: "Beth", start: 19.7, end: 20.0 },
-    //         { text: "a", start: 20.0, end: 20.3 },
-    //         { text: "folder", start: 20.3, end: 20.6 },
-    //         { text: "where", start: 20.6, end: 20.9 },
-    //         { text: "she", start: 20.9, end: 21.2 },
-    //         { text: "can", start: 21.2, end: 21.5 },
-    //         { text: "keep", start: 21.5, end: 21.8 },
-    //         { text: "her", start: 21.8, end: 22.1 },
-    //         { text: "homework", start: 22.1, end: 22.4 },
-    //         { text: "safe.", start: 22.4, end: 22.7 },
-    //       ]
-    //     },
-
-    //     {
-    //       start: 24.0, end: 30.0,
-    //       words: [
-    //         { text: "Beth", start: 24.1, end: 24.4 },
-    //         { text: "is", start: 24.4, end: 24.7 },
-    //         { text: "happy", start: 24.7, end: 25.0 },
-    //         { text: "that", start: 25.0, end: 25.3 },
-    //         { text: "she", start: 25.3, end: 25.6 },
-    //         { text: "controlled", start: 25.6, end: 25.9 },
-    //         { text: "her", start: 25.9, end: 26.2 },
-    //         { text: "anger.", start: 26.2, end: 26.5 },
-    //       ]
-    //     },
-    //   ]
-
-    // },
-
-    // {
-    //   url: img,
-    //   title: "Section 6",
-    //   subtitles: [
-    //   ]
-    // },
+    {
+      videoIndex: 4,
+      start: 0.0, end: 4.2,
+      words: [
+        { text: "Molly", start: 0.1, end: 0.4 },
+        { text: "is", start: 0.4, end: 0.6 },
+        { text: "glad", start: 0.6, end: 0.9 },
+        { text: "that", start: 0.9, end: 1.1 },
+        { text: "Emma", start: 1.1, end: 1.4 },
+        { text: "told", start: 1.4, end: 1.7 },
+        { text: "her", start: 1.7, end: 1.9 },
+        { text: "how", start: 1.9, end: 2.2 },
+        { text: "she", start: 2.2, end: 2.4 },
+        { text: "feels", start: 2.4, end: 2.7 },
+        { text: "about", start: 2.7, end: 3.0 },
+        { text: "her", start: 3.0, end: 3.2 },
+        { text: "personal", start: 3.2, end: 3.6 },
+        { text: "space.", start: 3.6, end: 4.0 }
+      ]
+    },
+    {
+      videoIndex: 4,
+      start: 4.4, end: 7.5,
+      words: [
+        { text: "Emma", start: 4.5, end: 4.8 },
+        { text: "is", start: 4.8, end: 5.0 },
+        { text: "happy", start: 5.0, end: 5.3 },
+        { text: "that", start: 5.3, end: 5.5 },
+        { text: "Molly", start: 5.5, end: 5.8 },
+        { text: "listened", start: 5.8, end: 6.2 },
+        { text: "to", start: 6.2, end: 6.4 },
+        { text: "how", start: 6.4, end: 6.6 },
+        { text: "she", start: 6.6, end: 6.8 },
+        { text: "felt.", start: 6.8, end: 7.1 }
+      ]
+    },
   ];
-
 
   const cloudPositions = {
 
     0: [
-      // { bottom: '35rem', left: '50%', transform: 'translateX(-50%)', isFlipped: true }
+
     ],
 
     1: [
@@ -717,17 +479,14 @@ export const StoryPage = () => {
 
     3: [
       { bottom: '80%', left: '10%' },
-      { top: '10%', left: '45%' },
-      { top: '10%', left: '30%', isFlipped: true },
-      { top: '10%', left: '45%' },
-      { top: '20%', left: '25%' },
+      { top: '10%', left: '35%', isFlipped: true},
+      { top: '10%', left: '30%' },
+      { top: '10%', left: '15%' },
+      { top: '20%', left: '15%' },
       { top: '10%', left: '20%' },
-      { top: '10%', left: '20%' },
-      { top: '10%', left: '20%' },
-      { top: '10%', left: '20%' },
-      { top: '10%', left: '65%', isFlipped: true },
       { top: '10%', left: '60%', isFlipped: true },
-      { top: '10%', left: '60%', isFlipped: true }
+      { top: '10%', left: '60%', isFlipped: true },
+      { top: '10%', left: '60%', isFlipped: true },
     ],
 
     4: [
@@ -739,18 +498,12 @@ export const StoryPage = () => {
       { top: '25%', left: '15%' },
     ],
     5: [
-      // { bottom: '80%', left: '48%', },
-      // { top: '20%', left: '25%' },
-      // { top: '10%', left: '50%', isFlipped: true },
-      // { top: '10%', left: '50%', isFlipped: true },
-      // { top: '70%', left: '50%', isFlipped: true }
     ],
     6: [
-      // { bottom: '80%', left: '48%', transform: 'translateX(-50%)' },
-      // { top: '10%', left: '10%' },
-      // { top: '10%', left: '50%', isFlipped: true },
     ],
   };
+
+
 
   const currentVideoData = videos[currentVideo];
   const activeSubtitleIndex = currentVideoData.subtitles.findIndex(
@@ -795,6 +548,17 @@ export const StoryPage = () => {
       };
     }
   }, [currentVideo, videos]);
+
+  useEffect(() => {
+    const bubbleToShow = extraBubblesData.find(bubble =>
+      bubble.videoIndex === currentVideo &&
+      currentTime >= bubble.start &&
+      currentTime < bubble.end
+    );
+
+    setExtraBubble(bubbleToShow || null);
+
+  }, [currentVideo, currentTime]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -1023,6 +787,22 @@ export const StoryPage = () => {
             </div>
           )}
 
+          {showCaption && extraBubble && extraBubble.words && (
+            <div
+              className="subtitle-container"
+              style={{ bottom: '0%', left: '50%', transform: 'translateX(-50%)', zIndex: 101 }}
+            >
+              <div className="extra-cloud animate\_\_animated animate\_\_fadeIn">
+                <p>
+                  {extraBubble.words.map((word, index) => {
+                    const isHighlighted = currentTime >= word.start && currentTime < word.end;
+                    return <span key={index} className={`word-span ${isHighlighted ? 'active-word' : ''}`}>{word.text}{' '}</span>;
+                  })}
+                </p>
+              </div>
+            </div>
+          )}
+
           <div className="video-overlay" />
           <div className="controls-container">
             <div className="controlbbtn">
@@ -1040,6 +820,10 @@ export const StoryPage = () => {
                   <button onClick={() => setShowSubtitles(!showSubtitles)} className="control-btn" title="Subtitles">
                     <Subtitles className="w-6 h-6" />
                     <span className="control-label">Subtitle</span>
+                  </button>
+                  <button onClick={() => setShowCaption(!showCaption)} className="control-btn" title="Caption">
+                    <MessageSquareText className="w-6 h-6" />
+                    <span className="control-label">Caption</span>
                   </button>
                   <div
                     className="volume-control"

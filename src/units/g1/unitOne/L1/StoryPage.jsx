@@ -48,152 +48,12 @@ export const StoryPage = () => {
       url: video2,
       title: "Section 2",
       subtitles: [
-        {
-          start: 0, end: 2.2,
-          words: [
-            { text: "Adam", start: 0.0, end: 0.5 },
-            { text: "is", start: 0.5, end: 0.9 },
-            { text: "at", start: 0.9, end: 1.2 },
-            { text: "the", start: 1.2, end: 1.4 },
-            { text: "Science", start: 1.4, end: 2.0 },
-            { text: "Fair.", start: 2.0, end: 2.2 },
-          ]
-        },
-        {
-          start: 1.7, end: 4.8,
-          words: [
-            { text: "and", start: 1.7, end: 2.0 },
-            { text: "is", start: 2.0, end: 2.3 },
-            { text: "getting", start: 2.3, end: 2.7 },
-            { text: "everything", start: 2.7, end: 3.2 },
-            { text: "ready", start: 3.2, end: 3.6 },
-            { text: "for", start: 3.6, end: 3.8 },
-            { text: "his", start: 3.8, end: 4.0 },
-            { text: "experiment.", start: 4.0, end: 4.6 },
-          ]
-        },
-        {
-          start: 5.0, end: 8.0,
-          words: [
-            { text: "The", start: 5.0, end: 5.2 },
-            { text: "children", start: 5.2, end: 5.7 },
-            { text: "are", start: 5.7, end: 5.9 },
-            { text: "making", start: 5.9, end: 6.4 },
-            { text: "modelling", start: 6.4, end: 6.9 },
-            { text: "dough.", start: 6.9, end: 7.5 },
-          ]
-        },
-        {
-          start: 8.0, end: 14.0,
-          words: [
-            { text: "He", start: 8.0, end: 8.3 },
-            { text: "needs", start: 8.3, end: 8.7 },
-            { text: "a", start: 8.7, end: 8.9 },
-            { text: "scale,", start: 8.9, end: 9.5 },
-            { text: "a bowl", start: 10.0, end: 10.5 },
-            { text: "flour,", start: 11.0, end: 11.5 },
-            { text: "water", start: 12.0, end: 12.5 },
-            { text: "and", start: 12.9, end: 13.3 },
-            { text: "salt.", start: 13.5, end: 13.8 }
-          ]
-        },
-        {
-          start: 14.0, end: 18.5,
-          words: [
-            { text: "He measures", start: 14.0, end: 14.4 },
-            { text: "all", start: 14.4, end: 14.7 },
-            { text: "his", start: 14.7, end: 14.9 },
-            { text: "ingredients,", start: 14.9, end: 15.5 },
-            { text: "but", start: 16.0, end: 16.4 },
-            { text: "he", start: 16.4, end: 16.7 },
-            { text: "doesn't", start: 16.7, end: 17.1 },
-            { text: "have", start: 17.1, end: 17.5 },
-            { text: "enough", start: 17.5, end: 18.0 },
-            { text: "salt.", start: 18.0, end: 18.4 }
-          ]
-        },
-        {
-          start: 18.5, end: 19.4,
-          words: [
-            { text: "Oh", start: 18.6, end: 18.9 },
-            { text: "no!", start: 18.9, end: 19.2 }
-          ]
-        },
-        {
-          start: 19.5, end: 21.5,
-          words: [
-            { text: "His", start: 19.5, end: 19.8 },
-            { text: "experiment", start: 19.8, end: 20.5 },
-            { text: "won't", start: 20.5, end: 20.7 },
-            { text: "work.", start: 20.7, end: 21.0 },
-          ]
-        },
-        {
-          start: 21.5, end: 27.3,
-          words: [
-            { text: "While", start: 22.0, end: 22.3 },
-            { text: "the", start: 22.3, end: 22.6 },
-            { text: "boy", start: 22.6, end: 22.9 },
-            { text: "next", start: 22.9, end: 23.2 },
-            { text: "to", start: 23.2, end: 23.5 },
-            { text: "him", start: 23.5, end: 23.8 },
-            { text: "is", start: 23.8, end: 24.1 },
-            { text: "chatting,", start: 24.1, end: 24.4 },
-            { text: "Adam", start: 25.0, end: 25.3 },
-            { text: "takes", start: 25.3, end: 25.6 },
-            { text: "some", start: 25.6, end: 25.9 },
-            { text: "salt", start: 25.9, end: 26.2 },
-            { text: "from", start: 26.2, end: 26.5 },
-            { text: "his", start: 26.5, end: 26.8 },
-            { text: "table.", start: 26.8, end: 27.1 },
-          ]
-        },
-        {
-          start: 24.5, end: 27,
-          words: [
-            { text: "Now", start: 24.5, end: 24.8 },
-            { text: "he", start: 24.8, end: 25.0 },
-            { text: "has", start: 25.0, end: 25.3 },
-            { text: "everything", start: 25.3, end: 25.8 },
-            { text: "he", start: 25.8, end: 26.0 },
-            { text: "needs.", start: 26.0, end: 26.3 },
-          ]
-        },
       ]
     },
     {
       url: video3,
       title: "Section 3",
       subtitles: [
-        {
-          start: 0.0, end: 2.0,
-          words: [
-            { text: "Adam's", start: 0.1, end: 0.4 },
-            { text: "experiment", start: 0.4, end: 1.2 },
-            { text: "is", start: 1.2, end: 1.5 },
-            { text: "good.", start: 1.5, end: 2.0 },
-          ]
-        },
-        {
-          start: 2.0, end: 4.9,
-          words: [
-            { text: "His", start: 2.1, end: 2.4 },
-            { text: "modelling", start: 2.4, end: 3.1 },
-            { text: "dough", start: 3.1, end: 3.4 },
-            { text: "is", start: 3.5, end: 4.0 },
-            { text: "perfect.", start: 4.3, end: 4.8 },
-          ]
-        },
-        {
-          start: 6.0, end: 9.0,
-          words: [
-            { text: "Rob", start: 6.4, end: 6.8 },
-            { text: "does", start: 6.8, end: 7.2 },
-            { text: "not", start: 7.2, end: 7.6 },
-            { text: "look", start: 7.6, end: 8.0 },
-            { text: "happy.", start: 8.0, end: 8.4 },
-          ]
-        },
         {
           start: 9.2, end: 11.5,
           words: [
@@ -232,32 +92,7 @@ export const StoryPage = () => {
             { text: "experiment.", start: 17.1, end: 18.1 },
           ]
         },
-        {
-          start: 21.0, end: 27.5,
-          words: [
-            { text: "Adam", start: 21.5, end: 21.9 },
-            { text: "feels", start: 21.9, end: 22.2 },
-            { text: "sad", start: 22.2, end: 22.4 },
-            { text: "that", start: 22.4, end: 22.6 },
-            { text: "he", start: 22.6, end: 22.8 },
-            { text: "took", start: 22.8, end: 23.1 },
-            { text: "Rob's", start: 23.1, end: 23.4 },
-            { text: "salt,", start: 23.4, end: 23.7 },
-            { text: "but", start: 24.2, end: 24.4 },
-            { text: "he", start: 24.4, end: 24.6 },
-            { text: "is", start: 24.6, end: 24.8 },
-            { text: "scared", start: 24.8, end: 25.2 },
-            { text: "he", start: 25.2, end: 25.4 },
-            { text: "will", start: 25.4, end: 25.6 },
-            { text: "be", start: 25.6, end: 25.8 },
-            { text: "angry", start: 25.8, end: 26.2 },
-            { text: "if", start: 26.2, end: 26.4 },
-            { text: "he", start: 26.4, end: 26.6 },
-            { text: "tells", start: 26.6, end: 26.9 },
-            { text: "the", start: 26.9, end: 27.1 },
-            { text: "truth.", start: 27.1, end: 27.4 },
-          ]
-        },
+
         {
           start: 28.8, end: 32.3,
           words: [
@@ -351,20 +186,6 @@ export const StoryPage = () => {
           ]
         },
         {
-          start: 8.9, end: 13.0,
-          words: [
-            { text: "Adam", start: 9.0, end: 9.5 },
-            { text: "feels", start: 9.5, end: 10.0 },
-            { text: "terrible,", start: 10.0, end: 10.5 },
-            { text: "he", start: 11.0, end: 11.2 },
-            { text: "decides", start: 11.2, end: 11.6 },
-            { text: "to", start: 11.6, end: 11.7 },
-            { text: "tell", start: 11.7, end: 12.0 },
-            { text: "the", start: 12.0, end: 12.3 },
-            { text: "truth.", start: 12.3, end: 12.8 },
-          ]
-        },
-        {
           start: 14.1, end: 19.0,
           words: [
             { text: "I'm", start: 14.5, end: 14.7 },
@@ -428,48 +249,6 @@ export const StoryPage = () => {
       title: "Section 5",
       subtitles: [
         {
-          start: 0, end: 2.5,
-          words: [
-            { text: "Adam", start: 0.0, end: 0.5 },
-            { text: "offers", start: 0.5, end: 1.0 },
-            { text: "Rob", start: 1.0, end: 1.3 },
-            { text: "his", start: 1.3, end: 1.5 },
-            { text: "modelling", start: 1.5, end: 2.0 },
-            { text: "dough,", start: 2.0, end: 2.5 },
-          ]
-        },
-        {
-          start: 2.6, end: 4.0,
-          words: [
-            { text: "but", start: 2.6, end: 2.8 },
-            { text: "Rob", start: 2.8, end: 3.0 },
-            { text: "isn't", start: 3.0, end: 3.3 },
-            { text: "happy.", start: 3.3, end: 4.0 },
-          ]
-        },
-        {
-          start: 5.1, end: 7.5,
-          words: [
-            { text: "He", start: 5.1, end: 5.3 },
-            { text: "wants", start: 5.3, end: 5.6 },
-            { text: "to", start: 5.6, end: 5.7 },
-            { text: "make", start: 5.7, end: 5.9 },
-            { text: "his", start: 5.9, end: 6.1 },
-            { text: "own", start: 6.1, end: 6.4 },
-            { text: "modelling", start: 6.4, end: 6.8 },
-            { text: "dough.", start: 6.8, end: 7.5 },
-          ]
-        },
-        {
-          start: 7.8, end: 9.3,
-          words: [
-            { text: "Adam", start: 8.0, end: 8.3 },
-            { text: "has", start: 8.3, end: 8.6 },
-            { text: "an", start: 8.6, end: 8.8 },
-            { text: "idea.", start: 8.8, end: 9.1 }
-          ]
-        },
-        {
           start: 10.0, end: 15.3,
           words: [
             { text: "We", start: 10.5, end: 10.8 },
@@ -506,25 +285,6 @@ export const StoryPage = () => {
       title: "Section 6",
       subtitles: [
         {
-          start: 0.0, end: 6.2,
-          words: [
-            { text: "Adam", start: 0.0, end: 0.5 },
-            { text: "and", start: 0.5, end: 1.0 },
-            { text: "Rob", start: 1.0, end: 1.5 },
-            { text: "go", start: 1.5, end: 2.0 },
-            { text: "to", start: 2.0, end: 2.5 },
-            { text: "the", start: 2.5, end: 3.0 },
-            { text: "kitchen", start: 3.0, end: 3.5 },
-            { text: "and", start: 3.5, end: 3.8 },
-            { text: "ask", start: 3.8, end: 4.1 },
-            { text: "the", start: 4.1, end: 4.3 },
-            { text: "cook", start: 4.3, end: 4.8 },
-            { text: "for", start: 4.8, end: 5.1 },
-            { text: "some", start: 5.1, end: 5.4 },
-            { text: "salt.", start: 5.4, end: 6.0 }
-          ]
-        },
-        {
           start: 6.4, end: 10.3,
           words: [
             { text: "I'm", start: 6.5, end: 6.85 },
@@ -539,22 +299,6 @@ export const StoryPage = () => {
             { text: "Rob", start: 9.65, end: 10.0 }
           ]
         },
-        {
-          start: 10.5, end: 13.9,
-          words: [
-            { text: "Adam", start: 10.5, end: 10.8 },
-            { text: "was", start: 10.8, end: 11.0 },
-            { text: "glad", start: 11.0, end: 11.3 },
-            { text: "he", start: 11.3, end: 11.4 },
-            { text: "could", start: 11.4, end: 11.7 },
-            { text: "fix", start: 11.7, end: 11.8 },
-            { text: "his", start: 11.8, end: 11.9 },
-            { text: "mistake", start: 11.9, end: 12.2 },
-            { text: "and", start: 12.2, end: 12.4 },
-            { text: "help", start: 12.4, end: 12.8 },
-            { text: "Rob.", start: 12.8, end: 13.3 }
-          ]
-        }
       ]
     }
   ];
@@ -564,96 +308,291 @@ export const StoryPage = () => {
     {
       videoIndex: 1,
       start: 0,
-      end: 4.5,
+      end: 2.2,
       words: [
-        { text: "Kate", start: 0, end: 0.5 },
-        { text: "has", start: 0.6, end: 0.69 },
-        { text: "a", start: 0.69, end: 0.9 },
-        { text: "little", start: 0.9, end: 1.3 },
-        { text: "sister", start: 1.3, end: 1.8 },
-        { text: "named", start: 1.8, end: 2.2 },
-        { text: "May", start: 2.2, end: 2.6 },
-        { text: "Mum", start: 2.8, end: 3.1 },
-        { text: "helps", start: 3.1, end: 3.5 },
-        { text: "May", start: 3.5, end: 3.8 },
-        { text: "with", start: 3.8, end: 4.0 },
-        { text: "everything.", start: 4.0, end: 4.5 }
+        { text: "Adam", start: 0.0, end: 0.5 },
+        { text: "is", start: 0.5, end: 0.9 },
+        { text: "at", start: 0.9, end: 1.2 },
+        { text: "the", start: 1.2, end: 1.4 },
+        { text: "Science", start: 1.4, end: 2.0 },
+        { text: "Fair.", start: 2.0, end: 2.2 },
       ]
     },
     {
       videoIndex: 1,
-      start: 4.6,
-      end: 8,
+      start: 1.7,
+      end: 4.8,
       words: [
-        { text: "If", start: 5.0, end: 5.3 },
-        { text: "Kate", start: 5.3, end: 5.7 },
-        { text: "wants", start: 5.7, end: 6.1 },
-        { text: "help,", start: 6.1, end: 6.6 },
-        { text: "Mum", start: 6.6, end: 7.0 },
-        { text: "says.", start: 7.0, end: 7.9 }
+        { text: "and", start: 1.7, end: 2.0 },
+        { text: "is", start: 2.0, end: 2.3 },
+        { text: "getting", start: 2.3, end: 2.7 },
+        { text: "everything", start: 2.7, end: 3.2 },
+        { text: "ready", start: 3.2, end: 3.6 },
+        { text: "for", start: 3.6, end: 3.8 },
+        { text: "his", start: 3.8, end: 4.0 },
+        { text: "experiment.", start: 4.0, end: 4.6 },
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 5.0,
+      end: 8.0,
+      words: [
+        { text: "The", start: 5.0, end: 5.2 },
+        { text: "children", start: 5.2, end: 5.7 },
+        { text: "are", start: 5.7, end: 5.9 },
+        { text: "making", start: 5.9, end: 6.4 },
+        { text: "modelling", start: 6.4, end: 6.9 },
+        { text: "dough.", start: 6.9, end: 7.5 },
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 8.0,
+      end: 14.0,
+      words: [
+        { text: "He", start: 8.0, end: 8.3 },
+        { text: "needs", start: 8.3, end: 8.7 },
+        { text: "a", start: 8.7, end: 8.9 },
+        { text: "scale,", start: 8.9, end: 9.5 },
+        { text: "a bowl", start: 10.0, end: 10.5 },
+        { text: "flour,", start: 11.0, end: 11.5 },
+        { text: "water", start: 12.0, end: 12.5 },
+        { text: "and", start: 12.9, end: 13.3 },
+        { text: "salt.", start: 13.5, end: 13.8 }
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 14.0,
+      end: 18.5,
+      words: [
+        { text: "He measures", start: 14.0, end: 14.4 },
+        { text: "all", start: 14.4, end: 14.7 },
+        { text: "his", start: 14.7, end: 14.9 },
+        { text: "ingredients,", start: 14.9, end: 15.5 },
+        { text: "but", start: 16.0, end: 16.4 },
+        { text: "he", start: 16.4, end: 16.7 },
+        { text: "doesn't", start: 16.7, end: 17.1 },
+        { text: "have", start: 17.1, end: 17.5 },
+        { text: "enough", start: 17.5, end: 18.0 },
+        { text: "salt.", start: 18.0, end: 18.4 }
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 18.5,
+      end: 19.4,
+      words: [
+        { text: "Oh", start: 18.6, end: 18.9 },
+        { text: "no!", start: 18.9, end: 19.2 }
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 19.5,
+      end: 21.5,
+      words: [
+        { text: "His", start: 19.5, end: 19.8 },
+        { text: "experiment", start: 19.8, end: 20.5 },
+        { text: "won't", start: 20.5, end: 20.7 },
+        { text: "work.", start: 20.7, end: 21.0 },
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 21.5,
+      end: 27.3,
+      words: [
+        { text: "While", start: 22.0, end: 22.3 },
+        { text: "the", start: 22.3, end: 22.6 },
+        { text: "boy", start: 22.6, end: 22.9 },
+        { text: "next", start: 22.9, end: 23.2 },
+        { text: "to", start: 23.2, end: 23.5 },
+        { text: "him", start: 23.5, end: 23.8 },
+        { text: "is", start: 23.8, end: 24.1 },
+        { text: "chatting,", start: 24.1, end: 24.4 },
+        { text: "Adam", start: 25.0, end: 25.3 },
+        { text: "takes", start: 25.3, end: 25.6 },
+        { text: "some", start: 25.6, end: 25.9 },
+        { text: "salt", start: 25.9, end: 26.2 },
+        { text: "from", start: 26.2, end: 26.5 },
+        { text: "his", start: 26.5, end: 26.8 },
+        { text: "table.", start: 26.8, end: 27.1 },
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 24.5,
+      end: 27.0,
+      words: [
+        { text: "Now", start: 24.5, end: 24.8 },
+        { text: "he", start: 24.8, end: 25.0 },
+        { text: "has", start: 25.0, end: 25.3 },
+        { text: "everything", start: 25.3, end: 25.8 },
+        { text: "he", start: 25.8, end: 26.0 },
+        { text: "needs.", start: 26.0, end: 26.3 },
+      ]
+    },
+
+    {
+      videoIndex: 2,
+      start: 0, end: 2.0,
+      words: [
+        { text: "Adam's", start: 0.1, end: 0.4 },
+        { text: "experiment", start: 0.4, end: 1.2 },
+        { text: "is", start: 1.2, end: 1.5 },
+        { text: "good.", start: 1.5, end: 2.0 },
+      ]
+    },
+    {
+      videoIndex: 2,
+      start: 2.0, end: 4.9,
+      words: [
+        { text: "His", start: 2.1, end: 2.4 },
+        { text: "modelling", start: 2.4, end: 3.1 },
+        { text: "dough", start: 3.1, end: 3.4 },
+        { text: "is", start: 3.5, end: 4.0 },
+        { text: "perfect.", start: 4.3, end: 4.8 },
+      ]
+    },
+    {
+      videoIndex: 2,
+      start: 6.0, end: 9.0,
+      words: [
+        { text: "Rob", start: 6.4, end: 6.8 },
+        { text: "does", start: 6.8, end: 7.2 },
+        { text: "not", start: 7.2, end: 7.6 },
+        { text: "look", start: 7.6, end: 8.0 },
+        { text: "happy.", start: 8.0, end: 8.4 },
+      ]
+    },
+    {
+      videoIndex: 2,
+      start: 21.0, end: 27.5,
+      words: [
+        { text: "Adam", start: 21.5, end: 21.9 },
+        { text: "feels", start: 21.9, end: 22.2 },
+        { text: "sad", start: 22.2, end: 22.4 },
+        { text: "that", start: 22.4, end: 22.6 },
+        { text: "he", start: 22.6, end: 22.8 },
+        { text: "took", start: 22.8, end: 23.1 },
+        { text: "Rob's", start: 23.1, end: 23.4 },
+        { text: "salt,", start: 23.4, end: 23.7 },
+        { text: "but", start: 24.2, end: 24.4 },
+        { text: "he", start: 24.4, end: 24.6 },
+        { text: "is", start: 24.6, end: 24.8 },
+        { text: "scared", start: 24.8, end: 25.2 },
+        { text: "he", start: 25.2, end: 25.4 },
+        { text: "will", start: 25.4, end: 25.6 },
+        { text: "be", start: 25.6, end: 25.8 },
+        { text: "angry", start: 25.8, end: 26.2 },
+        { text: "if", start: 26.2, end: 26.4 },
+        { text: "he", start: 26.4, end: 26.6 },
+        { text: "tells", start: 26.6, end: 26.9 },
+        { text: "the", start: 26.9, end: 27.1 },
+        { text: "truth.", start: 27.1, end: 27.4 },
       ]
     },
 
     {
       videoIndex: 3,
-      start: 0, end: 4,
+      start: 8.9, end: 13.0,
       words: [
-        { text: "Kate", start: 0.2, end: 0.5 },
-        { text: "looks", start: 0.5, end: 0.8 },
-        { text: "sad", start: 0.9, end: 1.3 },
-        { text: "Her", start: 1.3, end: 1.6 },
-        { text: "mum", start: 1.6, end: 2.4 },
-        { text: "asks", start: 2.4, end: 3 },
-        { text: "her", start: 3.1, end: 3.4 },
-        { text: "why", start: 3.5, end: 4 },
-      ]
-    },
-    {
-      videoIndex: 3,
-      start: 4.0, end: 7.0,
-      words: [
-        { text: "Kate", start: 4.1, end: 4.6 },
-        { text: "tells", start: 4.6, end: 5.0 },
-        { text: "her", start: 5.0, end: 5.4 },
-        { text: "mum", start: 5.4, end: 5.9 },
-        { text: "how", start: 5.9, end: 5.9 },
-        { text: "she", start: 5.9, end: 6.4 },
-        { text: "feels.", start: 6.4, end: 7.0 },
-      ]
-    },
-    {
-      videoIndex: 3,
-      start: 7.0, end: 8.0,
-      words: [
-        { text: "she", start: 7.1, end: 7.4 },
-        { text: "says", start: 7.4, end: 8.0 },
+        { text: "Adam", start: 9.0, end: 9.5 },
+        { text: "feels", start: 9.5, end: 10.0 },
+        { text: "terrible,", start: 10.0, end: 10.5 },
+        { text: "he", start: 11.0, end: 11.2 },
+        { text: "decides", start: 11.2, end: 11.6 },
+        { text: "to", start: 11.6, end: 11.7 },
+        { text: "tell", start: 11.7, end: 12.0 },
+        { text: "the", start: 12.0, end: 12.3 },
+        { text: "truth.", start: 12.3, end: 12.8 },
       ]
     },
 
     {
-      videoIndex: 7,
-      start: 0, end: 2,
+      videoIndex: 4,
+      start: 0.0, end: 2.5,
       words: [
-        { text: "Kate", start: 0, end: 0.3 },
-        { text: "and", start: 0.3, end: 0.5 },
-        { text: "Mum", start: 0.5, end: 0.8 },
-        { text: "bake", start: 0.8, end: 1.2 },
-        { text: "a chocolate", start: 1.2, end: 1.6 },
-        { text: "cake.", start: 1.6, end: 1.9 },
+        { text: "Adam", start: 0.0, end: 0.5 },
+        { text: "offers", start: 0.5, end: 1.0 },
+        { text: "Rob", start: 1.0, end: 1.3 },
+        { text: "his", start: 1.3, end: 1.5 },
+        { text: "modelling", start: 1.5, end: 2.0 },
+        { text: "dough,", start: 2.0, end: 2.5 },
       ]
     },
     {
-      videoIndex: 7,
-      start: 9.0, end: 12.0,
+      videoIndex: 4,
+      start: 2.6, end: 4.0,
       words: [
-        { text: "Kate", start: 9.1, end: 9.4 },
-        { text: "understands", start: 9.4, end: 9.7 },
-        { text: "and", start: 9.7, end: 10.0 },
-        { text: "gives", start: 10.0, end: 10.3 },
-        { text: "her", start: 10.3, end: 10.6 },
-        { text: "mum", start: 10.6, end: 10.9 },
-        { text: "a", start: 10.9, end: 11.0 },
-        { text: "hug.", start: 11.1, end: 11.5 },
+        { text: "but", start: 2.6, end: 2.8 },
+        { text: "Rob", start: 2.8, end: 3.0 },
+        { text: "isn't", start: 3.0, end: 3.3 },
+        { text: "happy.", start: 3.3, end: 4.0 },
+      ]
+    },
+    {
+      videoIndex: 4,
+      start: 5.1, end: 7.5,
+      words: [
+        { text: "He", start: 5.1, end: 5.3 },
+        { text: "wants", start: 5.3, end: 5.6 },
+        { text: "to", start: 5.6, end: 5.7 },
+        { text: "make", start: 5.7, end: 5.9 },
+        { text: "his", start: 5.9, end: 6.1 },
+        { text: "own", start: 6.1, end: 6.4 },
+        { text: "modelling", start: 6.4, end: 6.8 },
+        { text: "dough.", start: 6.8, end: 7.5 },
+      ]
+    },
+    {
+      videoIndex: 4,
+      start: 7.8, end: 9.3,
+      words: [
+        { text: "Adam", start: 8.0, end: 8.3 },
+        { text: "has", start: 8.3, end: 8.6 },
+        { text: "an", start: 8.6, end: 8.8 },
+        { text: "idea.", start: 8.8, end: 9.1 }
+      ]
+    },
+
+    {
+      videoIndex: 5,
+      start: 0.0, end: 6.2,
+      words: [
+        { text: "Adam", start: 0.0, end: 0.5 },
+        { text: "and", start: 0.5, end: 1.0 },
+        { text: "Rob", start: 1.0, end: 1.5 },
+        { text: "go", start: 1.5, end: 2.0 },
+        { text: "to", start: 2.0, end: 2.5 },
+        { text: "the", start: 2.5, end: 3.0 },
+        { text: "kitchen", start: 3.0, end: 3.5 },
+        { text: "and", start: 3.5, end: 3.8 },
+        { text: "ask", start: 3.8, end: 4.1 },
+        { text: "the", start: 4.1, end: 4.3 },
+        { text: "cook", start: 4.3, end: 4.8 },
+        { text: "for", start: 4.8, end: 5.1 },
+        { text: "some", start: 5.1, end: 5.4 },
+        { text: "salt.", start: 5.4, end: 6.0 }
+      ]
+    },
+    {
+      videoIndex: 5,
+      start: 10.5, end: 13.9,
+      words: [
+        { text: "Adam", start: 10.5, end: 10.8 },
+        { text: "was", start: 10.8, end: 11.0 },
+        { text: "glad", start: 11.0, end: 11.3 },
+        { text: "he", start: 11.3, end: 11.4 },
+        { text: "could", start: 11.4, end: 11.7 },
+        { text: "fix", start: 11.7, end: 11.8 },
+        { text: "his", start: 11.8, end: 11.9 },
+        { text: "mistake", start: 11.9, end: 12.2 },
+        { text: "and", start: 12.2, end: 12.4 },
+        { text: "help", start: 12.4, end: 12.8 },
+        { text: "Rob.", start: 12.8, end: 13.3 }
       ]
     },
   ];
@@ -662,56 +601,29 @@ export const StoryPage = () => {
   const cloudPositions = {
     0: [],
     1: [
-      { top: '25%', left: '30%', isFlipped: true },
-      { top: '25%', left: '30%', isFlipped: true },
-      { top: '25%', left: '30%', isFlipped: true },
-      { top: '30%', left: '23%', isFlipped: true },
-      { top: '15%', left: '40%', isFlipped: true },
-      { top: '20%', left: '70%', isFlipped: true },
-      { top: '15%', left: '60%', isFlipped: true },
-      { top: '10%', left: '5%' },
-      { top: '30%', left: '10%' }
     ],
     2: [
-      { top: '10%', right: '45%', left: 'auto', isFlipped: true },
-      { top: '10%', left: '30%', isFlipped: true },
-      { top: '15%', left: '30%', isFlipped: true },
-      { top: '30%', right: '40%', left: 'auto' },
-      { top: '10%', left: '30%' },
-      { top: '15%', left: '10%' },
-      { top: '10%', right: '5%', left: 'auto', isFlipped: true },
-      { top: '10%', left: '60%', isFlipped: true },
-      { top: '10%', left: '70%', isFlipped: true },
+      { top: '10%', right: '45%', left: 'auto' },
+      { top: '10%', left: '15%'},
+      { top: '15%', left: '15%'},
+      { top: '30%', right: '10%', left: 'auto', isFlipped: true },
+      { top: '0%', left: '30%' },
     ],
     3: [
-      { bottom: '80%', left: '48%', transform: 'translateX(-50%)' },
-      { top: '10%', left: '55%', isFlipped: true },
+      { bottom: '80%', left: '68%', transform: 'translateX(-50%)', isFlipped: true },
+      { top: '50%', left: '50%' },
       { top: '10%', left: '60%', isFlipped: true },
       { top: '10%', left: '50%', isFlipped: true },
       { bottom: '80%', left: '18%', transform: 'translateX(-50%)' },
       { top: '10%', left: '20%' },
       { top: '10%', left: '20%' },
-      { top: '20%', left: '70%', isFlipped: true },
     ],
     4: [
-      { top: '10%', left: '80%', transform: 'translateX(-50%)', isFlipped: true },
-      { top: '10%', left: '5%' },
-      { top: '10%', left: '40%', isFlipped: true },
-      { bottom: '80%', left: '35%', isFlipped: true },
-      { bottom: '50%', left: '32%', isFlipped: true },
-      { bottom: '60%', left: '40%' },
+      { top: '10%', left: '40%', transform: 'translateX(-50%)', isFlipped: true },
+      { top: '10%', left: '45%' },
     ],
     5: [
-      { top: '5%', left: '55%', isFlipped: true },
-      { top: '40%', left: '30%', isFlipped: true },
-      { top: '25%', left: '30%' },
-      { top: '30%', left: '23%', isFlipped: true },
-      { top: '15%', left: '40%', isFlipped: true },
-      { top: '15%', left: '15%', isFlipped: true },
-      { top: '15%', left: '15%' },
-      { top: '30%', left: '10%' },
-      { top: '30%', left: '10%' },
-      { top: '30%', left: '10%' },
+      { top: '25%', left: '35%', isFlipped: true },
     ],
   };
 
@@ -1038,9 +950,9 @@ export const StoryPage = () => {
                   </button>
                   {/* 4 */}
                   <button onClick={() => setShowCaption(!showCaption)} className="control-btn" title="Caption">
-                    <MessageSquareText className="w-6 h-6" />
-                    <span className="control-label">Caption</span>
-                  </button>
+                    <MessageSquareText className="w-6 h-6" />
+                    <span className="control-label">Caption</span>
+                  </button>
                   <div
                     className="volume-control"
                     onMouseEnter={() => setShowVolumeSlider(true)}

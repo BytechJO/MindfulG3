@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, Subtitles, Maximize2, Minimize2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, Subtitles, Maximize2, Minimize2, MessageSquareText } from 'lucide-react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../../shared/StoryPage.css';
 import ValidationAlert from '../../shared/ValidationAlert';
@@ -13,9 +13,11 @@ import video6 from "./assets/6.mp4";
 import video7 from "./assets/7+8.mp4";
 import img from "./assets/nex.png";
 
-import questionGif from './assets/question.gif';
 
 export const StoryPage = () => {
+  const [showCaption, setShowCaption] = useState(true);
+  const [extraBubble, setExtraBubble] = useState(null);
+
   const [currentVideo, setCurrentVideo] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -44,18 +46,7 @@ export const StoryPage = () => {
       url: video1,
       title: "Section 1",
       subtitles: [
-        {
-          // start: 0, end: 3.5, 
-          // words: [
-          //   { text: "A", start: 0.2, end: 0.7 },
-          //   { text: "Clean", start: 0.7, end: 1.3 },
-          //   { text: "Place", start: 1.3, end: 2.0 },
-          //   { text: "is", start: 2.1, end: 2.3 },
-          //   { text: "a", start: 2.3, end: 2.5 },
-          //   { text: "Safe", start: 2.5, end: 2.9 }, // تعديل طفيف
-          //   { text: "Place.", start: 2.9, end: 3.3 }, // تعديل طفيف
-          // ]
-        },
+
       ]
     },
 
@@ -80,44 +71,6 @@ export const StoryPage = () => {
             { text: "concert", start: 2.8, end: 3.2 }
           ]
         },
-
-        {
-          start: 4.0, end: 7.0,
-          words: [
-            { text: "Mrs", start: 4.5, end: 4.8 },
-            { text: "Bell", start: 4.8, end: 5.2 },
-            { text: "announces", start: 5.2, end: 5.8 },
-            { text: "to", start: 5.8, end: 6.0 },
-            { text: "her", start: 6.0, end: 6.4 },
-            { text: "class.", start: 6.4, end: 6.8 }
-          ]
-        },
-
-        {
-          start: 7.0, end: 9.8,
-          words: [
-            { text: "Kylie", start: 7.1, end: 7.5 },
-            { text: "and", start: 7.5, end: 7.8 },
-            { text: "her", start: 7.8, end: 8.1 },
-            { text: "friends", start: 8.1, end: 8.6 },
-            { text: "are", start: 8.6, end: 9.0 },
-            { text: "excited.", start: 9.0, end: 9.5 }
-          ]
-        },
-
-        {
-          start: 10.0, end: 12.3,
-          words: [
-            { text: "They", start: 10.1, end: 10.4 },
-            { text: "are", start: 10.4, end: 10.6 },
-            { text: "looking", start: 10.6, end: 10.9 },
-            { text: "forward", start: 10.9, end: 11.2 },
-            { text: "to", start: 11.2, end: 11.4 },
-            { text: "the", start: 11.4, end: 11.6 },
-            { text: "concert.", start: 11.6, end: 12.0 }
-          ]
-        },
-
         {
           start: 12.4, end: 15.6,
           words: [
@@ -133,7 +86,6 @@ export const StoryPage = () => {
             { text: "behaviour", start: 15.1, end: 15.6 }
           ]
         },
-
         {
           start: 16.0, end: 18.0,
           words: [
@@ -145,7 +97,6 @@ export const StoryPage = () => {
             { text: "everyone", start: 17.4, end: 17.9 }
           ]
         },
-
         {
           start: 18.2, end: 21.5,
           words: [
@@ -161,7 +112,6 @@ export const StoryPage = () => {
             { text: "auditorium.", start: 20.7, end: 21.2 }
           ]
         },
-
         {
           start: 21.8, end: 23.5,
           words: [
@@ -172,7 +122,6 @@ export const StoryPage = () => {
             { text: "me?", start: 23.0, end: 23.2 }
           ]
         },
-
         {
           start: 24.0, end: 26.0,
           words: [
@@ -181,8 +130,6 @@ export const StoryPage = () => {
             { text: "Bell", start: 25.8, end: 26.3 }
           ]
         },
-
-
       ]
     },
 
@@ -191,62 +138,11 @@ export const StoryPage = () => {
       title: "Section 3",
       subtitles: [
         {
-          start: 0, end: 3.3,
-          words: [
-            { text: "The", start: 0.1, end: 0.3 },
-            { text: "students", start: 0.3, end: 0.7 },
-            { text: "get", start: 0.7, end: 0.9 },
-            { text: "up", start: 0.9, end: 1.0 },
-            { text: "to", start: 1.0, end: 1.3 },
-            { text: "leave", start: 1.3, end: 1.6 },
-            { text: "the", start: 1.6, end: 1.9 },
-            { text: "classroom", start: 1.9, end: 2.2 },
-            { text: "and", start: 2.2, end: 2.5 },
-            { text: "line", start: 2.5, end: 2.8 },
-            { text: "up.", start: 2.8, end: 3.1 }
-          ]
-        },
-
-        {
-          start: 3.3, end: 8.0,
-          words: [
-            { text: "Kylie", start: 3.5, end: 3.9 },
-            { text: "is", start: 3.9, end: 4.2 },
-            { text: "pushed", start: 4.2, end: 4.6 },
-            { text: "against", start: 4.6, end: 5.0 },
-            { text: "the", start: 5.0, end: 5.3 },
-            { text: "bookshelf", start: 5.3, end: 5.8 },
-            { text: "as", start: 5.8, end: 6.1 },
-            { text: "some", start: 6.1, end: 6.4 },
-            { text: "classmates", start: 6.4, end: 6.9 },
-            { text: "hurry", start: 6.9, end: 7.3 },
-            { text: "past her.", start: 7.3, end: 7.9 },
-          ]
-        },
-
-        {
           start: 10.8, end: 12.9,
           words: [
             { text: "Ow!", start: 11.0, end: 12.3 },
           ]
         },
-
-        {
-          start: 13.5, end: 18.0,
-          words: [
-            { text: "She", start: 14.5, end: 14.8 },
-            { text: "cries", start: 14.8, end: 15.2 },
-            { text: "as", start: 15.2, end: 15.4 },
-            { text: "she", start: 15.4, end: 15.7 },
-            { text: "bumps", start: 15.7, end: 16.1 },
-            { text: "her", start: 16.1, end: 16.4 },
-            { text: "elbow", start: 16.4, end: 16.8 },
-            { text: "on", start: 16.8, end: 17.1 },
-            { text: "the", start: 17.1, end: 17.4 },
-            { text: "bookshelf.", start: 17.4, end: 17.9 }
-          ]
-        },
-
         {
           start: 18.5, end: 20.5,
           words: [
@@ -256,7 +152,6 @@ export const StoryPage = () => {
             { text: "Kylie?", start: 19.7, end: 20.1 }
           ]
         },
-
         {
           start: 20.8, end: 22.5,
           words: [
@@ -265,107 +160,31 @@ export const StoryPage = () => {
             { text: "me", start: 21.8, end: 22.1 }
           ]
         },
-
         {
-          start: 22.8, end: 24.5,
+          start: 22.6, end: 24.0,
           words: [
-            { text: "But", start: 23.0, end: 23.3 },
-            { text: "let’s", start: 23.3, end: 23.7 },
-            { text: "hurry", start: 23.7, end: 24.1 }
-
+            { text: "But", start: 22.8, end: 23.1 },
+            { text: "let’s", start: 23.1, end: 23.4 },
+            { text: "hurry", start: 23.4, end: 23.7 }
           ]
         },
-
         {
-          start: 24.8, end: 28.0,
+          start: 24.0, end: 26.0,
           words: [
-            { text: "we", start: 25.0, end: 25.3 },
-            { text: "don’t", start: 25.3, end: 25.6 },
-            { text: "want", start: 25.6, end: 25.9 },
-            { text: "to", start: 25.9, end: 26.2 },
-            { text: "be", start: 26.2, end: 26.5 },
-            { text: "last", start: 26.5, end: 26.8 },
-            { text: "in", start: 26.8, end: 27.1 },
-            { text: "line.", start: 27.1, end: 27.5 }
+            { text: "we", start: 24.0, end: 24.2 },
+            { text: "don’t", start: 24.2, end: 24.5 },
+            { text: "want", start: 24.5, end: 24.8 },
+            { text: "to be", start: 24.8, end: 25.1 },
+            { text: "last", start: 25.1, end: 25.4 },
+            { text: "in line.", start: 25.4, end: 25.8 },
           ]
         },
-
         {
-          start: 28.3, end: 33.9,
+          start: 34.9, end: 35.9,
           words: [
-            { text: "Kylie", start: 28.5, end: 28.9 },
-            { text: "and", start: 28.9, end: 29.2 },
-            { text: "Stacy", start: 29.2, end: 29.6 },
-            { text: "line", start: 29.6, end: 29.9 },
-            { text: "up", start: 29.9, end: 30.2 },
-            { text: "outside", start: 30.2, end: 30.6 },
-            { text: "the", start: 30.6, end: 30.9 },
-            { text: "classroom", start: 30.9, end: 31.4 },
-            { text: "and", start: 31.4, end: 31.7 },
-            { text: "when", start: 31.7, end: 32.0 },
-            { text: "all", start: 32.0, end: 32.3 },
-            { text: "the", start: 32.3, end: 32.6 },
-            { text: "students", start: 32.6, end: 33.1 },
-            { text: "are", start: 33.1, end: 33.4 },
-            { text: "out", start: 33.4, end: 33.7 }
-          ]
-        },
-
-        {
-          start: 34.5, end: 37.9,
-          words: [
-            { text: "Mrs.", start: 35.0, end: 35.3 },
-            { text: "Bell", start: 35.3, end: 35.7 },
-            { text: "leads", start: 35.7, end: 36.1 },
-            { text: "them", start: 36.1, end: 36.4 },
-            { text: "towards", start: 36.4, end: 36.9 },
-            { text: "the", start: 36.9, end: 37.2 },
-            { text: "auditorium.", start: 37.2, end: 37.8 }
-
-
-          ]
-        },
-
-        {
-          start: 38.0, end: 39.9,
-          words: [
-            { text: "Hurry", start: 38.3, end: 38.7 },
-            { text: "up,", start: 38.7, end: 39.0 },
-            { text: "Kylie", start: 39.0, end: 39.4 }
-          ]
-        },
-
-        {
-          start: 40.0, end: 43.0,
-          words: [
-            { text: "someone", start: 40.5, end: 40.9 },
-            { text: "tells", start: 40.9, end: 41.2 },
-            { text: "her", start: 41.2, end: 41.4 },
-            { text: "as", start: 41.4, end: 41.6 },
-            { text: "they", start: 41.6, end: 41.8 },
-            { text: "bump", start: 41.8, end: 42.1 },
-            { text: "into", start: 42.1, end: 42.4 },
-            { text: "her.", start: 42.4, end: 42.7 }
-          ]
-        },
-
-        {
-          start: 43.7, end: 49.0,
-          words: [
-            { text: "Kylie", start: 44.0, end: 44.4 },
-            { text: "trips", start: 44.4, end: 44.7 },
-            { text: "and", start: 44.7, end: 45.0 },
-            { text: "is", start: 45.0, end: 45.2 },
-            { text: "still", start: 45.2, end: 45.5 },
-            { text: "rubbing", start: 45.5, end: 45.9 },
-            { text: "her", start: 45.9, end: 46.1 },
-            { text: "elbow", start: 46.1, end: 46.5 },
-            { text: "as", start: 46.5, end: 46.7 },
-            { text: "she", start: 46.7, end: 46.9 },
-            { text: "tries", start: 46.9, end: 47.2 },
-            { text: "to", start: 47.2, end: 47.4 },
-            { text: "keep", start: 47.4, end: 47.7 },
-            { text: "up.", start: 47.7, end: 48.0 }
+            { text: "Hurry", start: 35.0, end: 35.3 },
+            { text: "up,", start: 35.3, end: 35.6 },
+            { text: "Kylie", start: 35.6, end: 35.9 }
           ]
         },
       ]
@@ -376,59 +195,11 @@ export const StoryPage = () => {
       title: "Section 4",
       subtitles: [
         {
-          start: 0, end: 4.5,
-          words: [
-            { text: "Kylie", start: 0.1, end: 0.5 },
-            { text: "balls up", start: 0.5, end: 1.0 },
-            { text: "her", start: 1.0, end: 1.3 },
-            { text: "fists", start: 1.3, end: 1.7 },
-            { text: "and", start: 2.3, end: 2.6 },
-            { text: "knows", start: 2.6, end: 2.9 },
-            { text: "that", start: 2.9, end: 3.2 },
-            { text: "she", start: 3.2, end: 3.5 },
-            { text: "is", start: 3.5, end: 3.8 },
-            { text: "getting", start: 3.8, end: 4.1 },
-            { text: "angry.", start: 4.1, end: 4.4 }
-          ]
-        },
-
-        {
-          start: 5.0, end: 13.5,
-          words: [
-            { text: "The", start: 5.3, end: 5.6 },
-            { text: "class", start: 5.6, end: 5.9 },
-            { text: "is", start: 5.9, end: 6.2 },
-            { text: "almost", start: 6.2, end: 6.5 },
-            { text: "at", start: 6.5, end: 6.8 },
-            { text: "the", start: 6.8, end: 7.1 },
-            { text: "auditorium", start: 7.1, end: 7.4 },
-            { text: "when", start: 7.8, end: 8.1 },
-            { text: "two", start: 8.1, end: 8.4 },
-            { text: "girls", start: 8.4, end: 8.7 },
-            { text: "go", start: 8.7, end: 9.0 },
-            { text: "around", start: 9.0, end: 9.3 },
-            { text: "Kylie", start: 9.3, end: 9.6 },
-            { text: "and", start: 9.9, end: 10.2 },
-            { text: "get", start: 10.2, end: 10.5 },
-            { text: "into", start: 10.5, end: 10.8 },
-            { text: "the", start: 10.8, end: 11.1 },
-            { text: "line", start: 11.1, end: 11.4 },
-            { text: "in", start: 11.4, end: 11.7 },
-            { text: "front", start: 11.7, end: 12.0 },
-            { text: "of", start: 12.0, end: 12.3 },
-            { text: "her", start: 12.3, end: 12.6 },
-            { text: "and", start: 12.6, end: 12.9 },
-            { text: "Stacy.", start: 12.9, end: 13.2 }
-          ]
-        },
-
-        {
           start: 16.0, end: 17.0,
           words: [
             { text: "Hey!’", start: 16.5, end: 17.0 },
           ]
         },
-
         {
           start: 17.5, end: 19.5,
           words: [
@@ -439,58 +210,6 @@ export const StoryPage = () => {
           ]
         },
 
-        {
-          start: 18.8, end: 23.2,
-          words: [
-            { text: "they", start: 18.8, end: 19.2 },
-            { text: "tell", start: 19.2, end: 19.6 },
-            { text: "her", start: 19.6, end: 19.9 },
-            { text: "and", start: 21.0, end: 21.3 },
-            { text: "turn", start: 21.3, end: 21.6 },
-            { text: "back", start: 21.6, end: 21.9 },
-            { text: "to", start: 21.9, end: 22.2 },
-            { text: "face", start: 22.2, end: 22.5 },
-            { text: "the", start: 22.5, end: 22.8 },
-            { text: "line.", start: 22.8, end: 23.1 }
-
-          ]
-        },
-
-        {
-          start: 23.3, end: 26.8,
-          words: [
-            { text: "Kylie", start: 23.5, end: 23.8 },
-            { text: "feels", start: 23.8, end: 24.1 },
-            { text: "her", start: 24.1, end: 24.4 },
-            { text: "face", start: 24.4, end: 24.7 },
-            { text: "getting", start: 24.7, end: 25.0 },
-            { text: "red", start: 25.0, end: 25.3 },
-            { text: "as", start: 25.3, end: 25.6 },
-            { text: "she", start: 25.6, end: 25.9 },
-            { text: "gets", start: 25.9, end: 26.2 },
-            { text: "angrier.", start: 26.2, end: 26.5 }
-          ]
-        },
-
-        {
-          start: 26.9, end: 33.0,
-          words: [
-            { text: "Her", start: 27.0, end: 27.3 },
-            { text: "elbow", start: 27.3, end: 27.6 },
-            { text: "still", start: 27.6, end: 27.9 },
-            { text: "hurts", start: 27.9, end: 28.2 },
-            { text: "and", start: 28.2, end: 28.5 },
-            { text: "now", start: 28.5, end: 28.8 },
-            { text: "she’s", start: 28.8, end: 29.1 },
-            { text: "almost", start: 29.1, end: 29.4 },
-            { text: "at", start: 30.5, end: 30.8 },
-            { text: "the", start: 30.8, end: 31.1 },
-            { text: "back", start: 31.1, end: 31.4 },
-            { text: "of", start: 31.4, end: 31.7 },
-            { text: "the", start: 31.7, end: 32.0 },
-            { text: "line.", start: 32.0, end: 32.3 }
-          ]
-        }
       ]
     },
 
@@ -498,46 +217,6 @@ export const StoryPage = () => {
       url: video5,
       title: "Section 5",
       subtitles: [
-        {
-          start: 0.0, end: 2.0,
-          words: [
-            { text: "Kylie", start: 0.1, end: 0.4 },
-            { text: "takes", start: 0.4, end: 0.7 },
-            { text: "a", start: 0.7, end: 0.9 },
-            { text: "few", start: 0.9, end: 1.2 },
-            { text: "deep", start: 1.2, end: 1.5 },
-            { text: "breaths.", start: 1.5, end: 1.9 }
-
-          ]
-        },
-
-        {
-          start: 2.3, end: 6.0,
-          words: [
-            { text: "She", start: 2.5, end: 2.8 },
-            { text: "knows", start: 2.8, end: 3.3 },
-            { text: "her", start: 3.5, end: 3.8 },
-            { text: "anger", start: 3.8, end: 4.2 },
-            { text: "is", start: 4.2, end: 4.4 },
-            { text: "almost", start: 4.4, end: 4.8 },
-            { text: "at", start: 4.8, end: 5.0 },
-            { text: "boiling", start: 5.0, end: 5.4 },
-            { text: "point", start: 5.4, end: 5.8 }
-          ]
-        },
-
-        {
-          start: 6.6, end: 9.5,
-          words: [
-            { text: "Kylie", start: 7.5, end: 7.8 },
-            { text: "turns", start: 7.8, end: 8.1 },
-            { text: "to", start: 8.1, end: 8.4 },
-            { text: "Stacy", start: 8.4, end: 8.7 },
-            { text: "and", start: 8.7, end: 9.0 },
-            { text: "says", start: 9.0, end: 9.3 }
-          ]
-        },
-
         {
           start: 10.0, end: 17.5,
           words: [
@@ -576,21 +255,6 @@ export const StoryPage = () => {
             { text: "you", start: 0.9, end: 1.2 }
           ]
         },
-
-        {
-          start: 1.9, end: 5.5,
-          words: [
-            { text: "Stacy", start: 2.3, end: 2.6 },
-            { text: "tells", start: 2.6, end: 2.9 },
-            { text: "her", start: 2.9, end: 3.2 },
-            { text: "as", start: 3.2, end: 3.5 },
-            { text: "they", start: 3.5, end: 3.8 },
-            { text: "walk", start: 3.8, end: 4.1 },
-            { text: "into", start: 4.1, end: 4.4 },
-            { text: "the", start: 4.4, end: 4.7 },
-            { text: "auditorium.", start: 4.7, end: 5.2 }
-          ]
-        },
       ]
     },
 
@@ -612,7 +276,6 @@ export const StoryPage = () => {
 
           ]
         },
-
         {
           start: 3.5, end: 5.9,
           words: [
@@ -624,7 +287,6 @@ export const StoryPage = () => {
             { text: "concert!", start: 5.2, end: 5.6 }
           ]
         },
-
         {
           start: 7.4, end: 9.0,
           words: [
@@ -632,24 +294,6 @@ export const StoryPage = () => {
             { text: "too!", start: 8.3, end: 8.8 }
           ]
         },
-
-        {
-          start: 9.5, end: 14.0,
-          words: [
-            { text: "Kylie", start: 10.0, end: 10.3 },
-            { text: "replies,", start: 10.3, end: 10.7 },
-            { text: "for", start: 10.7, end: 11.0 },
-            { text: "getting", start: 11.0, end: 11.4 },
-            { text: "about", start: 11.4, end: 11.7 },
-            { text: "the", start: 11.7, end: 12.0 },
-            { text: "girls", start: 12.0, end: 12.3 },
-            { text: "who", start: 12.3, end: 12.6 },
-            { text: "made", start: 12.6, end: 12.9 },
-            { text: "her", start: 12.9, end: 13.2 },
-            { text: "angry.", start: 13.2, end: 13.6 }
-          ]
-        },
-
         {
           start: 14.3, end: 17.5,
           words: [
@@ -661,22 +305,6 @@ export const StoryPage = () => {
             { text: "sit", start: 16.0, end: 16.3 },
             { text: "with", start: 16.3, end: 16.6 },
             { text: "her", start: 16.6, end: 17.0 }
-          ]
-        },
-
-        {
-          start: 17.9, end: 21.0,
-          words: [
-            { text: "Kylie", start: 18.0, end: 18.3 },
-            { text: "is", start: 18.3, end: 18.5 },
-            { text: "happy", start: 18.5, end: 18.9 },
-            { text: "she", start: 18.9, end: 19.1 },
-            { text: "did", start: 19.1, end: 19.3 },
-            { text: "not", start: 19.3, end: 19.5 },
-            { text: "reach", start: 19.5, end: 19.8 },
-            { text: "her", start: 19.8, end: 20.0 },
-            { text: "boiling", start: 20.0, end: 20.4 },
-            { text: "point.", start: 20.4, end: 20.8 }
           ]
         },
       ]
@@ -692,70 +320,411 @@ export const StoryPage = () => {
 
   ];
 
+  const extraBubblesData = [
+    {
+      videoIndex: 1,
+      start: 4.4,
+      end: 7.0,
+      words: [
+        { text: "Mrs", start: 4.5, end: 4.8 },
+        { text: "Bell", start: 4.8, end: 5.2 },
+        { text: "announces", start: 5.2, end: 5.8 },
+        { text: "to", start: 5.8, end: 6.0 },
+        { text: "her", start: 6.0, end: 6.4 },
+        { text: "class.", start: 6.4, end: 6.8 }
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 7.0,
+      end: 9.8,
+      words: [
+        { text: "Kylie", start: 7.1, end: 7.5 },
+        { text: "and", start: 7.5, end: 7.8 },
+        { text: "her", start: 7.8, end: 8.1 },
+        { text: "friends", start: 8.1, end: 8.6 },
+        { text: "are", start: 8.6, end: 9.0 },
+        { text: "excited.", start: 9.0, end: 9.5 }
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 7.0,
+      end: 9.8,
+      words: [
+        { text: "Kylie", start: 7.1, end: 7.5 },
+        { text: "and", start: 7.5, end: 7.8 },
+        { text: "her", start: 7.8, end: 8.1 },
+        { text: "friends", start: 8.1, end: 8.6 },
+        { text: "are", start: 8.6, end: 9.0 },
+        { text: "excited.", start: 9.0, end: 9.5 }
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 10.0,
+      end: 12.3,
+      words: [
+        { text: "They", start: 10.1, end: 10.4 },
+        { text: "are", start: 10.4, end: 10.6 },
+        { text: "looking", start: 10.6, end: 10.9 },
+        { text: "forward", start: 10.9, end: 11.2 },
+        { text: "to", start: 11.2, end: 11.4 },
+        { text: "the", start: 11.4, end: 11.6 },
+        { text: "concert.", start: 11.6, end: 12.0 }
+      ]
+    },
+
+    {
+      videoIndex: 2,
+      start: 0.0,
+      end: 3.3,
+      words: [
+        { text: "The", start: 0.1, end: 0.3 },
+        { text: "students", start: 0.3, end: 0.7 },
+        { text: "get", start: 0.7, end: 0.9 },
+        { text: "up", start: 0.9, end: 1.0 },
+        { text: "to", start: 1.0, end: 1.3 },
+        { text: "leave", start: 1.3, end: 1.6 },
+        { text: "the", start: 1.6, end: 1.9 },
+        { text: "classroom", start: 1.9, end: 2.2 },
+        { text: "and", start: 2.2, end: 2.5 },
+        { text: "line", start: 2.5, end: 2.8 },
+        { text: "up.", start: 2.8, end: 3.1 }
+      ]
+    },
+    {
+      videoIndex: 2,
+      start: 3.3,
+      end: 8.0,
+      words: [
+        { text: "Kylie", start: 3.5, end: 3.9 },
+        { text: "is", start: 3.9, end: 4.2 },
+        { text: "pushed", start: 4.2, end: 4.6 },
+        { text: "against", start: 4.6, end: 5.0 },
+        { text: "the", start: 5.0, end: 5.3 },
+        { text: "bookshelf", start: 5.3, end: 5.8 },
+        { text: "as", start: 5.8, end: 6.1 },
+        { text: "some", start: 6.1, end: 6.4 },
+        { text: "classmates", start: 6.4, end: 6.9 },
+        { text: "hurry", start: 6.9, end: 7.3 },
+        { text: "past her.", start: 7.3, end: 7.9 },
+      ]
+    },
+    {
+      videoIndex: 2,
+      start: 13.5,
+      end: 18.0,
+      words: [
+        { text: "She", start: 14.5, end: 14.8 },
+        { text: "cries", start: 14.8, end: 15.2 },
+        { text: "as", start: 15.2, end: 15.4 },
+        { text: "she", start: 15.4, end: 15.7 },
+        { text: "bumps", start: 15.7, end: 16.1 },
+        { text: "her", start: 16.1, end: 16.4 },
+        { text: "elbow", start: 16.4, end: 16.8 },
+        { text: "on", start: 16.8, end: 17.1 },
+        { text: "the", start: 17.1, end: 17.4 },
+        { text: "bookshelf.", start: 17.4, end: 17.9 }
+      ]
+    },
+    {
+      videoIndex: 2,
+      start: 26.3, end: 32.0,
+      words: [
+        { text: "Kylie", start: 26.5, end: 26.9 },
+        { text: "and", start: 26.9, end: 27.2 },
+        { text: "Stacy", start: 27.2, end: 27.6 },
+        { text: "line up", start: 27.6, end: 28.0 },
+        { text: "outside", start: 28.0, end: 28.4 },
+        { text: "the classroom", start: 28.4, end: 28.8 },
+        { text: "and when", start: 29.8, end: 30.0 },
+        { text: "all", start: 30.0, end: 30.3 },
+        { text: "the", start: 30.3, end: 30.6 },
+        { text: "students", start: 30.6, end: 31.1 },
+        { text: "are out", start: 31.1, end: 31.6 }
+      ]
+    },
+    {
+      videoIndex: 2,
+      start: 32.0, end: 34.9,
+      words: [
+        { text: "Mrs.", start: 32.0, end: 32.3 },
+        { text: "Bell", start: 32.3, end: 32.7 },
+        { text: "leads", start: 32.7, end: 33.1 },
+        { text: "them", start: 33.1, end: 33.4 },
+        { text: "towards", start: 33.4, end: 33.9 },
+        { text: "the", start: 33.9, end: 34.2 },
+        { text: "auditorium.", start: 34.2, end: 34.8 }
+      ]
+    },
+    {
+      videoIndex: 2,
+      start: 36.0, end: 38.5,
+      words: [
+        { text: "someone", start: 36.2, end: 36.6 },
+        { text: "tells", start: 36.6, end: 36.9 },
+        { text: "her", start: 36.9, end: 37.1 },
+        { text: "as", start: 37.1, end: 37.3 },
+        { text: "they", start: 37.3, end: 37.5 },
+        { text: "bump", start: 37.5, end: 37.8 },
+        { text: "into", start: 37.8, end: 38.1 },
+        { text: "her.", start: 38.1, end: 38.4 }
+      ]
+    },
+    {
+      videoIndex: 2,
+      start: 38.5, end: 43.5,
+      words: [
+        { text: "Kylie", start: 39.0, end: 39.4 },
+        { text: "trips", start: 39.4, end: 39.7 },
+        { text: "and", start: 39.7, end: 40.0 },
+        { text: "is", start: 40.0, end: 40.2 },
+        { text: "still", start: 40.2, end: 40.5 },
+        { text: "rubbing", start: 40.5, end: 40.9 },
+        { text: "her", start: 40.9, end: 41.1 },
+        { text: "elbow", start: 41.1, end: 41.5 },
+        { text: "as", start: 41.5, end: 41.7 },
+        { text: "she", start: 41.7, end: 41.9 },
+        { text: "tries", start: 41.9, end: 42.2 },
+        { text: "to", start: 42.2, end: 42.4 },
+        { text: "keep", start: 42.4, end: 42.7 },
+        { text: "up.", start: 42.7, end: 43.0 }
+      ]
+    },
+
+    {
+      videoIndex: 3,
+      start: 0.0, end: 4.5,
+      words: [
+        { text: "Kylie", start: 0.1, end: 0.5 },
+        { text: "balls up", start: 0.5, end: 1.0 },
+        { text: "her", start: 1.0, end: 1.3 },
+        { text: "fists", start: 1.3, end: 1.7 },
+        { text: "and", start: 2.3, end: 2.6 },
+        { text: "knows", start: 2.6, end: 2.9 },
+        { text: "that", start: 2.9, end: 3.2 },
+        { text: "she", start: 3.2, end: 3.5 },
+        { text: "is", start: 3.5, end: 3.8 },
+        { text: "getting", start: 3.8, end: 4.1 },
+        { text: "angry.", start: 4.1, end: 4.4 }
+      ]
+    },
+    {
+      videoIndex: 3,
+      start: 5.0, end: 13.5,
+      words: [
+        { text: "The", start: 5.3, end: 5.6 },
+        { text: "class", start: 5.6, end: 5.9 },
+        { text: "is", start: 5.9, end: 6.2 },
+        { text: "almost", start: 6.2, end: 6.5 },
+        { text: "at", start: 6.5, end: 6.8 },
+        { text: "the", start: 6.8, end: 7.1 },
+        { text: "auditorium", start: 7.1, end: 7.4 },
+        { text: "when", start: 7.8, end: 8.1 },
+        { text: "two", start: 8.1, end: 8.4 },
+        { text: "girls", start: 8.4, end: 8.7 },
+        { text: "go", start: 8.7, end: 9.0 },
+        { text: "around", start: 9.0, end: 9.3 },
+        { text: "Kylie", start: 9.3, end: 9.6 },
+        { text: "and", start: 9.9, end: 10.2 },
+        { text: "get", start: 10.2, end: 10.5 },
+        { text: "into", start: 10.5, end: 10.8 },
+        { text: "the", start: 10.8, end: 11.1 },
+        { text: "line", start: 11.1, end: 11.4 },
+        { text: "in", start: 11.4, end: 11.7 },
+        { text: "front", start: 11.7, end: 12.0 },
+        { text: "of", start: 12.0, end: 12.3 },
+        { text: "her", start: 12.3, end: 12.6 },
+        { text: "and", start: 12.6, end: 12.9 },
+        { text: "Stacy.", start: 12.9, end: 13.2 }
+      ]
+    },
+    {
+      videoIndex: 3,
+      start: 18.8, end: 23.2,
+      words: [
+        { text: "they", start: 18.8, end: 19.2 },
+        { text: "tell", start: 19.2, end: 19.6 },
+        { text: "her", start: 19.6, end: 19.9 },
+        { text: "and", start: 21.0, end: 21.3 },
+        { text: "turn", start: 21.3, end: 21.6 },
+        { text: "back", start: 21.6, end: 21.9 },
+        { text: "to", start: 21.9, end: 22.2 },
+        { text: "face", start: 22.2, end: 22.5 },
+        { text: "the", start: 22.5, end: 22.8 },
+        { text: "line.", start: 22.8, end: 23.1 }
+      ]
+    },
+    {
+      videoIndex: 3,
+      start: 23.3, end: 26.8,
+      words: [
+        { text: "Kylie", start: 23.5, end: 23.8 },
+        { text: "feels", start: 23.8, end: 24.1 },
+        { text: "her", start: 24.1, end: 24.4 },
+        { text: "face", start: 24.4, end: 24.7 },
+        { text: "getting", start: 24.7, end: 25.0 },
+        { text: "red", start: 25.0, end: 25.3 },
+        { text: "as", start: 25.3, end: 25.6 },
+        { text: "she", start: 25.6, end: 25.9 },
+        { text: "gets", start: 25.9, end: 26.2 },
+        { text: "angrier.", start: 26.2, end: 26.5 }
+      ]
+    },
+    {
+      videoIndex: 3,
+      start: 26.9, end: 33.0,
+      words: [
+        { text: "Her", start: 27.0, end: 27.3 },
+        { text: "elbow", start: 27.3, end: 27.6 },
+        { text: "still", start: 27.6, end: 27.9 },
+        { text: "hurts", start: 27.9, end: 28.2 },
+        { text: "and", start: 28.2, end: 28.5 },
+        { text: "now", start: 28.5, end: 28.8 },
+        { text: "she’s", start: 28.8, end: 29.1 },
+        { text: "almost", start: 29.1, end: 29.4 },
+        { text: "at", start: 30.5, end: 30.8 },
+        { text: "the", start: 30.8, end: 31.1 },
+        { text: "back", start: 31.1, end: 31.4 },
+        { text: "of", start: 31.4, end: 31.7 },
+        { text: "the", start: 31.7, end: 32.0 },
+        { text: "line.", start: 32.0, end: 32.3 }
+      ]
+    },
+
+    {
+      videoIndex: 4,
+      start: 0, end: 2,
+      words: [
+        { text: "Kylie", start: 0.1, end: 0.4 },
+        { text: "takes", start: 0.4, end: 0.7 },
+        { text: "a", start: 0.7, end: 0.9 },
+        { text: "few", start: 0.9, end: 1.2 },
+        { text: "deep", start: 1.2, end: 1.5 },
+        { text: "breaths.", start: 1.5, end: 1.9 }
+      ]
+    },
+    {
+      videoIndex: 4,
+      start: 2.3, end: 6.0,
+      words: [
+        { text: "She", start: 2.5, end: 2.8 },
+        { text: "knows", start: 2.8, end: 3.3 },
+        { text: "her", start: 3.5, end: 3.8 },
+        { text: "anger", start: 3.8, end: 4.2 },
+        { text: "is", start: 4.2, end: 4.4 },
+        { text: "almost", start: 4.4, end: 4.8 },
+        { text: "at", start: 4.8, end: 5.0 },
+        { text: "boiling", start: 5.0, end: 5.4 },
+        { text: "point", start: 5.4, end: 5.8 }
+      ]
+    },
+    {
+      videoIndex: 4,
+      start: 6.6, end: 9.5,
+      words: [
+        { text: "Kylie", start: 7.5, end: 7.8 },
+        { text: "turns", start: 7.8, end: 8.1 },
+        { text: "to", start: 8.1, end: 8.4 },
+        { text: "Stacy", start: 8.4, end: 8.7 },
+        { text: "and", start: 8.7, end: 9.0 },
+        { text: "says", start: 9.0, end: 9.3 }
+      ]
+    },
+
+    {
+      videoIndex: 5,
+      start: 1.9, end: 5.5,
+      words: [
+        { text: "Stacy", start: 2.3, end: 2.6 },
+        { text: "tells", start: 2.6, end: 2.9 },
+        { text: "her", start: 2.9, end: 3.2 },
+        { text: "as", start: 3.2, end: 3.5 },
+        { text: "they", start: 3.5, end: 3.8 },
+        { text: "walk", start: 3.8, end: 4.1 },
+        { text: "into", start: 4.1, end: 4.4 },
+        { text: "the", start: 4.4, end: 4.7 },
+        { text: "auditorium.", start: 4.7, end: 5.2 }
+      ]
+    },
+
+    {
+      videoIndex: 6,
+      start: 9.5, end: 14.0,
+      words: [
+        { text: "Kylie", start: 10.0, end: 10.3 },
+        { text: "replies,", start: 10.3, end: 10.7 },
+        { text: "for", start: 10.7, end: 11.0 },
+        { text: "getting", start: 11.0, end: 11.4 },
+        { text: "about", start: 11.4, end: 11.7 },
+        { text: "the", start: 11.7, end: 12.0 },
+        { text: "girls", start: 12.0, end: 12.3 },
+        { text: "who", start: 12.3, end: 12.6 },
+        { text: "made", start: 12.6, end: 12.9 },
+        { text: "her", start: 12.9, end: 13.2 },
+        { text: "angry.", start: 13.2, end: 13.6 }
+      ]
+    },
+
+    {
+      videoIndex: 6,
+      start: 17.9, end: 21.0,
+      words: [
+        { text: "Kylie", start: 18.0, end: 18.3 },
+        { text: "is", start: 18.3, end: 18.5 },
+        { text: "happy", start: 18.5, end: 18.9 },
+        { text: "she", start: 18.9, end: 19.1 },
+        { text: "did", start: 19.1, end: 19.3 },
+        { text: "not", start: 19.3, end: 19.5 },
+        { text: "reach", start: 19.5, end: 19.8 },
+        { text: "her", start: 19.8, end: 20.0 },
+        { text: "boiling", start: 20.0, end: 20.4 },
+        { text: "point.", start: 20.4, end: 20.8 }
+      ]
+    },
+  ];
 
   const cloudPositions = {
 
-    0: [{ bottom: '35rem', left: '50%', transform: 'translateX(-50%)', isFlipped: true }],
+    0: [
+
+    ],
 
     1: [
-      { top: '15%', left: '10%' },
+      { top: '15%', left: '3%' },
       { top: '15%', left: '15%' },
       { top: '15%', left: '15%' },
       { top: '15%', left: '10%' },
       { top: '15%', left: '15%' },
       { top: '15%', left: '15%' },
-      { top: '15%', left: '15%' },
-      { top: '15%', left: '15%' },
-      { top: '15%', left: '15%' }
     ],
 
     2: [
-      { top: '10%', right: '5%', isFlipped: true },
-      { top: '1%', left: '45%', isFlipped: true },
-      { top: '1%', left: '45%', isFlipped: true },
-      { top: '10%', right: '5%', isFlipped: true },
-      { top: '1%', left: '45%', isFlipped: true },
-      { top: '1%', left: '45%', isFlipped: true },
-      { top: '10%', right: '5%', isFlipped: true },
-      { top: '1%', left: '45%', isFlipped: true },
-      { top: '1%', left: '45%', isFlipped: true },
-      { top: '10%', right: '5%', isFlipped: true },
-      { top: '1%', left: '45%', isFlipped: true },
-      { top: '1%', left: '45%', isFlipped: true },
-      { top: '1%', left: '45%', isFlipped: true }
+      { top: '10%', right: '80%' },
+      { top: '10%', left: '35%', isFlipped: true },
+      { top: '10%', left: '45%' },
+      { top: '10%', right: '50%', isFlipped: true },
+      { top: '1%', left: '33%', isFlipped: true },
+      { top: '1%', left: '35%' },
     ],
 
     3: [
-      { bottom: '80%', left: '28%', isFlipped: true },
-      { top: '10%', left: '45%' },
-      { bottom: '80%', left: '28%', isFlipped: true },
-      { top: '10%', left: '45%' },
-      { bottom: '80%', left: '28%', isFlipped: true },
-      { top: '10%', left: '45%' },
-      { bottom: '80%', left: '28%', isFlipped: true }
+      { bottom: '80%', left: '35%' },
+      { top: '10%', left: '45%', isFlipped: true },
     ],
 
     4: [
-      { top: '10%', left: '30%', isFlipped: true },
-      { top: '5%', left: '35%' },
-      { top: '10%', left: '30%', isFlipped: true },
-      { top: '5%', left: '35%' },
-      { top: '10%', left: '30%', isFlipped: true }
+      { top: '10%', left: '55%', isFlipped: true }
     ],
     5: [
-      { bottom: '80%', left: '48%', },
-      { top: '20%', left: '25%' },
-      { top: '10%', left: '50%', isFlipped: true },
-      { top: '70%', left: '50%', isFlipped: true }
+      { bottom: '80%', left: '28%', }
     ],
     6: [
-      { bottom: '80%', left: '48%', transform: 'translateX(-50%)' },
-      { top: '10%', left: '10%' },
+      { bottom: '80%', left: '60%', transform: 'translateX(-50%)', isFlipped: true },
+      { top: '10%', left: '60%', isFlipped: true },
       { top: '10%', left: '50%', isFlipped: true },
-
-      { bottom: '80%', left: '48%', transform: 'translateX(-50%)' },
-      { top: '10%', left: '10%' },
-      { top: '10%', left: '50%', isFlipped: true },
+      { top: '10%', left: '60%', isFlipped: true },
     ],
   };
 
@@ -801,6 +770,17 @@ export const StoryPage = () => {
       };
     }
   }, [currentVideo, videos]);
+
+  useEffect(() => {
+    const bubbleToShow = extraBubblesData.find(bubble =>
+      bubble.videoIndex === currentVideo &&
+      currentTime >= bubble.start &&
+      currentTime < bubble.end
+    );
+
+    setExtraBubble(bubbleToShow || null);
+
+  }, [currentVideo, currentTime]);
 
   // Video event listeners
   useEffect(() => {
@@ -1002,7 +982,7 @@ export const StoryPage = () => {
                 Highlight how Kylie manages her anger.
               </p>
               <p style={{ fontSize: '1.8em', textAlign: 'left' }}>
-                
+
               </p>
             </div>
           )}
@@ -1034,7 +1014,23 @@ export const StoryPage = () => {
                     );
                   })}
                 </p>
-                <button className="close" onClick={() => setShowBubble(false)}>×</button>
+
+              </div>
+            </div>
+          )}
+
+          {showCaption && extraBubble && extraBubble.words && (
+            <div
+              className="subtitle-container"
+              style={{ bottom: '0%', left: '50%', transform: 'translateX(-50%)', zIndex: 101 }}
+            >
+              <div className="extra-cloud animate\_\_animated animate\_\_fadeIn">
+                <p>
+                  {extraBubble.words.map((word, index) => {
+                    const isHighlighted = currentTime >= word.start && currentTime < word.end;
+                    return <span key={index} className={`word-span ${isHighlighted ? 'active-word' : ''}`}>{word.text}{' '}</span>;
+                  })}
+                </p>
               </div>
             </div>
           )}
@@ -1056,6 +1052,10 @@ export const StoryPage = () => {
                   <button onClick={() => setShowSubtitles(!showSubtitles)} className="control-btn" title="Subtitles">
                     <Subtitles className="w-6 h-6" />
                     <span className="control-label">Subtitle</span>
+                  </button>
+                  <button onClick={() => setShowCaption(!showCaption)} className="control-btn" title="Caption">
+                    <MessageSquareText className="w-6 h-6" />
+                    <span className="control-label">Caption</span>
                   </button>
                   <div
                     className="volume-control"

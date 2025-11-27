@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, Subtitles, Maximize2, Minimize2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX, Subtitles, Maximize2, Minimize2, MessageSquareText } from 'lucide-react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../../shared/StoryPage.css';
 import ValidationAlert from '../../shared/ValidationAlert';
@@ -13,6 +13,9 @@ import video6 from "./assets/5-2.mp4";
 import img1 from "./assets/nex.png";
 
 export const StoryPage = () => {
+  const [showCaption, setShowCaption] = useState(true);
+  const [extraBubble, setExtraBubble] = useState(null);
+
   const [currentVideo, setCurrentVideo] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -41,18 +44,6 @@ export const StoryPage = () => {
       url: video1,
       title: "Section 1",
       subtitles: [
-        {
-          // start: 0, end: 3.5, 
-          // words: [
-          //   { text: "A", start: 0.2, end: 0.7 },
-          //   { text: "Clean", start: 0.7, end: 1.3 },
-          //   { text: "Place", start: 1.3, end: 2.0 },
-          //   { text: "is", start: 2.1, end: 2.3 },
-          //   { text: "a", start: 2.3, end: 2.5 },
-          //   { text: "Safe", start: 2.5, end: 2.9 }, // تعديل طفيف
-          //   { text: "Place.", start: 2.9, end: 3.3 }, // تعديل طفيف
-          // ]
-        },
       ]
     },
 
@@ -60,80 +51,6 @@ export const StoryPage = () => {
       url: video2,
       title: "Section 2",
       subtitles: [
-        {
-          start: 0.0, end: 4.0,
-          words: [
-            { text: "Liam", start: 0.1, end: 0.4 },
-            { text: "and", start: 0.4, end: 0.7 },
-            { text: "Noah", start: 0.7, end: 1.0 },
-            { text: "are", start: 1.0, end: 1.3 },
-            { text: "brothers.", start: 1.3, end: 1.6 },
-            { text: "They", start: 2.5, end: 2.8 },
-            { text: "are", start: 2.8, end: 3.1 },
-            { text: "at", start: 3.1, end: 3.4 },
-            { text: "home.", start: 3.4, end: 3.7 }
-          ]
-        },
-
-        {
-          start: 4.0, end: 6.0,
-          words: [
-            { text: "Liam", start: 4.0, end: 4.3 },
-            { text: "is", start: 4.3, end: 4.5 },
-            { text: "busy", start: 4.5, end: 4.8 },
-            { text: "doing", start: 4.8, end: 5.1 },
-            { text: "his", start: 5.1, end: 5.3 },
-            { text: "home", start: 5.3, end: 5.6 },
-            { text: "work.", start: 5.6, end: 5.9 }
-          ]
-        },
-
-        {
-          start: 6.1, end: 12.0,
-          words: [
-            { text: "It", start: 6.2, end: 6.5 },
-            { text: "is", start: 6.5, end: 6.8 },
-            { text: "difficult", start: 6.8, end: 7.2 },
-            { text: "and", start: 7.2, end: 7.5 },
-            { text: "is", start: 7.5, end: 7.8 },
-            { text: "taking", start: 7.8, end: 8.1 },
-            { text: "a", start: 8.1, end: 8.3 },
-            { text: "long", start: 8.3, end: 8.6 },
-            { text: "time.", start: 8.6, end: 8.9 },
-            { text: "His", start: 9.8, end: 10.1 },
-            { text: "little", start: 10.1, end: 10.4 },
-            { text: "brother,", start: 10.4, end: 10.7 },
-            { text: "Noah", start: 10.7, end: 11.0 },
-            { text: "is", start: 11.0, end: 11.3 },
-            { text: "bored.", start: 11.3, end: 11.6 }
-          ]
-        },
-
-        {
-          start: 12.4, end: 15.0,
-          words: [
-            { text: "He", start: 12.5, end: 12.8 },
-            { text: "is", start: 12.8, end: 13.1 },
-            { text: "kicking", start: 13.1, end: 13.4 },
-            { text: "a", start: 13.4, end: 13.7 },
-            { text: "ball", start: 13.7, end: 14.0 },
-            { text: "around", start: 14.0, end: 14.3 },
-            { text: "the", start: 14.3, end: 14.6 },
-            { text: "kitchen.", start: 14.6, end: 14.9 }
-          ]
-        },
-
-        {
-          start: 15.0, end: 17.0,
-          words: [
-            { text: "Their", start: 15.1, end: 15.4 },
-            { text: "mum", start: 15.4, end: 15.7 },
-            { text: "is", start: 15.7, end: 16.0 },
-            { text: "in", start: 16.0, end: 16.3 },
-            { text: "the", start: 16.3, end: 16.6 },
-            { text: "garden.", start: 16.6, end: 16.9 }
-          ]
-        }
       ]
 
     },
@@ -191,30 +108,6 @@ export const StoryPage = () => {
         },
 
         {
-          start: 10.9, end: 16.9,
-          words: [
-            { text: "Noah", start: 11.5, end: 11.8 },
-            { text: "kicks", start: 11.8, end: 12.1 },
-            { text: "the", start: 12.1, end: 12.3 },
-            { text: "ball", start: 12.3, end: 12.6 },
-            { text: "again", start: 12.6, end: 12.9 },
-            { text: "and", start: 13.2, end: 13.4 },
-            { text: "it", start: 13.4, end: 13.6 },
-            { text: "hits", start: 13.6, end: 13.9 },
-            { text: "Liam’s", start: 13.9, end: 14.2 },
-            { text: "glass", start: 14.2, end: 14.5 },
-            { text: "of", start: 14.5, end: 14.7 },
-            { text: "milk", start: 14.7, end: 15.0 },
-            { text: "and", start: 15.0, end: 15.2 },
-            { text: "it", start: 15.2, end: 15.4 },
-            { text: "spills", start: 15.4, end: 15.7 },
-            { text: "over", start: 15.7, end: 16.0 },
-            { text: "his", start: 16.0, end: 16.2 },
-            { text: "homework!", start: 16.2, end: 16.6 }
-          ]
-        },
-
-        {
           start: 17.0, end: 20.5,
           words: [
             { text: "Oh", start: 17.0, end: 17.3 },
@@ -223,15 +116,6 @@ export const StoryPage = () => {
             { text: "homework", start: 19.2, end: 19.5 },
             { text: "is", start: 19.5, end: 19.8 },
             { text: "ruined.", start: 19.8, end: 20.0 }
-          ]
-        },
-
-        {
-          start: 23.0, end: 24.5,
-          words: [
-            { text: "Liam", start: 23.5, end: 23.8 },
-            { text: "feels", start: 23.8, end: 24.1 },
-            { text: "angry.", start: 24.1, end: 24.4 }
           ]
         },
 
@@ -271,14 +155,6 @@ export const StoryPage = () => {
       url: video4,
       title: "Section 4",
       subtitles: [
-        {
-          start: 0.0, end: 1.0,
-          words: [
-            { text: "Liam", start: 0.0, end: 0.3 },
-            { text: "stays", start: 0.3, end: 0.6 },
-            { text: "calm", start: 0.6, end: 0.9 }
-          ]
-        },
 
         {
           start: 2.0, end: 6.8,
@@ -367,37 +243,8 @@ export const StoryPage = () => {
       url: video5,
       title: "Section 5",
       subtitles: [
-        {
-          start: 0.1, end: 2.0,
-          words: [
-            { text: "Mum", start: 0.1, end: 0.4 },
-            { text: "comes", start: 0.4, end: 0.7 },
-            { text: "in", start: 0.7, end: 1.0 },
-            { text: "from", start: 1.0, end: 1.3 },
-            { text: "the", start: 1.3, end: 1.5 },
-            { text: "garden.", start: 1.5, end: 1.9 }
-          ]
-        },
 
-        {
-          start: 2.2, end: 7.0,
-          words: [
-            { text: "She", start: 2.5, end: 2.8 },
-            { text: "is", start: 2.8, end: 3.0 },
-            { text: "happy", start: 3.0, end: 3.3 },
-            { text: "that", start: 3.3, end: 3.5 },
-            { text: "Liam", start: 3.5, end: 3.8 },
-            { text: "calmed", start: 3.8, end: 4.2 },
-            { text: "himself", start: 4.2, end: 4.6 },
-            { text: "down", start: 4.6, end: 4.9 },
-            { text: "before", start: 4.9, end: 5.2 },
-            { text: "he", start: 5.2, end: 5.4 },
-            { text: "spoke", start: 5.4, end: 5.7 },
-            { text: "to", start: 5.7, end: 5.9 },
-            { text: "his", start: 5.9, end: 6.1 },
-            { text: "brother.", start: 6.1, end: 6.5 }
-          ]
-        },
+
 
       ]
     },
@@ -406,75 +253,227 @@ export const StoryPage = () => {
       url: video6,
       title: "Section 6",
       subtitles: [
-        {
-          start: 0.1, end: 3.0,
-          words: [
-            { text: "Noah", start: 0.1, end: 0.4 },
-            { text: "puts", start: 0.4, end: 0.7 },
-            { text: "his", start: 0.7, end: 0.9 },
-            { text: "coat", start: 0.9, end: 1.2 },
-            { text: "on", start: 1.2, end: 1.4 },
-            { text: "and", start: 1.4, end: 1.6 },
-            { text: "plays", start: 1.6, end: 2.0 },
-            { text: "in", start: 2.0, end: 2.2 },
-            { text: "the", start: 2.2, end: 2.4 },
-            { text: "garden", start: 2.4, end: 2.9 }
-          ]
-        },
-
-        {
-          start: 3.5, end: 6.0,
-          words: [
-            { text: "Mum", start: 3.5, end: 3.8 },
-            { text: "helps", start: 3.8, end: 4.1 },
-            { text: "Liam", start: 4.1, end: 4.4 },
-            { text: "do", start: 4.4, end: 4.6 },
-            { text: "his", start: 4.6, end: 4.8 },
-            { text: "report", start: 4.8, end: 5.2 },
-            { text: "again.", start: 5.2, end: 5.8 }
-          ]
-        },
-
-
-        {
-          start: 6.2, end: 9.0,
-          words: [
-            { text: "With", start: 6.5, end: 6.8 },
-            { text: "Mum’s", start: 6.8, end: 7.1 },
-            { text: "help,", start: 7.1, end: 7.4 },
-            { text: "it", start: 7.4, end: 7.6 },
-            { text: "doesn’t", start: 7.6, end: 7.9 },
-            { text: "take", start: 7.9, end: 8.2 },
-            { text: "very", start: 8.2, end: 8.5 },
-            { text: "long.", start: 8.5, end: 8.8 },
-          ]
-        },
-
-        {
-          start: 10.0, end: 12.0,
-          words: [
-            { text: "Liam", start: 10.0, end: 10.3 },
-            { text: "is", start: 10.3, end: 10.5 },
-            { text: "happy", start: 10.5, end: 10.8 },
-            { text: "he", start: 10.8, end: 11.0 },
-            { text: "spoke", start: 11.0, end: 11.3 },
-            { text: "calmly.", start: 11.3, end: 11.6 }
-          ]
-        }
       ]
     },
-    { url: img1, title: "Section 2 (Image)", subtitles: [] },
+    {
+      url: img1, title: "Section 2 (Image)", subtitles: []
+    },
   ];
 
+  const extraBubblesData = [
+    {
+      videoIndex: 1,
+      start: 0, end: 4.0,
+      words: [
+        { text: "Liam", start: 0.1, end: 0.4 },
+        { text: "and", start: 0.4, end: 0.7 },
+        { text: "Noah", start: 0.7, end: 1.0 },
+        { text: "are", start: 1.0, end: 1.3 },
+        { text: "brothers.", start: 1.3, end: 1.6 },
+        { text: "They", start: 2.5, end: 2.8 },
+        { text: "are", start: 2.8, end: 3.1 },
+        { text: "at", start: 3.1, end: 3.4 },
+        { text: "home.", start: 3.4, end: 3.7 }
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 4.0,
+      end: 6.0,
+      words: [
+        { text: "Liam", start: 4.0, end: 4.3 },
+        { text: "is", start: 4.3, end: 4.5 },
+        { text: "busy", start: 4.5, end: 4.8 },
+        { text: "doing", start: 4.8, end: 5.1 },
+        { text: "his", start: 5.1, end: 5.3 },
+        { text: "home", start: 5.3, end: 5.6 },
+        { text: "work.", start: 5.6, end: 5.9 }
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 6.1,
+      end: 12.0,
+      words: [
+        { text: "It", start: 6.2, end: 6.5 },
+        { text: "is", start: 6.5, end: 6.8 },
+        { text: "difficult", start: 6.8, end: 7.2 },
+        { text: "and", start: 7.2, end: 7.5 },
+        { text: "is", start: 7.5, end: 7.8 },
+        { text: "taking", start: 7.8, end: 8.1 },
+        { text: "a", start: 8.1, end: 8.3 },
+        { text: "long", start: 8.3, end: 8.6 },
+        { text: "time.", start: 8.6, end: 8.9 },
+        { text: "His", start: 9.8, end: 10.1 },
+        { text: "little", start: 10.1, end: 10.4 },
+        { text: "brother,", start: 10.4, end: 10.7 },
+        { text: "Noah", start: 10.7, end: 11.0 },
+        { text: "is", start: 11.0, end: 11.3 },
+        { text: "bored.", start: 11.3, end: 11.6 }
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 12.4,
+      end: 15.0,
+      words: [
+        { text: "He", start: 12.5, end: 12.8 },
+        { text: "is", start: 12.8, end: 13.1 },
+        { text: "kicking", start: 13.1, end: 13.4 },
+        { text: "a", start: 13.4, end: 13.7 },
+        { text: "ball", start: 13.7, end: 14.0 },
+        { text: "around", start: 14.0, end: 14.3 },
+        { text: "the", start: 14.3, end: 14.6 },
+        { text: "kitchen.", start: 14.6, end: 14.9 }
+      ]
+    },
+    {
+      videoIndex: 1,
+      start: 15.0,
+      end: 17.0,
+      words: [
+        { text: "Their", start: 15.1, end: 15.4 },
+        { text: "mum", start: 15.4, end: 15.7 },
+        { text: "is", start: 15.7, end: 16.0 },
+        { text: "in", start: 16.0, end: 16.3 },
+        { text: "the", start: 16.3, end: 16.6 },
+        { text: "garden.", start: 16.6, end: 16.9 }
+      ]
+    },
 
-  // const cloudPositions = [
-  //   { bottom: '34.375rem', left: '32%', transform: 'translateX(-50%)' },
-  //   { top: '1%', left: '45%', transform: 'translateY(0)' },
-  //   { top: '10%', right: '65%', transform: 'translateX(0)', left: 'auto' },
-  //   { bottom: '85%', left: '30%', transform: 'translateX(-50%)' },
-  //   { top: '10%', left: '50%', transform: 'translateX(0)', isFlipped: true },
-  // ];
+    {
+      videoIndex: 2,
+      start: 10.9, end: 16.9,
+      words: [
+        { text: "Noah", start: 11.5, end: 11.8 },
+        { text: "kicks", start: 11.8, end: 12.1 },
+        { text: "the", start: 12.1, end: 12.3 },
+        { text: "ball", start: 12.3, end: 12.6 },
+        { text: "again", start: 12.6, end: 12.9 },
+        { text: "and", start: 13.2, end: 13.4 },
+        { text: "it", start: 13.4, end: 13.6 },
+        { text: "hits", start: 13.6, end: 13.9 },
+        { text: "Liam’s", start: 13.9, end: 14.2 },
+        { text: "glass", start: 14.2, end: 14.5 },
+        { text: "of", start: 14.5, end: 14.7 },
+        { text: "milk", start: 14.7, end: 15.0 },
+        { text: "and", start: 15.0, end: 15.2 },
+        { text: "it", start: 15.2, end: 15.4 },
+        { text: "spills", start: 15.4, end: 15.7 },
+        { text: "over", start: 15.7, end: 16.0 },
+        { text: "his", start: 16.0, end: 16.2 },
+        { text: "homework!", start: 16.2, end: 16.6 }
+      ]
+    },
+    {
+      videoIndex: 2,
+      start: 23.0, end: 24.5,
+      words: [
+        { text: "Liam", start: 23.5, end: 23.8 },
+        { text: "feels", start: 23.8, end: 24.1 },
+        { text: "angry.", start: 24.1, end: 24.4 }
+      ]
+    },
 
+    {
+      videoIndex: 3,
+      start: 0.0, end: 1.0,
+      words: [
+        { text: "Liam", start: 0.0, end: 0.3 },
+        { text: "stays", start: 0.3, end: 0.6 },
+        { text: "calm", start: 0.6, end: 0.9 }
+      ]
+    },
+
+    {
+      videoIndex: 4,
+      start: 0.0, end: 2.0,
+      words: [
+        { text: "Mum", start: 0.1, end: 0.4 },
+        { text: "comes", start: 0.4, end: 0.7 },
+        { text: "in", start: 0.7, end: 1.0 },
+        { text: "from", start: 1.0, end: 1.3 },
+        { text: "the", start: 1.3, end: 1.5 },
+        { text: "garden.", start: 1.5, end: 1.9 }
+      ]
+    },
+    {
+      videoIndex: 4,
+      start: 2.2, end: 7.0,
+      words: [
+        { text: "She", start: 2.5, end: 2.8 },
+        { text: "is", start: 2.8, end: 3.0 },
+        { text: "happy", start: 3.0, end: 3.3 },
+        { text: "that", start: 3.3, end: 3.5 },
+        { text: "Liam", start: 3.5, end: 3.8 },
+        { text: "calmed", start: 3.8, end: 4.2 },
+        { text: "himself", start: 4.2, end: 4.6 },
+        { text: "down", start: 4.6, end: 4.9 },
+        { text: "before", start: 4.9, end: 5.2 },
+        { text: "he", start: 5.2, end: 5.4 },
+        { text: "spoke", start: 5.4, end: 5.7 },
+        { text: "to", start: 5.7, end: 5.9 },
+        { text: "his", start: 5.9, end: 6.1 },
+        { text: "brother.", start: 6.1, end: 6.5 }
+      ]
+    },
+
+    {
+      videoIndex: 5,
+      start: 0.0, end: 3.0,
+      words: [
+        { text: "Noah", start: 0.1, end: 0.4 },
+        { text: "puts", start: 0.4, end: 0.7 },
+        { text: "his", start: 0.7, end: 0.9 },
+        { text: "coat", start: 0.9, end: 1.2 },
+        { text: "on", start: 1.2, end: 1.4 },
+        { text: "and", start: 1.4, end: 1.6 },
+        { text: "plays", start: 1.6, end: 2.0 },
+        { text: "in", start: 2.0, end: 2.2 },
+        { text: "the", start: 2.2, end: 2.4 },
+        { text: "garden", start: 2.4, end: 2.9 }
+      ]
+    },
+    {
+      videoIndex: 5,
+      start: 3.5, end: 6.0,
+      words: [
+        { text: "Mum", start: 3.5, end: 3.8 },
+        { text: "helps", start: 3.8, end: 4.1 },
+        { text: "Liam", start: 4.1, end: 4.4 },
+        { text: "do", start: 4.4, end: 4.6 },
+        { text: "his", start: 4.6, end: 4.8 },
+        { text: "report", start: 4.8, end: 5.2 },
+        { text: "again.", start: 5.2, end: 5.8 }
+      ]
+    },
+    {
+      videoIndex: 5,
+      start: 6.2, end: 9.0,
+      words: [
+        { text: "With", start: 6.5, end: 6.8 },
+        { text: "Mum’s", start: 6.8, end: 7.1 },
+        { text: "help,", start: 7.1, end: 7.4 },
+        { text: "it", start: 7.4, end: 7.6 },
+        { text: "doesn’t", start: 7.6, end: 7.9 },
+        { text: "take", start: 7.9, end: 8.2 },
+        { text: "very", start: 8.2, end: 8.5 },
+        { text: "long.", start: 8.5, end: 8.8 },
+      ]
+    },
+    {
+      videoIndex: 5,
+      start: 10.0, end: 12.0,
+      words: [
+        { text: "Liam", start: 10.0, end: 10.3 },
+        { text: "is", start: 10.3, end: 10.5 },
+        { text: "happy", start: 10.5, end: 10.8 },
+        { text: "he", start: 10.8, end: 11.0 },
+        { text: "spoke", start: 11.0, end: 11.3 },
+        { text: "calmly.", start: 11.3, end: 11.6 }
+      ]
+    },
+  ];
 
   const cloudPositions = {
     0: [],
@@ -554,6 +553,18 @@ export const StoryPage = () => {
       };
     }
   }, [currentVideo, videos]);
+
+
+  useEffect(() => {
+    const bubbleToShow = extraBubblesData.find(bubble =>
+      bubble.videoIndex === currentVideo &&
+      currentTime >= bubble.start &&
+      currentTime < bubble.end
+    );
+
+    setExtraBubble(bubbleToShow || null);
+
+  }, [currentVideo, currentTime]);
 
   // Video event listeners
   useEffect(() => {
@@ -657,7 +668,7 @@ export const StoryPage = () => {
         ValidationAlert.storyEnd(() => {
           navigate(`/unit/${unitId}/lesson/${lessonId}/quiz`);
         });
-      }, 500); // نصف ثانية لتأكد من ظهور الصورة
+      }, 500);
 
       return () => clearTimeout(timer);
     }
@@ -803,6 +814,22 @@ export const StoryPage = () => {
             </div>
           )}
 
+          {showCaption && extraBubble && extraBubble.words && (
+            <div
+              className="subtitle-container"
+              style={{ bottom: '0%', left: '50%', transform: 'translateX(-50%)', zIndex: 101 }}
+            >
+              <div className="extra-cloud animate\_\_animated animate\_\_fadeIn">
+                <p>
+                  {extraBubble.words.map((word, index) => {
+                    const isHighlighted = currentTime >= word.start && currentTime < word.end;
+                    return <span key={index} className={`word-span ${isHighlighted ? 'active-word' : ''}`}>{word.text}{' '}</span>;
+                  })}
+                </p>
+              </div>
+            </div>
+          )}
+
           <div className="video-overlay" />
           <div className="controls-container">
             <div className="controlbbtn">
@@ -820,6 +847,10 @@ export const StoryPage = () => {
                   <button onClick={() => setShowSubtitles(!showSubtitles)} className="control-btn" title="Subtitles">
                     <Subtitles className="w-6 h-6" />
                     <span className="control-label">Subtitle</span>
+                  </button>
+                  <button onClick={() => setShowCaption(!showCaption)} className="control-btn" title="Caption">
+                    <MessageSquareText className="w-6 h-6" />
+                    <span className="control-label">Caption</span>
                   </button>
                   <div
                     className="volume-control"
