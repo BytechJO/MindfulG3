@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-
+import { motion } from "motion/react";
 import { AnimatedBackground } from "./AnimatedBackground";
 import { AnimatedCharacter } from "./AnimatedCharacter";
 import { useNavigate } from 'react-router-dom';

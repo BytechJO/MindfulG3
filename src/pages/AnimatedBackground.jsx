@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-
+import { motion } from 'motion/react';
 import { Book, GraduationCap, Pencil, BookOpen, Lightbulb, Award } from 'lucide-react';
 
 const floatingIcons = [

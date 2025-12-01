@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-
+import { motion } from 'motion/react';
 import characterImage from '../assets/ch.png';
 
 export function AnimatedCharacter() {
