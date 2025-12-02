@@ -1,9 +1,10 @@
 import { Suspense, lazy, useState } from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Home, PlayCircle, Menu } from "lucide-react";
 import { AnimatedBackground } from "./AnimatedBackground";
 import { AnimatedCharacter } from "./AnimatedCharacter";
 import { useParams, useNavigate } from "react-router-dom";
+import logo from "../assets/PreissMurphy Logo-BGSDEhSA (1).svg";
 
 const pages = {
   "One-1": lazy(() => import("../units/g1/unitOne/L1/QuizPage.jsx")),
@@ -40,6 +41,7 @@ export default function VideoPlayerPage() {
   const handleLessonSelect = (lessonNumber) => {
     navigate(`/unit/${unitId}/lesson/${lessonNumber}`);
     setShowLessonDropdown(false); // إخفاء القائمة بعد الاختيار
+    setShowLessonDropdown(false); // إخفاء القائمة بعد الاختيار
   };
 
   const handleBackToUnits = () => {
@@ -49,7 +51,7 @@ export default function VideoPlayerPage() {
   if (!Component) return <div>Quiz Not Found</div>;
 
   return (
-    <div className="h-screen w-screen relative overflow-hidden flex flex-col bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
+    <div className="h-screen w-screen relative overflow-hidden flex flex-col ">
       <AnimatedBackground />
       <AnimatedCharacter />
 
@@ -71,71 +73,59 @@ export default function VideoPlayerPage() {
       <div className="w-full h-[2px] bg-white/30 relative z-10"></div>
 
       <motion.div
-        className="relative z-10 py-4 sm:py-5 px-4 sm:px-6"
-        style={{ backgroundColor: "#4776b7" }}
+        className="relative z-10 py-4 sm:py-5 px-4 sm:px-6 bg-white border-t-[1px] border-t-black border-t-solid"
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.3 }}
       >
-        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          {/* Home Button */}
+        <div className="max-w-8xl mx-auto flex flex-col sm:flex-row items-center gap-4">
+
+          {/* LEFT SECTION - Logo */}
+          <img
+            src={logo}
+            alt="J1 Logo"
+            style={{ height: "40px", width: "100px" }}
+          />
+
+          {/* CENTER SECTION - Units Button */}
           <motion.button
             onClick={handleBackToUnits}
-            className="bg-yellow-400 text-blue-900 px-8 py-3 rounded-full shadow-lg flex items-center gap-2"
-            whileHover={{ scale: 1.05, boxShadow: "0 15px 30px -5px rgba(0,0,0,0.4)" }}
+            className="ml-44 px-4 py-2 rounded-xl border font-medium transition-all duration-200 text-sm flex items-center gap-4"
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0 15px 30px -5px rgba(0, 0, 0, 0.4)"
+            }}
             whileTap={{ scale: 0.95 }}
           >
-            <Home className="w-5 h-5 sm:w-6 sm:h-6" />
-            <span className="text-base sm:text-lg">Units</span>
+            <Home className="border-[#b99cfa] text-[#6B40C8] hover:bg-purple-50 text-base" />
+            <span className="border-[#b99cfa] text-[#6B40C8] hover:bg-purple-50 text-base">Units</span>
           </motion.button>
 
-          {/* Lesson Buttons - Large Screens */}
-          <div className="hidden sm:flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4">
+          {/* RIGHT SECTION - Lesson Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="flex items-center gap-3 ml-96"
+          >
             {lessons.map((l) => (
               <button
                 key={l.number}
                 onClick={() => handleLessonSelect(l.number)}
-                className={`px-6 py-3 rounded-xl flex items-center gap-2 ${
-                  Number(lessonId) === l.number
-                    ? `bg-gradient-to-r ${l.color} text-white`
-                    : "bg-white"
-                }`}
+                className={`
+                  px-4 py-2 rounded-xl border font-medium transition-all duration-200 text-sm flex items-center gap-4
+                  ${Number(lessonId) === l.number
+                    ? `border-[#6B40C8] text-white bg-gradient-to-r ${l.color}`
+                    : "border-[#b99cfa] text-[#6B40C8] hover:bg-purple-50"
+                  }
+                `}
               >
-                <PlayCircle />
+                <PlayCircle className="w-5 h-5" />
                 Lesson {l.number}
               </button>
             ))}
-          </div>
+          </motion.div>
 
-          {/* Lesson Dropdown - Small Screens */}
-          <div className="sm:hidden relative">
-            <button
-              onClick={() => setShowLessonDropdown(!showLessonDropdown)}
-              className="bg-white px-4 py-3 rounded-full flex items-center gap-2 shadow-lg"
-            >
-              <Menu />
-              Lessons
-            </button>
-
-            {showLessonDropdown && (
-              <div className="fixed bottom-16 left-1/2 transform -translate-x-1/2 w-72 bg-white rounded-xl shadow-xl flex flex-col z-50 p-2">
-                {lessons.map((l) => (
-                  <button
-                    key={l.number}
-                    onClick={() => handleLessonSelect(l.number)}
-                    className={`px-4 py-2 text-left rounded-lg flex items-center gap-2 ${
-                      Number(lessonId) === l.number
-                        ? `bg-gradient-to-r ${l.color} text-white`
-                        : 'hover:bg-gray-100'
-                    }`}
-                  >
-                    <PlayCircle />
-                    Lesson {l.number}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
         </div>
       </motion.div>
     </div>
