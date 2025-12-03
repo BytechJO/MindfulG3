@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { Play } from "lucide-react";
 import { AnimatedBackground } from "./AnimatedBackground";
 import { AnimatedCharacter } from "./AnimatedCharacter";
-import mindfulKidsImage from "../assets/Mind.png";
+import mindfulKidsImage from "../assets/Mind1.png";
 
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 
