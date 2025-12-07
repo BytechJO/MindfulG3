@@ -4,6 +4,8 @@ import '../../shared/Quiz.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../../shared/StoryPage.css';
 import ValidationAlert from '../../shared/ValidationAlert';
+import Timg from '../../../../assets/Gif/Approve.Gif';
+import Fimg from '../../../../assets/Gif/False.gif';
 
 export const QuizPage = () => {
   const { unitId, lessonId } = useParams();
@@ -14,20 +16,11 @@ export const QuizPage = () => {
   const [showSkip, setShowSkip] = useState(false);
   const [showTry, setShowTry] = useState(false);
 
+  const correctAnswers = { q1: "0", q2: "0", q3: "0" };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setAnswers(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleTryAgain = () => {
-    setAnswers({ q1: null, q2: null, q3: null });
-    setResults({ q1: null, q2: null, q3: null });
-    setShowSkip(false);
-    setShowTry(false);
-
-    // إزالة التحديد عن كل radio
-    const radios = document.querySelectorAll('input[type="radio"]');
-    radios.forEach(radio => (radio.checked = false));
   };
 
   const handleSubmit = () => {
@@ -35,8 +28,6 @@ export const QuizPage = () => {
       ValidationAlert.info("Incomplete", "Please answer all questions before submitting!");
       return;
     }
-
-    const correctAnswers = { q1: "0", q2: "0", q3: "0" };
 
     const newResults = {
       q1: answers.q1 === correctAnswers.q1,
@@ -60,8 +51,25 @@ export const QuizPage = () => {
     }
   };
 
+  const handleTryAgain = () => {
+    setAnswers({ q1: null, q2: null, q3: null });
+    setResults({ q1: null, q2: null, q3: null });
+    setShowSkip(false);
+    setShowTry(false);
+
+    const radios = document.querySelectorAll('input[type="radio"]');
+    radios.forEach(radio => (radio.checked = false));
+  };
+
   const handleSkip = () => {
     navigate(`/unit/${unitId}/lesson/${lessonId}/feedBack`);
+  };
+
+  const renderAnswerGif = (question, optionValue) => {
+    if (results[question] === null) return null;
+    if (answers[question] !== optionValue) return null;
+    return results[question] ? <img src={Timg} alt="correct" className="answer-gif" />
+                              : <img src={Fimg} alt="wrong" className="answer-gif" />;
   };
 
   return (
@@ -78,14 +86,17 @@ export const QuizPage = () => {
                 <li>
                   They worked together.
                   <input type="radio" name="q1" value="0" onChange={handleChange} />
+                  {renderAnswerGif('q1', '0')}
                 </li>
                 <li>
                   They argued with each other.
                   <input type="radio" name="q1" value="1" onChange={handleChange} />
+                  {renderAnswerGif('q1', '1')}
                 </li>
                 <li>
                   They ignored each other.
                   <input type="radio" name="q1" value="2" onChange={handleChange} />
+                  {renderAnswerGif('q1', '2')}
                 </li>
               </ul>
             </div>
@@ -97,14 +108,17 @@ export const QuizPage = () => {
                 <li>
                   They couldn’t decide which game to play first.
                   <input type="radio" name="q2" value="0" onChange={handleChange} />
+                  {renderAnswerGif('q2', '0')}
                 </li>
                 <li>
                   They played rock, paper, scissors.
                   <input type="radio" name="q2" value="1" onChange={handleChange} />
+                  {renderAnswerGif('q2', '1')}
                 </li>
                 <li>
                   They yelled at each other.
                   <input type="radio" name="q2" value="2" onChange={handleChange} />
+                  {renderAnswerGif('q2', '2')}
                 </li>
               </ul>
             </div>
@@ -116,34 +130,28 @@ export const QuizPage = () => {
                 <li>
                   They played rock, paper, scissors.
                   <input type="radio" name="q3" value="0" onChange={handleChange} />
+                  {renderAnswerGif('q3', '0')}
                 </li>
                 <li>
                   They did not play any games.
                   <input type="radio" name="q3" value="1" onChange={handleChange} />
+                  {renderAnswerGif('q3', '1')}
                 </li>
                 <li>
                   They went and told their parents.
                   <input type="radio" name="q3" value="2" onChange={handleChange} />
+                  {renderAnswerGif('q3', '2')}
                 </li>
               </ul>
             </div>
 
             {/* Buttons */}
-            {showSkip && (
-              <button type="button" className="skip-btn" onClick={handleSkip}>
-                Skip
-              </button>
-            )}
+            <div className="quiz-buttons">
+              <button type="button" id="submitBtn" onClick={handleSubmit}>Submit</button>
+              {showSkip && <button type="button" className="skip-btn" onClick={handleSkip}>Skip</button>}
+              {showTry && <button className="try-btn" onClick={handleTryAgain}>Try Again</button>}
+            </div>
 
-            {showTry && (
-              <button className="try-btn" onClick={handleTryAgain}>
-                Try again
-              </button>
-            )}
-
-            <button type="button" id="submitBtn" onClick={handleSubmit}>
-              Submit
-            </button>
           </div>
         </div>
       </div>

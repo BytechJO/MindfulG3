@@ -4,13 +4,18 @@ import '../../shared/Quiz.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../../shared/StoryPage.css';
 import ValidationAlert from '../../shared/ValidationAlert';
+import Timg from '../../../../assets/Gif/Approve.Gif';
+import Fimg from '../../../../assets/Gif/False.gif';
 
 export const QuizPage = () => {
   const { unitId, lessonId } = useParams();
   const navigate = useNavigate();
   const [answers, setAnswers] = useState({ q1: null, q2: null, q3: null });
+  const [results, setResults] = useState({ q1: null, q2: null, q3: null });
   const [showSkip, setShowSkip] = useState(false);
   const [showTry, setShowTry] = useState(false);
+
+  const correctAnswers = { q1: "1", q2: "2", q3: "1" };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,19 +28,19 @@ export const QuizPage = () => {
       return;
     }
 
-    const correctAnswers = { q1: "1", q2: "2", q3: "1" };
-    const results = {
+    const newResults = {
       q1: answers.q1 === correctAnswers.q1,
       q2: answers.q2 === correctAnswers.q2,
       q3: answers.q3 === correctAnswers.q3
     };
 
-    const score = Object.values(results).filter(Boolean).length;
-    const totalQuestions = Object.keys(results).length;
-    const scoreString = `${score}/${totalQuestions}`;
-
+    setResults(newResults);
     setShowSkip(true);
     setShowTry(true);
+
+    const score = Object.values(newResults).filter(Boolean).length;
+    const totalQuestions = Object.keys(newResults).length;
+    const scoreString = `${score}/${totalQuestions}`;
 
     if (score === totalQuestions) {
       ValidationAlert.success("Good Job!", "", scoreString)
@@ -47,6 +52,7 @@ export const QuizPage = () => {
 
   const handleTryAgain = () => {
     setAnswers({ q1: null, q2: null, q3: null });
+    setResults({ q1: null, q2: null, q3: null });
     setShowSkip(false);
     setShowTry(false);
 
@@ -56,6 +62,14 @@ export const QuizPage = () => {
 
   const handleSkip = () => {
     navigate(`/unit/${unitId}/lesson/${lessonId}/feedBack`);
+  };
+
+  // تظهر صورة صح أو خطأ بجانب الخيار الذي اختاره الطالب فقط
+  const renderAnswerGif = (question, optionValue) => {
+    if (results[question] === null) return null;
+    if (answers[question] !== optionValue) return null;
+    return results[question] ? <img src={Timg} alt="correct" className="answer-gif" />
+                              : <img src={Fimg} alt="wrong" className="answer-gif" />;
   };
 
   return (
@@ -68,42 +82,72 @@ export const QuizPage = () => {
             <div className="Q1">
               <span>How did Liz and Ryan help their parents?</span>
               <ul>
-                <li>They asked them what to do. <input type="radio" name="q1" value="0" onChange={handleChange} /></li>
-                <li>They wrote a list of chores and did them.<input type="radio" name="q1" value="1" onChange={handleChange}/></li>
-                <li>They cooked the food. <input type="radio" name="q1" value="2" onChange={handleChange}/></li>
+                <li>
+                  They asked them what to do.
+                  <input type="radio" name="q1" value="0" onChange={handleChange} />
+                  {renderAnswerGif('q1', '0')}
+                </li>
+                <li>
+                  They wrote a list of chores and did them.
+                  <input type="radio" name="q1" value="1" onChange={handleChange} />
+                  {renderAnswerGif('q1', '1')}
+                </li>
+                <li>
+                  They cooked the food.
+                  <input type="radio" name="q1" value="2" onChange={handleChange} />
+                  {renderAnswerGif('q1', '2')}
+                </li>
               </ul>
             </div>
-            
+
             <div className="Q2">
               <span>At the beginning of the story Liz and Ryan were watching TV <br />while Mum and Dad cooked.</span>
               <br />
               <span>Liz didn’t think that was _________.</span>
               <ul>
-                <li>Caring <input type="radio" name="q2" value="0" onChange={handleChange}/></li>
-                <li>Nice<input type="radio" name="q2" value="1" onChange={handleChange}/></li>
-                <li>Fair <input type="radio" name="q2" value="2" onChange={handleChange}/></li>
+                <li>
+                  Caring
+                  <input type="radio" name="q2" value="0" onChange={handleChange}/>
+                  {renderAnswerGif('q2', '0')}
+                </li>
+                <li>
+                  Nice
+                  <input type="radio" name="q2" value="1" onChange={handleChange}/>
+                  {renderAnswerGif('q2', '1')}
+                </li>
+                <li>
+                  Fair
+                  <input type="radio" name="q2" value="2" onChange={handleChange}/>
+                  {renderAnswerGif('q2', '2')}
+                </li>
               </ul>
             </div>
-            
+
             <div className="Q3" >
               <span>How did Mum and Dad feel at the end of the story?</span>
               <ul>
-                <li>Tired <input type="radio" name="q3" value="0" onChange={handleChange}/></li>
-                <li>Relaxed <input type="radio" name="q3" value="1" onChange={handleChange}/></li>
-                <li>Angry <input type="radio" name="q3" value="2" onChange={handleChange}/></li>
+                <li>
+                  Tired
+                  <input type="radio" name="q3" value="0" onChange={handleChange}/>
+                  {renderAnswerGif('q3', '0')}
+                </li>
+                <li>
+                  Relaxed
+                  <input type="radio" name="q3" value="1" onChange={handleChange}/>
+                  {renderAnswerGif('q3', '1')}
+                </li>
+                <li>
+                  Angry
+                  <input type="radio" name="q3" value="2" onChange={handleChange}/>
+                  {renderAnswerGif('q3', '2')}
+                </li>
               </ul>
             </div>
 
             <div className="quiz-buttons">
               <button type="button" id="submitBtn2" onClick={handleSubmit}>Submit</button>
-
-              {showSkip && (
-                <button type="button" className="skip-btn" onClick={handleSkip}>Skip</button>
-              )}
-
-              {showTry && (
-                <button type="button" className="try-btn" onClick={handleTryAgain}>Try Again</button>
-              )}
+              {showSkip && <button type="button" className="skip-btn" onClick={handleSkip}>Skip</button>}
+              {showTry && <button type="button" className="try-btn" onClick={handleTryAgain}>Try Again</button>}
             </div>
           </div>
         </div>

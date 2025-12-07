@@ -439,3 +439,15 @@ body {
   transform: scale(1.1);
 }
 
+
+/* تعديل ظهور GIF أو أيقونة الصح والخطأ داخل الدائرة المختارة */
+.answer-gif {
+  width: 30px;               /* حجم صغير لتناسب الدائرة */
+  height: 30px;
+  position: absolute;        /* وضع مطلق داخل الـ li */
+  top: 50%;                  /* مركز عمودي */
+  left: 35%;                 /* مركز أفقي */
+  transform: translate(-50%, -50%); /* لضبط المنتصف تمامًا */
+  pointer-events: none;      /* لمنع التأثير على النقر */
+  z-index: 2;
+}
