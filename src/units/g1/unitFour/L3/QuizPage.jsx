@@ -9,10 +9,23 @@ export const QuizPage = () => {
   const { unitId, lessonId } = useParams();
   const navigate = useNavigate();
   const [answers, setAnswers] = useState({ q1: null, q2: null, q3: null });
+  const [results, setResults] = useState({ q1: null, q2: null, q3: null });
+  const [showSkip, setShowSkip] = useState(false);
+  const [showTry, setShowTry] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setAnswers(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleTryAgain = () => {
+    setAnswers({ q1: null, q2: null, q3: null });
+    setResults({ q1: null, q2: null, q3: null });
+    setShowSkip(false);
+    setShowTry(false);
+
+    const radios = document.querySelectorAll('input[type="radio"]');
+    radios.forEach(radio => (radio.checked = false));
   };
 
   const handleSubmit = () => {
@@ -20,32 +33,33 @@ export const QuizPage = () => {
       ValidationAlert.info("Incomplete", "Please answer all questions before submitting!");
       return;
     }
+
     const correctAnswers = { q1: "0", q2: "1", q3: "1" };
-    const results = {
+
+    const newResults = {
       q1: answers.q1 === correctAnswers.q1,
       q2: answers.q2 === correctAnswers.q2,
       q3: answers.q3 === correctAnswers.q3
     };
-    const score = Object.values(results).filter(isCorrect => isCorrect).length;
-    const totalQuestions = Object.keys(results).length;
+
+    setResults(newResults);
+    setShowSkip(true);
+    setShowTry(true);
+
+    const score = Object.values(newResults).filter(Boolean).length;
+    const totalQuestions = Object.keys(newResults).length;
     const scoreString = `${score}/${totalQuestions}`;
-    const resultsHtml = `
-      Q1: ${results.q1 ? '✅ Correct' : '❌ Wrong'}  <br>
 
-      Q2: ${results.q2 ? '✅ Correct' : '❌ Wrong'}  <br>
-
-      Q3: ${results.q3 ? '✅ Correct' : '❌ Wrong'}<br>
-      <hr>
-      <p><strong>Score:</strong> ${score}/${totalQuestions}</p>
-    `;
     if (score === totalQuestions) {
       ValidationAlert.success("Good Job!", "", scoreString)
-        .then(() => {
-          navigate(`/unit/${unitId}/lesson/${lessonId}/feedBack`);
-        });
+        .then(() => navigate(`/unit/${unitId}/lesson/${lessonId}/feedBack`));
     } else {
-      ValidationAlert.error("Try again", "", scoreString)  
+      ValidationAlert.error("Try again", "", scoreString);
     }
+  };
+
+  const handleSkip = () => {
+    navigate(`/unit/${unitId}/lesson/${lessonId}/feedBack`);
   };
 
   return (
@@ -55,36 +69,71 @@ export const QuizPage = () => {
           <img src={Q1Image} alt="Background" className="bg-img" />
 
           <div className="content">
+            {/* Q1 */}
             <div className="Q1">
               <span>Why did Derrick feel upset?</span>
               <ul>
-                <li>He didn’t win the class president vote.<input type="radio" name="q1" value="0" onChange={handleChange} /></li>
-                <li>Jasmine’s presentation was better than his.<input type="radio" name="q1" value="1" onChange={handleChange} /></li>
-                <li>His poster ripped.<input type="radio" name="q1" value="2" onChange={handleChange} /></li>
+                <li>He didn’t win the class president vote.
+                  <input type="radio" name="q1" value="0" onChange={handleChange} />
+                </li>
+                <li>Jasmine’s presentation was better than his.
+                  <input type="radio" name="q1" value="1" onChange={handleChange} />
+                </li>
+                <li>His poster ripped.
+                  <input type="radio" name="q1" value="2" onChange={handleChange} />
+                </li>
               </ul>
             </div>
 
+            {/* Q2 */}
             <div className="Q2">
               <span>Why did Derrick not throw a tantrum?</span>
               <ul>
-                <li>Because his teacher would be angry.<input type="radio" name="q2" value="0" onChange={handleChange} /></li>
-                <li>He did not want to be a sore loser.<input type="radio" name="q2" value="1" onChange={handleChange} /></li>
-                <li>He did not want his friends to see him mad<input type="radio" name="q2" value="2" onChange={handleChange} /></li>
+                <li>Because his teacher would be angry.
+                  <input type="radio" name="q2" value="0" onChange={handleChange} />
+                </li>
+                <li>He did not want to be a sore loser.
+                  <input type="radio" name="q2" value="1" onChange={handleChange} />
+                </li>
+                <li>He did not want his friends to see him mad.
+                  <input type="radio" name="q2" value="2" onChange={handleChange} />
+                </li>
               </ul>
             </div>
 
-            <div className="Q3" >
+            {/* Q3 */}
+            <div className="Q3">
               <span>How did Derrick show good sportsmanship to Jasmine?</span>
               <ul>
-                <li>He threw a tantrum.<input type="radio" name="q3" value="0" onChange={handleChange} /></li>
-                <li>He congratulated Jasmine.<input type="radio" name="q3" value="1" onChange={handleChange} /></li>
-                <li>He ignored her.<input type="radio" name="q3" value="2" onChange={handleChange} /></li>
+                <li>He threw a tantrum.
+                  <input type="radio" name="q3" value="0" onChange={handleChange} />
+                </li>
+                <li>He congratulated Jasmine.
+                  <input type="radio" name="q3" value="1" onChange={handleChange} />
+                </li>
+                <li>He ignored her.
+                  <input type="radio" name="q3" value="2" onChange={handleChange} />
+                </li>
               </ul>
             </div>
 
-            <button type="button" id="submitBtn" onClick={handleSubmit}>Submit</button>
-          </div>
+            {/* Buttons */}
+            {showSkip && (
+              <button type="button" className="skip-btn" onClick={handleSkip}>
+                Skip
+              </button>
+            )}
 
+            {showTry && (
+              <button className="try-btn" onClick={handleTryAgain}>
+                Try again
+              </button>
+            )}
+
+            <button type="button" id="submitBtn" onClick={handleSubmit}>
+              Submit
+            </button>
+          </div>
         </div>
       </div>
     </div>

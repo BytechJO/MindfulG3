@@ -1,7 +1,7 @@
 import { Suspense, lazy, useState } from "react";
 import { motion } from "framer-motion";
 
-import { Home, PlayCircle, Menu } from "lucide-react";
+import { Home, PlayCircle, Menu ,ChevronLeft, ChevronRight } from "lucide-react";
 import { AnimatedBackground } from "./AnimatedBackground";
 import { AnimatedCharacter } from "./AnimatedCharacter";
 import { useParams, useNavigate } from "react-router-dom";
@@ -34,7 +34,6 @@ const lessons = [
 const FeedbackWrapper = () => {
   const { unitId, lessonId } = useParams();
   const navigate = useNavigate();
-
   const [showLessonDropdown, setShowLessonDropdown] = useState(false);
 
   const key = `${unitId}-${lessonId}`;
@@ -43,11 +42,16 @@ const FeedbackWrapper = () => {
   const handleLessonSelect = (lessonNumber) => {
     navigate(`/unit/${unitId}/lesson/${lessonNumber}`);
     setShowLessonDropdown(false); // إخفاء القائمة بعد الاختيار
-    setShowLessonDropdown(false); // إخفاء القائمة بعد الاختيار
   };
+
+ 
 
   const handleBackToUnits = () => {
     navigate("/UnitsPage");
+  };
+
+  const handlePrevious = () => {
+    navigate(-1);
   };
 
   if (!Component) return <div>feedback not found</div>;
@@ -58,6 +62,12 @@ const FeedbackWrapper = () => {
       <AnimatedCharacter />
 
       <div className="flex-1 p-4 sm:p-6 md:p-8 flex items-center justify-center overflow-hidden">
+
+        <button onClick={handlePrevious} className="feedquiz left">
+          <ChevronLeft className="w-8 h-8" />
+        </button>
+        
+
         <div className="max-w-5xl mx-auto relative z-10 w-full">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -66,10 +76,12 @@ const FeedbackWrapper = () => {
             className="w-full h-full"
           >
             <Suspense fallback={<div>Loading...</div>}>
+
               <Component />
             </Suspense>
           </motion.div>
         </div>
+        
       </div>
 
       <div className="w-full h-[2px] bg-white/30 relative z-10"></div>
@@ -126,6 +138,7 @@ const FeedbackWrapper = () => {
                 Lesson {l.number}
               </button>
             ))}
+
           </motion.div>
 
         </div>

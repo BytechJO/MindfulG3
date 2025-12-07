@@ -21,7 +21,7 @@ export const StoryPage = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
-  const [playbackSpeed, setPlaybackSpeed] = useState(1);
+  const [playbackSpeed, setPlaybackSpeed] = useState(0.75);
   const [showSubtitles, setShowSubtitles] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
@@ -537,34 +537,73 @@ export const StoryPage = () => {
 
             <div className="controls-wrapper-new">
               <div className="controls-row">
-                <div className="controls-group-left">
-                  {/* --- 5. تعطيل الأزرار عند عرض الصورة --- */}
-                  <button onClick={() => setShowSubtitles(!showSubtitles)} className="control-btn" title="Subtitles">
-                    <Subtitles className="w-6 h-6" />
-                    <span className="control-label">Subtitle</span>
-                  </button>
-                  <button onClick={() => setShowCaption(!showCaption)} className="control-btn" title="Caption">
+              <div className="controls-group-left">
+
+                  <button
+                    onClick={() => setShowCaption(!showCaption)}
+                    className={`control-btn ${!showCaption ? "disabled-btn" : ""}`}
+                    title="Caption"
+                  >
                     <MessageSquareText className="w-6 h-6" />
                     <span className="control-label">Caption</span>
                   </button>
-                  <div className="volume-control" onMouseEnter={() => setShowVolumeSlider(true)} onMouseLeave={() => setShowVolumeSlider(false)}>
-                    <button onClick={toggleMute} className="control-btn" disabled={currentItem.type === 'image'}>
-                      {isMuted || volume === 0 ? <VolumeX className="w-6 h-6" /> : <Volume2 className="w-6 h-6" />}
+                  
+                  <button
+                    onClick={() => setShowSubtitles(!showSubtitles)}
+                    className={`control-btn ${!showSubtitles ? "disabled-btn" : ""}`}
+                    title="Subtitles"
+                  >
+                    <Subtitles className="w-6 h-6" />
+                    <span className="control-label">Subtitle</span>
+                  </button>
+
+                  <div
+                    className="volume-control"
+                    onMouseEnter={() => setShowVolumeSlider(true)}
+                    onMouseLeave={() => setShowVolumeSlider(false)}
+                  >
+                    <button onClick={toggleMute} className="control-btn">
+                      {isMuted || volume === 0 ? (
+                        <VolumeX className="w-6 h-6" />
+                      ) : (
+                        <Volume2 className="w-6 h-6" />
+                      )}
                     </button>
-                    {showVolumeSlider && currentItem.type === 'video' && (
+                    {showVolumeSlider && (
                       <div className="volume-slider-container">
-                        <input type="range" min="0" max="1" step="0.1" value={volume} onChange={handleVolumeChange} className="volume-slider" orient="vertical" />
+                        <input
+                          type="range"
+                          min="0"
+                          max="1"
+                          step="0.1"
+                          value={volume}
+                          onChange={handleVolumeChange}
+                          className="volume-slider"
+                          orient="vertical"
+                        />
                       </div>
                     )}
                   </div>
+
                   <div className="speed-control-container">
-                    <button onClick={() => setShowSpeedMenu(!showSpeedMenu)} className="control-btn speed-btn" title="Playback Speed" disabled={currentItem.type === 'image'}>
+                    <button
+                      onClick={() => setShowSpeedMenu(prev => !prev)}
+                      className="control-btn speed-btn"
+                      title="Playback Speed"
+                    >
                       <span className="speed-label">{playbackSpeed}x</span>
                     </button>
-                    {showSpeedMenu && currentItem.type === 'video' && (
+
+                    {showSpeedMenu && (
                       <ul className="speed-dropdown-list">
-                        {availableSpeeds.map(speed => (
-                          <li key={speed} onClick={() => selectPlaybackSpeed(speed)} className={playbackSpeed === speed ? 'active-speed' : ''}>{speed}x</li>
+                        {availableSpeeds.map((speed) => (
+                          <li
+                            key={speed}
+                            onClick={() => selectPlaybackSpeed(speed)}
+                            className={playbackSpeed === speed ? 'active-speed' : ''}
+                          >
+                            {speed}x
+                          </li>
                         ))}
                       </ul>
                     )}

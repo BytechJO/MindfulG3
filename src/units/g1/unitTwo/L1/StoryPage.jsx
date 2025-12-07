@@ -28,7 +28,7 @@ export const StoryPage = () => {
   const [showFeedback, setShowFeedback] = useState(false);
   const [showBubble, setShowBubble] = useState(true);
   const [showBanner, setShowBanner] = useState(false);
-  const [playbackSpeed, setPlaybackSpeed] = useState(1);
+  const [playbackSpeed, setPlaybackSpeed] = useState(0.75);
   const [volume, setVolume] = useState(1);
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
   const [showSubtitles, setShowSubtitles] = useState(true);
@@ -641,9 +641,12 @@ export const StoryPage = () => {
     setCurrentVideo(prev => (prev > 0 ? prev - 1 : videos.length - 1));
   };
 
-  const handleNext = () => {
-    setShowBanner(false);
-    setCurrentVideo(prev => (prev < videos.length - 1 ? prev + 1 : 0));
+ const handleNext = () => {
+    if (currentVideo === videos.length - 1) {
+      navigate(`/unit/${unitId}/lesson/${lessonId}/quiz`);
+    } else {
+      setCurrentVideo(prev => prev + 1);
+    }
   };
 
 
@@ -816,22 +819,37 @@ export const StoryPage = () => {
 
             <div className="controls-wrapper-new">
               <div className="controls-row">
-                <div className="controls-group-left">
-                  <button onClick={() => setShowSubtitles(!showSubtitles)} className="control-btn" title="Subtitles">
-                    <Subtitles className="w-6 h-6" />
-                    <span className="control-label">Subtitle</span>
-                  </button>
-                  <button onClick={() => setShowCaption(!showCaption)} className="control-btn" title="Caption">
+              <div className="controls-group-left">
+
+                  <button
+                    onClick={() => setShowCaption(!showCaption)}
+                    className={`control-btn ${!showCaption ? "disabled-btn" : ""}`}
+                    title="Caption"
+                  >
                     <MessageSquareText className="w-6 h-6" />
                     <span className="control-label">Caption</span>
                   </button>
+                  
+                  <button
+                    onClick={() => setShowSubtitles(!showSubtitles)}
+                    className={`control-btn ${!showSubtitles ? "disabled-btn" : ""}`}
+                    title="Subtitles"
+                  >
+                    <Subtitles className="w-6 h-6" />
+                    <span className="control-label">Subtitle</span>
+                  </button>
+
                   <div
                     className="volume-control"
                     onMouseEnter={() => setShowVolumeSlider(true)}
                     onMouseLeave={() => setShowVolumeSlider(false)}
                   >
                     <button onClick={toggleMute} className="control-btn">
-                      {isMuted || volume === 0 ? <VolumeX className="w-6 h-6" /> : <Volume2 className="w-6 h-6" />}
+                      {isMuted || volume === 0 ? (
+                        <VolumeX className="w-6 h-6" />
+                      ) : (
+                        <Volume2 className="w-6 h-6" />
+                      )}
                     </button>
                     {showVolumeSlider && (
                       <div className="volume-slider-container">
@@ -848,6 +866,7 @@ export const StoryPage = () => {
                       </div>
                     )}
                   </div>
+
                   <div className="speed-control-container">
                     <button
                       onClick={() => setShowSpeedMenu(prev => !prev)}
@@ -856,6 +875,7 @@ export const StoryPage = () => {
                     >
                       <span className="speed-label">{playbackSpeed}x</span>
                     </button>
+
                     {showSpeedMenu && (
                       <ul className="speed-dropdown-list">
                         {availableSpeeds.map((speed) => (

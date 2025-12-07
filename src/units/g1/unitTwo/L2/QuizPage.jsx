@@ -9,6 +9,10 @@ export const QuizPage = () => {
   const { unitId, lessonId } = useParams();
   const navigate = useNavigate();
   const [answers, setAnswers] = useState({ q1: null, q2: null, q3: null });
+  const [showSkip, setShowSkip] = useState(false);
+  const [showTry, setShowTry] = useState(false);
+
+  const correctAnswers = { q1: "1", q2: "1", q3: "0" }; // إجابات صحيحة لأسئلة Liam
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,37 +20,50 @@ export const QuizPage = () => {
   };
 
   const handleSubmit = () => {
-    // ... (دالة handleSubmit تبقى كما هي)
     if (!answers.q1 || !answers.q2 || !answers.q3) {
       ValidationAlert.info("Incomplete", "Please answer all questions before submitting!");
       return;
     }
-    const correctAnswers = { q1: "1", q2: "1", q3: "0" };
+
     const results = {
       q1: answers.q1 === correctAnswers.q1,
       q2: answers.q2 === correctAnswers.q2,
       q3: answers.q3 === correctAnswers.q3
     };
-    const score = Object.values(results).filter(isCorrect => isCorrect).length;
+
+    const score = Object.values(results).filter(Boolean).length;
     const totalQuestions = Object.keys(results).length;
     const scoreString = `${score}/${totalQuestions}`;
-    const resultsHtml = `
-      Q1: ${results.q1 ? '✅ Correct' : '❌ Wrong'}  <br>
 
-      Q2: ${results.q2 ? '✅ Correct' : '❌ Wrong'}  <br>
+    setShowSkip(true);
+    setShowTry(true);
 
-      Q3: ${results.q3 ? '✅ Correct' : '❌ Wrong'}<br>
-      <hr>
-      <p><strong>Score:</strong> ${score}/${totalQuestions}</p>
-    `;
     if (score === totalQuestions) {
       ValidationAlert.success("Good Job!", "", scoreString)
-        .then(() => {
-          navigate(`/unit/${unitId}/lesson/${lessonId}/feedBack`);
-        });
+        .then(() => navigate(`/unit/${unitId}/lesson/${lessonId}/feedBack`));
     } else {
-      ValidationAlert.error("Try again", "", scoreString)
+      ValidationAlert.error("Try again", "", scoreString);
     }
+  };
+
+  const handleTryAgain = () => {
+    setAnswers({ q1: null, q2: null, q3: null });
+    setShowSkip(false);
+    setShowTry(false);
+
+    const radios = document.querySelectorAll('input[type="radio"]');
+    radios.forEach(radio => (radio.checked = false));
+  };
+
+  const handleSkip = () => {
+    navigate(`/unit/${unitId}/lesson/${lessonId}/feedBack`);
+  };
+
+  const getAnswerClass = (q, value) => {
+    if (!showTry && !showSkip) return '';
+    if (value === correctAnswers[q]) return 'correct';
+    if (answers[q] === value && value !== correctAnswers[q]) return 'wrong';
+    return '';
   };
 
   return (
@@ -55,40 +72,41 @@ export const QuizPage = () => {
         <div className="paper animate__animated animate__backInDown" id="p3">
           <img src={Q1Image} alt="Background" className="bg-img" />
 
-          {/* --- بداية التعديل --- */}
           <div className="content">
             <div className="Q1">
               <span>What made Liam angry?</span>
               <ul>
-                <li>His brother Noah ignored him.<input type="radio" name="q1" value="0" onChange={handleChange} /></li>
-                <li>His brother Noah ruined his homework. <input type="radio" name="q1" value="1" onChange={handleChange} /></li>
-                <li>He had to work outside in the garden. <input type="radio" name="q1" value="2" onChange={handleChange} /></li>
+                <li className={getAnswerClass('q1', '0')}>His brother Noah ignored him.<input type="radio" name="q1" value="0" onChange={handleChange} /></li>
+                <li className={getAnswerClass('q1', '1')}>His brother Noah ruined his homework.<input type="radio" name="q1" value="1" onChange={handleChange} /></li>
+                <li className={getAnswerClass('q1', '2')}>He had to work outside in the garden.<input type="radio" name="q1" value="2" onChange={handleChange} /></li>
               </ul>
             </div>
 
             <div className="Q2">
               <span>What did Liam do to keep calm?</span>
               <ul>
-                <li>He yelled at his brother. <input type="radio" name="q2" value="0" onChange={handleChange} /></li>
-                <li>He had a glass of water. <input type="radio" name="q2" value="1" onChange={handleChange} /></li>
-                <li>He told his mom what happened. <input type="radio" name="q2" value="2" onChange={handleChange} /></li>
+                <li className={getAnswerClass('q2', '0')}>He yelled at his brother.<input type="radio" name="q2" value="0" onChange={handleChange} /></li>
+                <li className={getAnswerClass('q2', '1')}>He had a glass of water.<input type="radio" name="q2" value="1" onChange={handleChange} /></li>
+                <li className={getAnswerClass('q2', '2')}>He told his mom what happened.<input type="radio" name="q2" value="2" onChange={handleChange} /></li>
               </ul>
             </div>
 
-            <div className="Q3" >
+            <div className="Q3">
               <span>How did Liam speak to his brother?</span>
               <ul>
-                <li>Calmly<input type="radio" name="q3" value="0" onChange={handleChange} /></li>
-                <li>Angrily<input type="radio" name="q3" value="1" onChange={handleChange} /></li>
-                <li>Happily<input type="radio" name="q3" value="2" onChange={handleChange} /></li>
+                <li className={getAnswerClass('q3', '0')}>Calmly<input type="radio" name="q3" value="0" onChange={handleChange} /></li>
+                <li className={getAnswerClass('q3', '1')}>Angrily<input type="radio" name="q3" value="1" onChange={handleChange} /></li>
+                <li className={getAnswerClass('q3', '2')}>Happily<input type="radio" name="q3" value="2" onChange={handleChange} /></li>
               </ul>
             </div>
 
-            {/* تم نقل الزر إلى هنا */}
-            <button type="button" id="submitBtn" onClick={handleSubmit}>Submit</button>
-          </div>
-          {/* --- نهاية التعديل --- */}
+            <div className="quiz-buttons">
+              <button type="button" id="submitBtn" onClick={handleSubmit}>Submit</button>
+              {showSkip && <button type="button" className="skip-btn" onClick={handleSkip}>Skip</button>}
+              {showTry && <button type="button" className="try-btn" onClick={handleTryAgain}>Try Again</button>}
+            </div>
 
+          </div>
         </div>
       </div>
     </div>
