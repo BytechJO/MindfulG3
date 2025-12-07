@@ -64,7 +64,7 @@ export const QuizPage = () => {
         <div className="paper animate__animated animate__backInDown" id="p3">
           <img src={Q1Image} alt="Background" className="bg-img" />
 
-          <div className="content">
+          <div className="conten">
             <div className="Q1">
               <span>How did Liz and Ryan help their parents?</span>
               <ul>
@@ -95,7 +95,7 @@ export const QuizPage = () => {
             </div>
 
             <div className="quiz-buttons">
-              <button type="button" id="submitBtn" onClick={handleSubmit}>Submit</button>
+              <button type="button" id="submitBtn2" onClick={handleSubmit}>Submit</button>
 
               {showSkip && (
                 <button type="button" className="skip-btn" onClick={handleSkip}>Skip</button>

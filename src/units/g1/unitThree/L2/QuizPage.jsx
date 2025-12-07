@@ -93,7 +93,7 @@ export const QuizPage = () => {
             </div>
 
             <div className="quiz-buttons">
-              <button type="button" id="submitBtn" onClick={handleSubmit}>Submit</button>
+              <button type="button" id="submitBtn1" onClick={handleSubmit}>Submit</button>
               {showSkip && <button type="button" className="skip-btn" onClick={handleSkip}>Skip</button>}
               {showTry && <button type="button" className="try-btn" onClick={handleTryAgain}>Try Again</button>}
             </div>

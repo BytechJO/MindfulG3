@@ -255,9 +255,7 @@ export const StoryPage = () => {
       subtitles: [
       ]
     },
-    {
-      url: img1, title: "Section 2 (Image)", subtitles: []
-    },
+    
   ];
 
   const extraBubblesData = [

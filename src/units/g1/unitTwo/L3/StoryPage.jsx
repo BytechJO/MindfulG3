@@ -140,15 +140,6 @@ export const StoryPage = () => {
         },
       ]
     },
-
-    {
-      type: 'image',
-      url: img1,
-      title: "The End",
-      subtitles: [
-
-      ]
-    }
   ];
 
   const extraBubblesData = [
@@ -382,9 +373,8 @@ export const StoryPage = () => {
   // --- دوال التحكم بالوسائط ---
   const handleNext = useCallback(() => {
     if (currentItemIndex === mediaItems.length - 1) {
-      ValidationAlert.storyEnd(() => {
         navigate(`/unit/${unitId}/lesson/${lessonId}/quiz`);
-      });
+      
     } else {
       setCurrentItemIndex(prev => prev + 1);
     }

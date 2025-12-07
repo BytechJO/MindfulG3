@@ -296,13 +296,6 @@ export const StoryPage = () => {
         }
       ]
     },
-
-    {
-      url: img,
-      title: "Section 6",
-      subtitles: [
-      ]
-    },
   ];
 
 

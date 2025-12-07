@@ -69,9 +69,9 @@ export const QuizPage = () => {
             <div className="Q1">
               <span>What were the group of boys talking about?</span>
               <ul>
-                <li>Toy cars <input type="radio" name="q1" value="0" onChange={handleChange} /></li>
-                <li>Video games <input type="radio" name="q1" value="1" onChange={handleChange}/></li>
-                <li>Dinner <input type="radio" name="q1" value="2" onChange={handleChange}/></li>
+                <li>Toy cars <input type="radio" name="q1" value="0" onChange={handleChange} style={{ marginLeft: '30px' }}/></li>
+                <li>Video games <input type="radio" name="q1" value="1" onChange={handleChange} style={{ marginLeft: '30px' }}/></li>
+                <li>Dinner <input type="radio" name="q1" value="2" onChange={handleChange} style={{ marginLeft: '30px' }}/></li>
               </ul>
             </div>
 
@@ -79,9 +79,9 @@ export const QuizPage = () => {
             <div className="Q2">
               <span>What did Peter do for fun at home?</span>
               <ul>
-                <li>Peter put puzzles together <input type="radio" name="q2" value="0" onChange={handleChange}/></li>
-                <li>Peter made toy aeroplanes. <input type="radio" name="q2" value="1" onChange={handleChange}/></li>
-                <li>Peter made toy cars.<input type="radio" name="q2" value="2" onChange={handleChange}/></li>
+                <li>Peter put puzzles together <input type="radio" name="q2" value="0" onChange={handleChange} style={{ marginLeft: '30px' }}/></li>
+                <li>Peter made toy aeroplanes. <input type="radio" name="q2" value="1" onChange={handleChange} style={{ marginLeft: '30px' }}/></li>
+                <li>Peter made toy cars.<input type="radio" name="q2" value="2" onChange={handleChange} style={{ marginLeft: '30px' }}/></li>
               </ul>
             </div>
 
@@ -89,9 +89,9 @@ export const QuizPage = () => {
             <div className="Q3">
               <span>How did Jonah become Peter’s friend?</span>
               <ul>
-                <li>He talked with the other boys.<input type="radio" name="q3" value="0" onChange={handleChange}/></li>
-                <li>He talked with Peter about building toy aeroplanes. <input type="radio" name="q3" value="1" onChange={handleChange}/></li>
-                <li>He yelled at the other boys.<input type="radio" name="q3" value="2" onChange={handleChange}/></li>
+                <li>He talked with the other boys.<input type="radio" name="q3" value="0" onChange={handleChange} style={{ marginLeft: '30px' }}/></li>
+                <li>He talked with Peter about building toy aeroplanes. <input type="radio" name="q3" value="1" onChange={handleChange} style={{ marginLeft: '30px' }}/></li>
+                <li>He yelled at the other boys.<input type="radio" name="q3" value="2" onChange={handleChange} style={{ marginLeft: '30px' }}/></li>
               </ul>
             </div>
 

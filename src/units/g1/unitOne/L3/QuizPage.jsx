@@ -68,32 +68,32 @@ export const QuizPage = () => {
             <div className="Q1">
               <span>What made Kylie almost reach her boiling point?</span>
               <ul>
-                <li>Her classmates pushed her against the bookshelf. <input type="radio" name="q1" value="0" onChange={handleChange} /></li>
-                <li>Someone bumped into her.<input type="radio" name="q1" value="1" onChange={handleChange} /></li>
-                <li>Two girls walked into the line in front of her.<input type="radio" name="q1" value="2" onChange={handleChange} /></li>
+                <li>Her classmates pushed her against the bookshelf. <input type="radio" name="q1" value="0" onChange={handleChange} style={{ marginLeft: '30px' }}/></li>
+                <li>Someone bumped into her.<input type="radio" name="q1" value="1" onChange={handleChange} style={{ marginLeft: '30px' }}/></li>
+                <li>Two girls walked into the line in front of her.<input type="radio" name="q1" value="2" onChange={handleChange} style={{ marginLeft: '30px' }}/></li>
               </ul>
             </div>
 
             <div className="Q2">
               <span>What colour was the anger thermometer after <br /> someone told Kylie to hurry up?</span>
               <ul>
-                <li>Red<input type="radio" name="q2" value="0" onChange={handleChange} /></li>
-                <li>Yellow<input type="radio" name="q2" value="1" onChange={handleChange} /></li>
-                <li>Blue<input type="radio" name="q2" value="2" onChange={handleChange} /></li>
+                <li>Red<input type="radio" name="q2" value="0" onChange={handleChange} style={{ marginLeft: '30px' }}/></li>
+                <li>Yellow<input type="radio" name="q2" value="1" onChange={handleChange} style={{ marginLeft: '30px' }}/></li>
+                <li>Blue<input type="radio" name="q2" value="2" onChange={handleChange} style={{ marginLeft: '30px' }}/></li>
               </ul>
             </div>
 
             <div className="Q3">
               <span>What did Kylie do to calm down?</span>
               <ul>
-                <li>She took a few breaths.<input type="radio" name="q3" value="0" onChange={handleChange} /></li>
-                <li>She screamed.<input type="radio" name="q3" value="1" onChange={handleChange} /></li>
-                <li>She pushed the two girls.<input type="radio" name="q3" value="2" onChange={handleChange} /></li>
+                <li>She took a few breaths.<input type="radio" name="q3" value="0" onChange={handleChange} style={{ marginLeft: '30px' }}/></li>
+                <li>She screamed.<input type="radio" name="q3" value="1" onChange={handleChange} style={{ marginLeft: '30px' }}/></li>
+                <li>She pushed the two girls.<input type="radio" name="q3" value="2" onChange={handleChange} style={{ marginLeft: '30px' }}/></li>
               </ul>
             </div>
 
             <div className="quiz-buttons">
-              <button type="button" id="submitBtn" onClick={handleSubmit}>Submit</button>
+              <button type="button" id="submitBtn1" onClick={handleSubmit}>Submit</button>
 
               {showSkip && (
                 <button type="button" className="skip-btn" onClick={handleSkip}>Skip</button>
