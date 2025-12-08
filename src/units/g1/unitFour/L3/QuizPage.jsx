@@ -4,6 +4,8 @@ import '../../shared/Quiz.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../../shared/StoryPage.css';
 import ValidationAlert from '../../shared/ValidationAlert';
+import Timg from '../../../../assets/Gif/Approve.Gif';
+import Fimg from '../../../../assets/Gif/False.gif';
 
 export const QuizPage = () => {
   const { unitId, lessonId } = useParams();
@@ -26,6 +28,13 @@ export const QuizPage = () => {
 
     const radios = document.querySelectorAll('input[type="radio"]');
     radios.forEach(radio => (radio.checked = false));
+  };
+
+  const renderAnswerGif = (question, optionValue) => {
+    if (results[question] === null) return null;
+    if (answers[question] !== optionValue) return null;
+    return results[question] ? <img src={Timg} alt="correct" className="answer-gif" />
+      : <img src={Fimg} alt="wrong" className="answer-gif" />;
   };
 
   const handleSubmit = () => {
@@ -75,12 +84,15 @@ export const QuizPage = () => {
               <ul>
                 <li>He didn’t win the class president vote.
                   <input type="radio" name="q1" value="0" onChange={handleChange} />
+                  {renderAnswerGif('q1', '0')}
                 </li>
                 <li>Jasmine’s presentation was better than his.
                   <input type="radio" name="q1" value="1" onChange={handleChange} />
+                  {renderAnswerGif('q1', '1')}
                 </li>
                 <li>His poster ripped.
                   <input type="radio" name="q1" value="2" onChange={handleChange} />
+                  {renderAnswerGif('q1', '2')}
                 </li>
               </ul>
             </div>
@@ -91,12 +103,15 @@ export const QuizPage = () => {
               <ul>
                 <li>Because his teacher would be angry.
                   <input type="radio" name="q2" value="0" onChange={handleChange} />
+                  {renderAnswerGif('q2', '0')}
                 </li>
                 <li>He did not want to be a sore loser.
                   <input type="radio" name="q2" value="1" onChange={handleChange} />
+                  {renderAnswerGif('q2', '1')}
                 </li>
                 <li>He did not want his friends to see him mad.
                   <input type="radio" name="q2" value="2" onChange={handleChange} />
+                  {renderAnswerGif('q2', '2')}
                 </li>
               </ul>
             </div>
@@ -107,12 +122,15 @@ export const QuizPage = () => {
               <ul>
                 <li>He threw a tantrum.
                   <input type="radio" name="q3" value="0" onChange={handleChange} />
+                  {renderAnswerGif('q3', '0')}
                 </li>
                 <li>He congratulated Jasmine.
                   <input type="radio" name="q3" value="1" onChange={handleChange} />
+                  {renderAnswerGif('q3', '1')}
                 </li>
                 <li>He ignored her.
                   <input type="radio" name="q3" value="2" onChange={handleChange} />
+                  {renderAnswerGif('q3', '2')}
                 </li>
               </ul>
             </div>
