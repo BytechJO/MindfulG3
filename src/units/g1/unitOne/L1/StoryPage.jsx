@@ -604,8 +604,8 @@ export const StoryPage = () => {
     ],
     2: [
       { top: '10%', right: '45%', left: 'auto' },
-      { top: '10%', left: '15%'},
-      { top: '15%', left: '15%'},
+      { top: '10%', left: '15%' },
+      { top: '15%', left: '15%' },
       { top: '30%', right: '10%', left: 'auto', isFlipped: true },
       { top: '0%', left: '30%' },
     ],
@@ -762,7 +762,7 @@ export const StoryPage = () => {
     setCurrentVideo(prev => (prev > 0 ? prev - 1 : videos.length - 1));
   };
 
- const handleNext = () => {
+  const handleNext = () => {
     if (currentVideo === videos.length - 1) {
       navigate(`/unit/${unitId}/lesson/${lessonId}/quiz`);
     } else {
@@ -946,24 +946,24 @@ export const StoryPage = () => {
 
             <div className="controls-wrapper-new">
               <div className="controls-row">
-               <div className="controls-group-left">
+                <div className="controls-group-left">
 
                   <button
                     onClick={() => setShowCaption(!showCaption)}
                     className={`control-btn ${!showCaption ? "disabled-btn" : ""}`}
                     title="Caption"
                   >
-                    <MessageSquareText className="w-6 h-6" />
-                    <span className="control-label">Caption</span>
+                    <Subtitles className="w-6 h-6" />
+                    <span className="control-label">Narration</span>
                   </button>
-                  
+
                   <button
                     onClick={() => setShowSubtitles(!showSubtitles)}
                     className={`control-btn ${!showSubtitles ? "disabled-btn" : ""}`}
                     title="Subtitles"
                   >
-                    <Subtitles className="w-6 h-6" />
-                    <span className="control-label">Subtitle</span>
+                    <MessageSquareText className="w-6 h-6" />
+                    <span className="control-label">Caption</span>
                   </button>
 
                   <div

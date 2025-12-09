@@ -26,7 +26,7 @@ export const QuizPage = () => {
       return;
     }
 
-    const correctAnswers = { q1: "1", q2: "0", q3: "0" };
+    const correctAnswers = { q1: "2", q2: "0", q3: "0" };
     const newResults = {
       q1: answers.q1 === correctAnswers.q1,
       q2: answers.q2 === correctAnswers.q2,
